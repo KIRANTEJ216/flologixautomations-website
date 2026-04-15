@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import { useTypingAnimation } from "@/hooks/use-typing-animation";
+import { useParallax } from "@/hooks/use-parallax";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 
 const stats = [
@@ -9,15 +11,35 @@ const stats = [
   { value: 500, suffix: "+", label: "Hours Saved" },
 ];
 
+const typingWords = [
+  "Intelligent AI Automations",
+  "WhatsApp & Telegram Bots",
+  "RAG-Powered Knowledge Bases",
+  "No-Code Workflow Magic",
+];
+
 export function HeroSection() {
   const { ref, isVisible } = useScrollAnimation();
+  const typedText = useTypingAnimation(typingWords, 80, 50, 1800);
+  const parallaxSlow = useParallax(0.15);
+  const parallaxMed = useParallax(0.3);
+  const parallaxFast = useParallax(0.45);
 
   return (
     <section className="relative min-h-screen overflow-hidden pt-32 pb-20">
-      {/* Gradient orbs */}
-      <div className="pointer-events-none absolute top-20 -left-40 h-[500px] w-[500px] rounded-full bg-neon-blue/10 blur-[120px] animate-float" />
-      <div className="pointer-events-none absolute top-40 -right-40 h-[400px] w-[400px] rounded-full bg-neon-purple/10 blur-[120px] animate-float" style={{ animationDelay: "2s" }} />
-      <div className="pointer-events-none absolute bottom-20 left-1/3 h-[300px] w-[300px] rounded-full bg-neon-cyan/8 blur-[100px] animate-float" style={{ animationDelay: "4s" }} />
+      {/* Parallax gradient orbs */}
+      <div
+        className="pointer-events-none absolute top-20 -left-40 h-[500px] w-[500px] rounded-full bg-neon-blue/10 blur-[120px] animate-float"
+        style={{ transform: `translateY(${parallaxSlow}px)` }}
+      />
+      <div
+        className="pointer-events-none absolute top-40 -right-40 h-[400px] w-[400px] rounded-full bg-neon-purple/10 blur-[120px] animate-float"
+        style={{ transform: `translateY(${parallaxMed}px)`, animationDelay: "2s" }}
+      />
+      <div
+        className="pointer-events-none absolute bottom-20 left-1/3 h-[300px] w-[300px] rounded-full bg-neon-cyan/8 blur-[100px] animate-float"
+        style={{ transform: `translateY(${parallaxFast}px)`, animationDelay: "4s" }}
+      />
 
       <div ref={ref} className="relative mx-auto max-w-7xl px-4 sm:px-6 text-center">
         {/* Trust badge */}
@@ -30,7 +52,7 @@ export function HeroSection() {
           Trusted by 10+ businesses around India
         </div>
 
-        {/* Headline */}
+        {/* Headline with typing animation */}
         <h1
           className={`mx-auto max-w-5xl text-4xl font-bold leading-tight tracking-tight sm:text-5xl md:text-6xl lg:text-7xl transition-all duration-700 delay-150 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
@@ -38,8 +60,9 @@ export function HeroSection() {
         >
           Transform Your Business with{" "}
           <span className="bg-gradient-to-r from-neon-blue via-neon-cyan to-neon-purple bg-clip-text text-transparent">
-            Intelligent AI Automations
+            {typedText}
           </span>
+          <span className="inline-block w-[3px] h-[0.8em] ml-1 align-middle bg-neon-cyan animate-blink" />
         </h1>
 
         {/* Subtitle */}
@@ -69,11 +92,12 @@ export function HeroSection() {
           </a>
         </div>
 
-        {/* Stats */}
+        {/* Stats with parallax offset */}
         <div
           className={`mt-20 grid grid-cols-1 gap-8 sm:grid-cols-3 transition-all duration-700 delay-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
+          style={{ transform: `translateY(${parallaxSlow * -0.5}px)` }}
         >
           {stats.map((s) => (
             <div key={s.label} className="glass-card rounded-2xl p-6 text-center">

@@ -56,7 +56,12 @@
   --animate-slide-in-left: slide-in-left 0.5s ease-out forwards;
   --animate-slide-in-right: slide-in-right 0.5s ease-out forwards;
   --animate-counter: counter 2s ease-out forwards;
+  --animate-blink: blink 1s step-end infinite;
 
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
