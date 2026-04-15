@@ -17,7 +17,7 @@
 
 ### 2. **Hero Section**
 - Large headline: "Transform Your Business with Intelligent AI Automations"
-- Subtitle about n8n, Make, AI agents, WhatsApp/Telegram bots
+- Subtitle about AI Automations, AI agents, WhatsApp Automation/Telegram bots
 - Two CTA buttons: "Get Free Consultation" + "View Our Work"
 - Animated stats bar: 40+ Workflows | 10+ Customers | 500+ Hours Saved
 - Decorative glowing gradient orbs in background
@@ -50,7 +50,7 @@
 - "View All Case Studies" link
 
 ### 7. **Technologies Section**
-- Logo/icon grid of tools: n8n, Monday, ChatGPT, Claude, HubSpot, Airtable, Notion, Slack, Google, Zapier, Make, Salesforce, WhatsApp, Telegram, Python, JavaScript
+- Logo/icon grid of tools: Monday, ChatGPT, Claude, HubSpot, Airtable, Notion, Slack, Google, Zapier, Make, Salesforce, WhatsApp, Telegram, Python, JavaScript
 - Subtle floating animation on icons
 
 ### 8. **Contact/CTA Section**
