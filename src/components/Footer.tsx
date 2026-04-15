@@ -3,7 +3,6 @@ export function Footer() {
     <footer className="border-t border-border/50 py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Brand */}
           <div className="lg:col-span-1">
             <span className="text-xl font-bold">
               <span className="text-neon-blue">Flo</span>logix<span className="text-neon-cyan">Automations</span>
@@ -13,18 +12,16 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Services */}
           <div>
             <h4 className="font-semibold">Services</h4>
             <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-              <li><a href="#services" className="hover:text-foreground transition-colors">n8n Development</a></li>
+              <li><a href="#services" className="hover:text-foreground transition-colors">Workflow Automation</a></li>
               <li><a href="#services" className="hover:text-foreground transition-colors">AI Agent Development</a></li>
               <li><a href="#services" className="hover:text-foreground transition-colors">WhatsApp Automation</a></li>
               <li><a href="#services" className="hover:text-foreground transition-colors">RAG Systems</a></li>
             </ul>
           </div>
 
-          {/* Company */}
           <div>
             <h4 className="font-semibold">Company</h4>
             <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
@@ -35,7 +32,6 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Resources */}
           <div>
             <h4 className="font-semibold">Resources</h4>
             <ul className="mt-3 space-y-2 text-sm text-muted-foreground">

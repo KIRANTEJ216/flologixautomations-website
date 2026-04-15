@@ -4,7 +4,7 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const steps = [
   { num: "01", icon: Search, title: "Process Discovery", desc: "We analyze your workflows, identify bottlenecks, and document automation opportunities." },
-  { num: "02", icon: Code, title: "Build & Develop", desc: "Our experts build custom n8n workflows and AI solutions tailored to your needs." },
+  { num: "02", icon: Code, title: "Build & Develop", desc: "Our experts build custom workflows and AI solutions tailored to your needs." },
   { num: "03", icon: Rocket, title: "Launch & Test", desc: "Thorough testing in staging before going live. Comprehensive training for your team." },
   { num: "04", icon: TrendingUp, title: "Optimize & Scale", desc: "Post-launch monitoring, feedback, and continuous optimization as you grow." },
 ];
@@ -26,7 +26,6 @@ export function ProcessSection() {
         </div>
 
         <div className="relative mt-16 grid gap-8 md:grid-cols-4">
-          {/* Connecting line */}
           <div className="absolute top-16 left-0 right-0 hidden h-px bg-gradient-to-r from-neon-blue via-neon-cyan to-neon-purple md:block" />
 
           {steps.map((s, i) => (

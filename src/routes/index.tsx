@@ -12,10 +12,10 @@ import { Footer } from "@/components/Footer";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "FlologixAutomations — AI Automation Agency | n8n, Make, AI Agents" },
-      { name: "description", content: "Custom n8n workflows, AI agents, WhatsApp & Telegram bots, RAG systems, and process automation solutions. Reduce costs by 70% and scale without hiring." },
+      { title: "FlologixAutomations — AI Automation Agency | No-Code Experts" },
+      { name: "description", content: "Custom business process workflows, AI agents, WhatsApp & Telegram bots, RAG systems, and process automation solutions. Reduce costs by 70% and scale without hiring." },
       { property: "og:title", content: "FlologixAutomations — Intelligent AI Automation Solutions" },
-      { property: "og:description", content: "Transform your business with custom automation solutions. n8n workflows, AI agents, WhatsApp bots, and more." },
+      { property: "og:description", content: "Transform your business with custom automation solutions. Workflow automation, AI agents, WhatsApp bots, and more." },
     ],
   }),
   component: Index,

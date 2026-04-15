@@ -4,8 +4,8 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 const services = [
   {
     icon: Workflow,
-    title: "n8n Development",
-    desc: "Custom workflow automation using n8n — the powerful open-source platform.",
+    title: "Workflow Automation",
+    desc: "Custom workflow automation using powerful no-code platforms to connect your apps and reduce manual work.",
     points: ["Self-hosted or cloud solutions", "Complex multi-step workflows", "API integrations & webhooks", "Custom code snippets"],
     color: "neon-blue" as const,
   },
@@ -67,7 +67,7 @@ export function ServicesSection() {
             </span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-            From n8n development to AI agents, WhatsApp bots to RAG systems — we provide end-to-end automation services.
+            From workflow automation to AI agents, WhatsApp bots to RAG systems — we provide end-to-end automation services.
           </p>
         </div>
 
