@@ -6,11 +6,18 @@ export function useTypingAnimation(
   deletingSpeed = 60,
   pauseDuration = 2000
 ) {
-  const [displayText, setDisplayText] = useState("");
+  const [displayText, setDisplayText] = useState(words[0] || "");
   const [wordIndex, setWordIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
     const currentWord = words[wordIndex];
 
     const timeout = setTimeout(
@@ -32,7 +39,7 @@ export function useTypingAnimation(
     );
 
     return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, wordIndex, words, typingSpeed, deletingSpeed, pauseDuration]);
+  }, [displayText, isDeleting, wordIndex, words, typingSpeed, deletingSpeed, pauseDuration, mounted]);
 
   return displayText;
 }

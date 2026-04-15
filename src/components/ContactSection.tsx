@@ -2,8 +2,10 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, MapPin, CheckCircle, ArrowRight } from "lucide-react";
+import { Mail, MapPin, CheckCircle, ArrowRight, Loader2 } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import { submitContactForm } from "@/utils/contact.functions";
+import { useServerFn } from "@tanstack/react-start";
 
 const benefits = [
   "Free process audit & automation assessment",
@@ -12,9 +14,51 @@ const benefits = [
   "Dedicated project manager",
 ];
 
+const employeeOptions = [
+  "1-10",
+  "11-50",
+  "51-200",
+  "201-500",
+  "500+",
+];
+
 export function ContactSection() {
   const { ref, isVisible } = useScrollAnimation();
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const submitFn = useServerFn(submitContactForm);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const result = await submitFn({
+        data: {
+          name: formData.get("name") as string,
+          email: formData.get("email") as string,
+          company: formData.get("company") as string,
+          employees: formData.get("employees") as string,
+          message: formData.get("message") as string,
+        },
+      });
+
+      if (result.success) {
+        setSubmitted(true);
+      } else {
+        setError(result.error || "Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section id="contact" className="relative py-24">
@@ -50,7 +94,7 @@ export function ContactSection() {
             <div className="mt-10 space-y-3">
               <div className="flex items-center gap-3 text-muted-foreground">
                 <Mail className="text-neon-blue" size={18} />
-                hello@flologixautomations.com
+                kirantejk@flologixautomations.com
               </div>
               <div className="flex items-center gap-3 text-muted-foreground">
                 <MapPin className="text-neon-blue" size={18} />
@@ -70,26 +114,46 @@ export function ContactSection() {
             ) : (
               <form
                 className="glass-card space-y-5 rounded-2xl border border-border/50 p-8"
-                onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}
+                onSubmit={handleSubmit}
               >
                 <div>
                   <label className="mb-1.5 block text-sm font-medium">Name</label>
-                  <Input placeholder="Your name" className="bg-input/50 border-border/50 focus-visible:ring-neon-blue" required />
+                  <Input name="name" placeholder="Your name" className="bg-input/50 border-border/50 focus-visible:ring-neon-blue" required />
                 </div>
                 <div>
                   <label className="mb-1.5 block text-sm font-medium">Email</label>
-                  <Input type="email" placeholder="your@email.com" className="bg-input/50 border-border/50 focus-visible:ring-neon-blue" required />
+                  <Input name="email" type="email" placeholder="your@email.com" className="bg-input/50 border-border/50 focus-visible:ring-neon-blue" required />
                 </div>
                 <div>
                   <label className="mb-1.5 block text-sm font-medium">Company</label>
-                  <Input placeholder="Your company name" className="bg-input/50 border-border/50 focus-visible:ring-neon-blue" />
+                  <Input name="company" placeholder="Your company name" className="bg-input/50 border-border/50 focus-visible:ring-neon-blue" />
+                </div>
+                <div>
+                  <label className="mb-1.5 block text-sm font-medium">Number of Employees</label>
+                  <select
+                    name="employees"
+                    className="flex h-10 w-full rounded-md border border-border/50 bg-input/50 px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-blue focus-visible:ring-offset-2"
+                    required
+                  >
+                    <option value="" className="bg-background">Select range</option>
+                    {employeeOptions.map((opt) => (
+                      <option key={opt} value={opt} className="bg-background">{opt}</option>
+                    ))}
+                  </select>
                 </div>
                 <div>
                   <label className="mb-1.5 block text-sm font-medium">What would you like to automate?</label>
-                  <Textarea placeholder="Describe your automation needs..." rows={4} className="bg-input/50 border-border/50 focus-visible:ring-neon-blue" required />
+                  <Textarea name="message" placeholder="Describe your automation needs..." rows={4} className="bg-input/50 border-border/50 focus-visible:ring-neon-blue" required />
                 </div>
-                <Button type="submit" size="lg" className="w-full glow-blue rounded-full bg-neon-blue text-primary-foreground hover:bg-neon-blue/80">
-                  Request Free Consultation <ArrowRight className="ml-2" size={18} />
+                {error && (
+                  <p className="text-sm text-destructive">{error}</p>
+                )}
+                <Button type="submit" size="lg" disabled={loading} className="w-full glow-blue rounded-full bg-neon-blue text-primary-foreground hover:bg-neon-blue/80">
+                  {loading ? (
+                    <><Loader2 className="mr-2 animate-spin" size={18} /> Submitting...</>
+                  ) : (
+                    <>Request Free Consultation <ArrowRight className="ml-2" size={18} /></>
+                  )}
                 </Button>
                 <p className="text-center text-xs text-muted-foreground">
                   By submitting, you agree to our privacy policy. We'll get back to you within 24 hours.

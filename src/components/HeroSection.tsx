@@ -60,7 +60,7 @@ export function HeroSection() {
         >
           Transform Your Business with{" "}
           <span className="bg-gradient-to-r from-neon-blue via-neon-cyan to-neon-purple bg-clip-text text-transparent">
-            {typedText}
+            {typedText || typingWords[0]}
           </span>
           <span className="inline-block w-[3px] h-[0.8em] ml-1 align-middle bg-neon-cyan animate-blink" />
         </h1>
@@ -71,7 +71,7 @@ export function HeroSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
-          We build custom n8n workflows, AI agents, WhatsApp & Telegram bots, RAG systems, and automation solutions that eliminate repetitive tasks, reduce costs, and help you scale faster.
+          We build custom business process workflows, AI Agents, WhatsApp Automations, Telegram Chatbots, RAG systems, and automation solutions that eliminate repetitive tasks, reduce costs, and help you scale faster.
         </p>
 
         {/* CTAs */}

@@ -4,8 +4,8 @@ import { AnimatedCounter } from "@/components/AnimatedCounter";
 
 const features = [
   { icon: Shield, title: "Guaranteed Results", desc: "Performance guarantees with defined SLAs and success metrics on every project." },
-  { icon: Users, title: "Expert Team", desc: "Certified automation specialists, n8n experts, and AI developers with years of experience." },
-  { icon: Wrench, title: "Tech-Agnostic Approach", desc: "We recommend the best tools for your needs — n8n, Make, Monday, or custom solutions." },
+  { icon: Users, title: "Expert Team", desc: "Certified automation specialists and AI developers with years of experience." },
+  { icon: Wrench, title: "Tech-Agnostic Approach", desc: "We recommend the best tools for your needs — Make, Monday, or custom solutions." },
   { icon: HeadphonesIcon, title: "End-to-End Support", desc: "From initial consultation to ongoing maintenance. 24/7 support for critical issues." },
 ];
 
@@ -47,7 +47,6 @@ export function WhyUsSection() {
           ))}
         </div>
 
-        {/* Stats */}
         <div className={`mt-16 grid gap-6 rounded-2xl sm:grid-cols-3 transition-all duration-700 delay-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
           {stats.map((s) => (
             <div key={s.label} className="glass-card rounded-2xl p-8 text-center">
