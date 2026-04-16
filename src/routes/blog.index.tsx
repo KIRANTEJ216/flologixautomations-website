@@ -32,7 +32,7 @@ function BlogIndex() {
         </div>
 
         <div className="mt-16 grid gap-6 md:grid-cols-2">
-          {posts.map((p) => (
+          {posts.map((p: { slug: string; title: string; date: string; excerpt: string; author: string }) => (
             <Link
               key={p.slug}
               to="/blog/$slug"
