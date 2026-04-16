@@ -1,8 +1,8 @@
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const techs = [
-  "n8n", "Monday.com", "ChatGPT", "Claude", "HubSpot", "Airtable",
-  "Notion", "Slack", "Google", "Zapier", "Make", "Salesforce",
+  "Automation Platforms", "Monday.com", "ChatGPT", "Claude", "HubSpot", "Airtable",
+  "Notion", "Slack", "Google Workspace", "Zapier", "Make", "Salesforce",
   "WhatsApp", "Telegram", "Python", "JavaScript",
 ];
 
