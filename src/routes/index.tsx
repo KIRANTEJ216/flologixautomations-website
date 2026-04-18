@@ -28,6 +28,7 @@ function Index() {
       <Navbar />
       <HeroSection />
       <ServicesSection />
+      <AutomationToolsSection />
       <ProcessSection />
       <WhyUsSection />
       <CaseStudiesSection />
