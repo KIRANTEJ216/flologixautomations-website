@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
 import { ServicesSection } from "@/components/ServicesSection";
+import { AutomationToolsSection } from "@/components/AutomationToolsSection";
 import { ProcessSection } from "@/components/ProcessSection";
 import { WhyUsSection } from "@/components/WhyUsSection";
 import { CaseStudiesSection } from "@/components/CaseStudiesSection";
