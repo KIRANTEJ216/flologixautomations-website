@@ -4,9 +4,9 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 const services = [
   {
     icon: Workflow,
-    title: "Workflow Automation",
-    desc: "Custom workflow automation using powerful no-code platforms to connect your apps and reduce manual work.",
-    points: ["Self-hosted or cloud solutions", "Complex multi-step workflows", "API integrations & webhooks", "Custom code snippets"],
+    title: "Business Process Automation",
+    desc: "End-to-end business process automation built on powerful open-source and no-code platforms to streamline operations and eliminate repetitive work.",
+    points: ["Cloud-based deployments", "Complex multi-step workflows", "API integrations & webhooks", "Custom code snippets"],
     color: "neon-blue" as const,
   },
   {
