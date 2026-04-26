@@ -55,7 +55,7 @@ function TermsPage() {
           </section>
           <section>
             <h2 className="text-xl font-semibold text-foreground">8. Contact</h2>
-            <p className="mt-2">Questions? Reach us at <a className="text-foreground underline" href="mailto:kirantejk@flologixautomations.com">kirantejk@flologixautomations.com</a>.</p>
+            <p className="mt-2">Questions? Reach us at <a className="text-foreground underline" href="mailto:contactus@flologixautomations.com">contactus@flologixautomations.com</a>.</p>
           </section>
         </div>
 
