@@ -42,7 +42,7 @@ function PrivacyPage() {
           </section>
           <section>
             <h2 className="text-xl font-semibold text-foreground">5. Your Rights</h2>
-            <p className="mt-2">You may request access to, correction of, or deletion of any personal data you have provided. Email <a className="text-foreground underline" href="mailto:kirantejk@flologixautomations.com">kirantejk@flologixautomations.com</a> with your request and we will respond within a reasonable timeframe.</p>
+            <p className="mt-2">You may request access to, correction of, or deletion of any personal data you have provided. Email <a className="text-foreground underline" href="mailto:contactus@flologixautomations.com">contactus@flologixautomations.com</a> with your request and we will respond within a reasonable timeframe.</p>
           </section>
           <section>
             <h2 className="text-xl font-semibold text-foreground">6. Security</h2>
@@ -54,7 +54,7 @@ function PrivacyPage() {
           </section>
           <section>
             <h2 className="text-xl font-semibold text-foreground">8. Contact</h2>
-            <p className="mt-2">For privacy questions, contact <a className="text-foreground underline" href="mailto:kirantejk@flologixautomations.com">kirantejk@flologixautomations.com</a>.</p>
+            <p className="mt-2">For privacy questions, contact <a className="text-foreground underline" href="mailto:contactus@flologixautomations.com">contactus@flologixautomations.com</a>.</p>
           </section>
         </div>
 

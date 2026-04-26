@@ -94,7 +94,7 @@ export function ContactSection() {
             <div className="mt-10 space-y-3">
               <div className="flex items-center gap-3 text-muted-foreground">
                 <Mail className="text-neon-blue" size={18} />
-                kirantejk@flologixautomations.com
+                contactus@flologixautomations.com
               </div>
               <div className="flex items-center gap-3 text-muted-foreground">
                 <MapPin className="text-neon-blue" size={18} />
