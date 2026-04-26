@@ -156,7 +156,7 @@ export function ContactSection() {
                   )}
                 </Button>
                 <p className="text-center text-xs text-muted-foreground">
-                  By submitting, you agree to our privacy policy. We'll get back to you within 24 hours.
+                  By submitting, you agree to our <a href="/privacy" className="underline hover:text-foreground">Privacy Policy</a> and <a href="/terms" className="underline hover:text-foreground">Terms of Service</a>. We'll get back to you within 24 hours. All automations we deliver are tuned for the best possible outcome, subject to data quality and third-party platform behavior.
                 </p>
               </form>
             )}

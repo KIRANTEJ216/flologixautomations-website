@@ -41,15 +41,20 @@ function TermsPage() {
             <p className="mt-2">Project payment terms are set in your contract. Refunds for completed milestones are not provided unless explicitly agreed.</p>
           </section>
           <section>
-            <h2 className="text-xl font-semibold text-foreground">5. Limitation of Liability</h2>
-            <p className="mt-2">FLOLOGIXAUTOMATIONS is not liable for indirect or consequential damages arising from use of our website or services beyond the fees paid for the affected engagement.</p>
+            <h2 className="text-xl font-semibold text-foreground">5. Automation & AI Outcomes</h2>
+            <p className="mt-2">All automations, AI agents, chatbots, RAG systems, and workflows we build are designed, tested, and tuned to deliver the best possible outcome for your business context. While we apply industry best practices and rigorous QA, automation outcomes are inherently subject to factors outside our full control — including input data quality, third-party API behavior, LLM model drift, platform downtime, and changing regulatory environments.</p>
+            <p className="mt-2">We do not warrant that automations will be error-free, uninterrupted, or produce specific commercial results. AI-generated outputs may occasionally be inaccurate or incomplete and should be reviewed by a human before being used for business-critical decisions. Clients are responsible for monitoring deployed automations and notifying us of any issues so we can iterate.</p>
           </section>
           <section>
-            <h2 className="text-xl font-semibold text-foreground">6. Changes to Terms</h2>
+            <h2 className="text-xl font-semibold text-foreground">6. Limitation of Liability</h2>
+            <p className="mt-2">FLOLOGIXAUTOMATIONS is not liable for indirect, incidental, or consequential damages arising from use of our website, automations, or services beyond the fees paid for the affected engagement.</p>
+          </section>
+          <section>
+            <h2 className="text-xl font-semibold text-foreground">7. Changes to Terms</h2>
             <p className="mt-2">We may update these terms periodically. The latest version will always be available on this page.</p>
           </section>
           <section>
-            <h2 className="text-xl font-semibold text-foreground">7. Contact</h2>
+            <h2 className="text-xl font-semibold text-foreground">8. Contact</h2>
             <p className="mt-2">Questions? Reach us at <a className="text-foreground underline" href="mailto:kirantejk@flologixautomations.com">kirantejk@flologixautomations.com</a>.</p>
           </section>
         </div>
