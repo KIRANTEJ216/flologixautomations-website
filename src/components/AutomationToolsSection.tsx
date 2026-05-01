@@ -1,7 +1,14 @@
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 export function AutomationToolsSection() {
   const { ref, isVisible } = useScrollAnimation();
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section className="relative py-20">
@@ -23,6 +30,14 @@ export function AutomationToolsSection() {
           <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
             We build on best-in-class open-source and no-code automations platforms — giving you flexibility, ownership, and zero vendor lock-in.
           </p>
+          <div className="mt-8 flex justify-center">
+            <Button asChild size="lg" className="group">
+              <a href="#contact" onClick={handleClick}>
+                Get Your Free Consultation
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </a>
+            </Button>
+          </div>
         </div>
       </div>
     </section>
