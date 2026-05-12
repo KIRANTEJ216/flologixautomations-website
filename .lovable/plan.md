@@ -24,7 +24,7 @@
 - "Trusted by 10+ businesses around India" badge
 
 ### 3. **Services Section** (6 cards in grid)
-- **Workflow Development** — workflow automation, API integrations
+- **n8n Development** — workflow automation, API integrations
 - **AI Agent Development** — GPT-4, Claude-powered agents
 - **WhatsApp Automation** — Business API, chatbots, automated messaging
 - **Telegram Bot Development** — custom bots and automation

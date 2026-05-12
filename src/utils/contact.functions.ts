@@ -12,10 +12,10 @@ const contactSchema = z.object({
 export const submitContactForm = createServerFn({ method: "POST" })
   .inputValidator((input: z.infer<typeof contactSchema>) => contactSchema.parse(input))
   .handler(async ({ data }) => {
-    const webhookUrl = process.env.N_WEBHOOK_URL;
+    const webhookUrl = process.env.N8N_WEBHOOK_URL;
 
     if (!webhookUrl) {
-      console.error("N_WEBHOOK_URL is not configured");
+      console.error("N8N_WEBHOOK_URL is not configured");
       return { success: false, error: "Server configuration error. Please try again later." };
     }
 

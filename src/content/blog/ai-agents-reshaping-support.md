@@ -15,7 +15,7 @@ Three things converged this year:
 
 1. **Tool use became reliable.** Function calling now works across every major LLM with predictable schemas.
 2. **RAG matured.** Retrieval-augmented generation moved from prototypes to production with accuracy benchmarks above 90% on domain-specific tasks.
-3. **Workflow engines got smarter.** Tools like Make, and custom orchestrators can now coordinate multi-agent pipelines without bespoke code.
+3. **Workflow engines got smarter.** Tools like n8n, Make, and custom orchestrators can now coordinate multi-agent pipelines without bespoke code.
 
 ## What this means for your business
 

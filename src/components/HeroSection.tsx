@@ -71,7 +71,7 @@ export function HeroSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
-          We are an AI automation agency building Agentic workflow automations, AI agents, WhatsApp & Telegram chatbots, RAG systems, invoice OCR and end-to-end business process automation that eliminate repetitive tasks, reduce costs by up to 70%, and help startups and enterprises scale faster.
+          We are an AI automation agency building n8n workflow automation, AI agents, WhatsApp & Telegram chatbots, RAG systems, invoice OCR and end-to-end business process automation that eliminate repetitive tasks, reduce costs by up to 70%, and help startups and enterprises scale faster.
         </p>
 
         {/* CTAs */}
