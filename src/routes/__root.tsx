@@ -32,6 +32,7 @@ export const Route = createRootRoute({
       { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
       { name: "author", content: "FlologixAutomations" },
       { name: "theme-color", content: "#0a0a0f" },
+      { name: "google-site-verification", content: "IDlx47m4SO3FYxv_FoPUzK1oFjRsTS0PSTa62aiT8d4" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
