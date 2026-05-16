@@ -35,7 +35,6 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "canonical", href: "https://automate-flow-genie.lovable.app/" },
     ],
   }),
   shellComponent: RootShell,
