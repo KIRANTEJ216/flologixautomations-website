@@ -11,6 +11,9 @@ export const Route = createFileRoute("/blog/")({
       { property: "og:title", content: "Blog — AI & Automation Insights" },
       { property: "og:description", content: "Latest articles on AI, automation, and the tools that scale modern businesses." },
     ],
+    links: [
+      { rel: "canonical", href: "https://automate-flow-genie.lovable.app/blog" },
+    ],
   }),
   loader: () => ({ posts: getAllPosts() }),
   component: BlogIndex,

@@ -1,0 +1,17 @@
+# FlologixAutomations
+
+> AI automation agency building n8n workflows, AI agents, WhatsApp & Telegram chatbots, RAG systems, invoice OCR and end-to-end business process automation for startups and enterprises.
+
+## Pages
+
+- [Home](/): Overview of services, process, case studies and contact.
+- [Blog](/blog): Articles on AI agents, workflow automation, RAG, WhatsApp automation and more.
+- [Privacy Policy](/privacy): How we collect, use and protect your data.
+- [Terms of Service](/terms): Terms governing use of our website and services.
+
+## Optional
+
+- [AI Agents Reshaping Support](/blog/ai-agents-reshaping-support)
+- [RAG vs Fine-Tuning](/blog/rag-vs-fine-tuning)
+- [WhatsApp Automation Workflows](/blog/whatsapp-automation-workflows)
+- [Automation Quick Wins](/blog/automation-quick-wins)

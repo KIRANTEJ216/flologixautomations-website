@@ -9,17 +9,38 @@ export const Route = createFileRoute("/blog/$slug")({
     if (!post) throw notFound();
     return { post };
   },
-  head: ({ loaderData }) => ({
-    meta: loaderData
-      ? [
-          { title: `${loaderData.post.title} — FLOLOGIXAUTOMATIONS Blog` },
-          { name: "description", content: loaderData.post.excerpt },
-          { property: "og:title", content: loaderData.post.title },
-          { property: "og:description", content: loaderData.post.excerpt },
-          { property: "article:published_time", content: loaderData.post.date },
-        ]
-      : [{ title: "Post — FLOLOGIXAUTOMATIONS Blog" }],
-  }),
+  head: ({ params, loaderData }) => {
+    const url = `https://automate-flow-genie.lovable.app/blog/${params.slug}`;
+    if (!loaderData) {
+      return { meta: [{ title: "Post — FLOLOGIXAUTOMATIONS Blog" }] };
+    }
+    return {
+      meta: [
+        { title: `${loaderData.post.title} — FLOLOGIXAUTOMATIONS Blog` },
+        { name: "description", content: loaderData.post.excerpt },
+        { property: "og:title", content: loaderData.post.title },
+        { property: "og:description", content: loaderData.post.excerpt },
+        { property: "og:type", content: "article" },
+        { property: "og:url", content: url },
+        { property: "article:published_time", content: loaderData.post.date },
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: loaderData.post.title,
+            description: loaderData.post.excerpt,
+            datePublished: loaderData.post.date,
+            author: { "@type": "Person", name: loaderData.post.author },
+            mainEntityOfPage: { "@type": "WebPage", "@id": url },
+          }),
+        },
+      ],
+    };
+  },
   component: BlogPost,
   notFoundComponent: () => {
     const { slug } = Route.useParams();

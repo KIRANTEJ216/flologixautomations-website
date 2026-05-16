@@ -135,6 +135,9 @@ export const Route = createFileRoute("/")({
       { name: "twitter:description", content: DESCRIPTION },
       { name: "twitter:image", content: OG_IMAGE },
     ],
+    links: [
+      { rel: "canonical", href: `${SITE_URL}/` },
+    ],
     scripts: [
       {
         type: "application/ld+json",
@@ -157,14 +160,16 @@ function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
-      <HeroSection />
-      <ServicesSection />
-      <AutomationToolsSection />
-      <ProcessSection />
-      <WhyUsSection />
-      <CaseStudiesSection />
-      <TechnologiesSection />
-      <ContactSection />
+      <main>
+        <HeroSection />
+        <ServicesSection />
+        <AutomationToolsSection />
+        <ProcessSection />
+        <WhyUsSection />
+        <CaseStudiesSection />
+        <TechnologiesSection />
+        <ContactSection />
+      </main>
       <Footer />
     </div>
   );

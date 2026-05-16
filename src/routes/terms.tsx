@@ -10,6 +10,9 @@ export const Route = createFileRoute("/terms")({
       { property: "og:title", content: "Terms of Service — FLOLOGIXAUTOMATIONS" },
       { property: "og:description", content: "Terms governing the use of FLOLOGIXAUTOMATIONS website and services." },
     ],
+    links: [
+      { rel: "canonical", href: "https://automate-flow-genie.lovable.app/terms" },
+    ],
   }),
   component: TermsPage,
 });
