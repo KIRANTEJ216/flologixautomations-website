@@ -13,14 +13,14 @@ import { Footer } from "@/components/Footer";
 const SITE_URL = "https://automate-flow-genie.lovable.app";
 const OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 
-const TITLE = "AI Automation Agency | n8n, AI Agents & Workflow Automation";
+const TITLE = "AI Automation Agency | AI Automations, AI Agents & Workflow Automation";
 const DESCRIPTION =
-  "Top AI automation agency building n8n workflows, AI agents, WhatsApp & Telegram bots, RAG systems, invoice OCR & business process automation. Cut costs 70%.";
+  "Top AI automation agency building AI automations workflows, AI agents, WhatsApp & Telegram bots, RAG systems, invoice OCR & business process automation. Cut costs 70%.";
 const KEYWORDS = [
   "AI automation agency",
   "business process automation services",
   "AI workflow automation services",
-  "n8n automation services",
+  "AI automations services",
   "AI chatbot development services",
   "automation consulting services",
   "RPA services company",
@@ -34,7 +34,7 @@ const KEYWORDS = [
   "Telegram bot development",
   "RAG systems",
   "best AI automation agency for small business",
-  "n8n automation services for startups",
+  "AI automations services for startups",
   "custom AI automation solutions for enterprises",
 ].join(", ");
 
