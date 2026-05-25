@@ -11,7 +11,7 @@ export const Route = createFileRoute("/terms")({
       { property: "og:description", content: "Terms governing the use of FLOLOGIXAUTOMATIONS website and services." },
     ],
     links: [
-      { rel: "canonical", href: "https://automate-flow-genie.lovable.app/terms" },
+      { rel: "canonical", href: "https://flologixautomations.lovable.app/terms" },
     ],
   }),
   component: TermsPage,

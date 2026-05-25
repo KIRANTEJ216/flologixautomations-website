@@ -10,7 +10,7 @@ export const Route = createFileRoute("/blog/$slug")({
     return { post };
   },
   head: ({ params, loaderData }) => {
-    const url = `https://automate-flow-genie.lovable.app/blog/${params.slug}`;
+    const url = `https://flologixautomations.lovable.app/blog/${params.slug}`;
     if (!loaderData) {
       return { meta: [{ title: "Post — FLOLOGIXAUTOMATIONS Blog" }] };
     }

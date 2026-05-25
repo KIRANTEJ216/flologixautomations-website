@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://automate-flow-genie.lovable.app/sitemap.xml
+Sitemap: https://flologixautomations.lovable.app/sitemap.xml

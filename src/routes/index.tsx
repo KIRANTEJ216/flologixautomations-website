@@ -10,7 +10,7 @@ import { TechnologiesSection } from "@/components/TechnologiesSection";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 
-const SITE_URL = "https://automate-flow-genie.lovable.app";
+const SITE_URL = "https://flologixautomations.lovable.app";
 const OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 const TITLE = "AI Automations Agency | AI Agents & Workflow Automation";

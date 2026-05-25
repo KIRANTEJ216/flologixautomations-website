@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { getAllPosts } from "@/lib/blog";
 
-const BASE_URL = "https://automate-flow-genie.lovable.app";
+const BASE_URL = "https://flologixautomations.lovable.app";
 
 interface SitemapEntry {
   path: string;

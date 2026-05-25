@@ -11,7 +11,7 @@ export const Route = createFileRoute("/privacy")({
       { property: "og:description", content: "How FLOLOGIXAUTOMATIONS collects, uses, and protects your information." },
     ],
     links: [
-      { rel: "canonical", href: "https://automate-flow-genie.lovable.app/privacy" },
+      { rel: "canonical", href: "https://flologixautomations.lovable.app/privacy" },
     ],
   }),
   component: PrivacyPage,
