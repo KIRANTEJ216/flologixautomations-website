@@ -15,7 +15,7 @@ const OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 const TITLE = "AI Automations Agency | AI Agents & Workflow Automation";
 const DESCRIPTION =
-  "Top AI automations agency building intelligent workflows, AI agents, WhatsApp & Telegram bots, RAG systems, invoice OCR and business process automation. Cut costs up to 70%.";
+  "AI automations agency building intelligent workflows, AI agents, WhatsApp & Telegram bots, RAG systems and invoice OCR. Cut costs up to 70%.";
 const KEYWORDS = [
   "AI automations agency",
   "AI automations services",
