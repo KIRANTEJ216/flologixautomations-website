@@ -68,7 +68,7 @@ const serviceJsonLd = {
     "@type": "OfferCatalog",
     name: "AI Automation Services",
     itemListElement: [
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "n8n Workflow Automation Services" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI Automations Workflow Services" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI Agent Development" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "WhatsApp Automation" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Telegram Bot Development" } },
