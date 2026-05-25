@@ -13,29 +13,28 @@ import { Footer } from "@/components/Footer";
 const SITE_URL = "https://automate-flow-genie.lovable.app";
 const OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 
-const TITLE = "AI Automation Agency | AI Automations, AI Agents & Workflow Automation";
+const TITLE = "AI Automations Agency | AI Agents & Workflow Automation";
 const DESCRIPTION =
-  "Top AI automation agency building AI automations workflows, AI agents, WhatsApp & Telegram bots, RAG systems, invoice OCR & business process automation. Cut costs 70%.";
+  "Top AI automations agency building intelligent workflows, AI agents, WhatsApp & Telegram bots, RAG systems, invoice OCR and business process automation. Cut costs up to 70%.";
 const KEYWORDS = [
-  "AI automation agency",
-  "business process automation services",
-  "AI workflow automation services",
+  "AI automations agency",
   "AI automations services",
+  "AI workflow automation",
+  "business process automation services",
   "AI chatbot development services",
   "automation consulting services",
   "RPA services company",
   "AI integration services",
   "enterprise automation solutions",
-  "AI SaaS automation services",
   "AI agents for business",
   "automate invoice processing using AI OCR",
   "AI automation for GST invoice processing India",
   "WhatsApp automation",
   "Telegram bot development",
   "RAG systems",
-  "best AI automation agency for small business",
-  "AI automations services for startups",
-  "custom AI automation solutions for enterprises",
+  "best AI automations agency for small business",
+  "AI automations for startups",
+  "custom AI automations for enterprises",
 ].join(", ");
 
 const organizationJsonLd = {
