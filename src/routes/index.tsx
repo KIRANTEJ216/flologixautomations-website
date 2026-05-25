@@ -13,14 +13,14 @@ import { Footer } from "@/components/Footer";
 const SITE_URL = "https://automate-flow-genie.lovable.app";
 const OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 
-const TITLE = "AI Automation Agency | n8n, AI Agents & Workflow Automation";
+const TITLE = "AI Automation Agency | AI Automations, AI Agents & Workflow Automation";
 const DESCRIPTION =
-  "Top AI automation agency building n8n workflows, AI agents, WhatsApp & Telegram bots, RAG systems, invoice OCR & business process automation. Cut costs 70%.";
+  "Top AI automation agency building AI automations workflows, AI agents, WhatsApp & Telegram bots, RAG systems, invoice OCR & business process automation. Cut costs 70%.";
 const KEYWORDS = [
   "AI automation agency",
   "business process automation services",
   "AI workflow automation services",
-  "n8n automation services",
+  "AI automations services",
   "AI chatbot development services",
   "automation consulting services",
   "RPA services company",
@@ -34,7 +34,7 @@ const KEYWORDS = [
   "Telegram bot development",
   "RAG systems",
   "best AI automation agency for small business",
-  "n8n automation services for startups",
+  "AI automations services for startups",
   "custom AI automation solutions for enterprises",
 ].join(", ");
 
@@ -68,7 +68,7 @@ const serviceJsonLd = {
     "@type": "OfferCatalog",
     name: "AI Automation Services",
     itemListElement: [
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "n8n Workflow Automation Services" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI Automations Workflow Services" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI Agent Development" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "WhatsApp Automation" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Telegram Bot Development" } },
@@ -93,10 +93,10 @@ const faqJsonLd = {
     },
     {
       "@type": "Question",
-      name: "Why use n8n for workflow automation?",
+      name: "Why use AI automations for workflow automation?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "n8n is an open-source workflow automation platform that gives you full ownership, zero vendor lock-in, custom code support and integration with 400+ apps — ideal for startups and enterprises building scalable automations.",
+        text: "AI automations give you full ownership, zero vendor lock-in, custom code support and integration with 400+ apps — ideal for startups and enterprises building scalable automations.",
       },
     },
     {
