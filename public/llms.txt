@@ -1,6 +1,6 @@
 # FlologixAutomations
 
-> AI automation agency building n8n workflows, AI agents, WhatsApp & Telegram chatbots, RAG systems, invoice OCR and end-to-end business process automation for startups and enterprises.
+> AI automation agency building AI automations workflows, AI agents, WhatsApp & Telegram chatbots, RAG systems, invoice OCR and end-to-end business process automation for startups and enterprises.
 
 ## Pages
 
