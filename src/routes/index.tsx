@@ -93,10 +93,10 @@ const faqJsonLd = {
     },
     {
       "@type": "Question",
-      name: "Why use n8n for workflow automation?",
+      name: "Why use AI automations for workflow automation?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "n8n is an open-source workflow automation platform that gives you full ownership, zero vendor lock-in, custom code support and integration with 400+ apps — ideal for startups and enterprises building scalable automations.",
+        text: "AI automations give you full ownership, zero vendor lock-in, custom code support and integration with 400+ apps — ideal for startups and enterprises building scalable automations.",
       },
     },
     {
