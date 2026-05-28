@@ -1,4 +1,5 @@
 import { marked } from "marked";
+import DOMPurify from "isomorphic-dompurify";
 
 export interface PostMeta {
   slug: string;
