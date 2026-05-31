@@ -5,7 +5,7 @@ const contactSchema = z.object({
   name: z.string().trim().min(1).max(100),
   email: z.string().trim().email().max(255),
   company: z.string().trim().max(200).optional().default(""),
-  employees: z.enum(["1-10", "11-50", "51-200", "201-500", "500+"]),
+  employees: z.string().trim().max(20),
   message: z.string().trim().min(1).max(2000),
 });
 

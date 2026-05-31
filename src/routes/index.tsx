@@ -10,31 +10,32 @@ import { TechnologiesSection } from "@/components/TechnologiesSection";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 
-const SITE_URL = "https://flologixautomations.lovable.app";
+const SITE_URL = "https://automate-flow-genie.lovable.app";
 const OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 
-const TITLE = "AI Automations Agency | AI Agents & Workflow Automation";
+const TITLE = "AI Automation Agency | n8n, AI Agents & Workflow Automation";
 const DESCRIPTION =
-  "AI automations agency building intelligent workflows, AI agents, WhatsApp & Telegram bots, RAG systems and invoice OCR. Cut costs up to 70%.";
+  "Top AI automation agency building n8n workflows, AI agents, WhatsApp & Telegram bots, RAG systems, invoice OCR & business process automation. Cut costs 70%.";
 const KEYWORDS = [
-  "AI automations agency",
-  "AI automations services",
-  "AI workflow automation",
+  "AI automation agency",
   "business process automation services",
+  "AI workflow automation services",
+  "n8n automation services",
   "AI chatbot development services",
   "automation consulting services",
   "RPA services company",
   "AI integration services",
   "enterprise automation solutions",
+  "AI SaaS automation services",
   "AI agents for business",
   "automate invoice processing using AI OCR",
   "AI automation for GST invoice processing India",
   "WhatsApp automation",
   "Telegram bot development",
   "RAG systems",
-  "best AI automations agency for small business",
-  "AI automations for startups",
-  "custom AI automations for enterprises",
+  "best AI automation agency for small business",
+  "n8n automation services for startups",
+  "custom AI automation solutions for enterprises",
 ].join(", ");
 
 const organizationJsonLd = {
@@ -67,7 +68,7 @@ const serviceJsonLd = {
     "@type": "OfferCatalog",
     name: "AI Automation Services",
     itemListElement: [
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI Automations Workflow Services" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "n8n Workflow Automation Services" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI Agent Development" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "WhatsApp Automation" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Telegram Bot Development" } },
@@ -92,10 +93,10 @@ const faqJsonLd = {
     },
     {
       "@type": "Question",
-      name: "Why use AI automations for workflow automation?",
+      name: "Why use n8n for workflow automation?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "AI automations give you full ownership, zero vendor lock-in, custom code support and integration with 400+ apps — ideal for startups and enterprises building scalable automations.",
+        text: "n8n is an open-source workflow automation platform that gives you full ownership, zero vendor lock-in, custom code support and integration with 400+ apps — ideal for startups and enterprises building scalable automations.",
       },
     },
     {
@@ -134,9 +135,6 @@ export const Route = createFileRoute("/")({
       { name: "twitter:description", content: DESCRIPTION },
       { name: "twitter:image", content: OG_IMAGE },
     ],
-    links: [
-      { rel: "canonical", href: `${SITE_URL}/` },
-    ],
     scripts: [
       {
         type: "application/ld+json",
@@ -159,16 +157,14 @@ function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
-      <main>
-        <HeroSection />
-        <ServicesSection />
-        <AutomationToolsSection />
-        <ProcessSection />
-        <WhyUsSection />
-        <CaseStudiesSection />
-        <TechnologiesSection />
-        <ContactSection />
-      </main>
+      <HeroSection />
+      <ServicesSection />
+      <AutomationToolsSection />
+      <ProcessSection />
+      <WhyUsSection />
+      <CaseStudiesSection />
+      <TechnologiesSection />
+      <ContactSection />
       <Footer />
     </div>
   );

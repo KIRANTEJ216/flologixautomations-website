@@ -9,38 +9,17 @@ export const Route = createFileRoute("/blog/$slug")({
     if (!post) throw notFound();
     return { post };
   },
-  head: ({ params, loaderData }) => {
-    const url = `https://flologixautomations.lovable.app/blog/${params.slug}`;
-    if (!loaderData) {
-      return { meta: [{ title: "Post — FLOLOGIXAUTOMATIONS Blog" }] };
-    }
-    return {
-      meta: [
-        { title: `${loaderData.post.title} — FLOLOGIXAUTOMATIONS Blog` },
-        { name: "description", content: loaderData.post.excerpt },
-        { property: "og:title", content: loaderData.post.title },
-        { property: "og:description", content: loaderData.post.excerpt },
-        { property: "og:type", content: "article" },
-        { property: "og:url", content: url },
-        { property: "article:published_time", content: loaderData.post.date },
-      ],
-      links: [{ rel: "canonical", href: url }],
-      scripts: [
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: loaderData.post.title,
-            description: loaderData.post.excerpt,
-            datePublished: loaderData.post.date,
-            author: { "@type": "Person", name: loaderData.post.author },
-            mainEntityOfPage: { "@type": "WebPage", "@id": url },
-          }),
-        },
-      ],
-    };
-  },
+  head: ({ loaderData }) => ({
+    meta: loaderData
+      ? [
+          { title: `${loaderData.post.title} — FLOLOGIXAUTOMATIONS Blog` },
+          { name: "description", content: loaderData.post.excerpt },
+          { property: "og:title", content: loaderData.post.title },
+          { property: "og:description", content: loaderData.post.excerpt },
+          { property: "article:published_time", content: loaderData.post.date },
+        ]
+      : [{ title: "Post — FLOLOGIXAUTOMATIONS Blog" }],
+  }),
   component: BlogPost,
   notFoundComponent: () => {
     const { slug } = Route.useParams();
@@ -60,10 +39,7 @@ export const Route = createFileRoute("/blog/$slug")({
     <div className="min-h-screen bg-background text-foreground flex items-center justify-center px-4">
       <div className="text-center max-w-md">
         <h1 className="text-2xl font-bold">Something went wrong</h1>
-        <p className="mt-2 text-sm text-muted-foreground">Unable to load this article. Please try again later.</p>
-        {import.meta.env.DEV && error.message && (
-          <pre className="mt-2 text-xs text-muted-foreground whitespace-pre-wrap">{error.message}</pre>
-        )}
+        <p className="mt-2 text-sm text-muted-foreground">{error.message}</p>
         <Link to="/blog" className="mt-6 inline-block text-foreground underline">← Back to blog</Link>
       </div>
     </div>

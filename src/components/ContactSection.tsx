@@ -43,7 +43,7 @@ export function ContactSection() {
           name: formData.get("name") as string,
           email: formData.get("email") as string,
           company: formData.get("company") as string,
-          employees: formData.get("employees") as "1-10" | "11-50" | "51-200" | "201-500" | "500+",
+          employees: formData.get("employees") as string,
           message: formData.get("message") as string,
         },
       });
