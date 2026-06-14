@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, MapPin, CheckCircle, ArrowRight, Loader2 } from "lucide-react";
+import { Mail, CheckCircle, ArrowRight, Loader2 } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { submitContactForm } from "@/utils/contact.functions";
 import { useServerFn } from "@tanstack/react-start";
