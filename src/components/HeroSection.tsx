@@ -49,7 +49,7 @@ export function HeroSection() {
           }`}
         >
           <span className="inline-block h-2 w-2 rounded-full bg-neon-cyan animate-glow-pulse" />
-          Trusted by 10+ businesses around India
+          Trusted by 10+ growing businesses globally
         </div>
 
         {/* Headline with typing animation */}

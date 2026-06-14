@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, MapPin, CheckCircle, ArrowRight, Loader2 } from "lucide-react";
+import { Mail, CheckCircle, ArrowRight, Loader2 } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { submitContactForm } from "@/utils/contact.functions";
 import { useServerFn } from "@tanstack/react-start";
@@ -79,7 +79,7 @@ export function ContactSection() {
           {/* Left */}
           <div className={`transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}>
             <p className="text-lg text-muted-foreground">
-              Join 10+ businesses in India that have revolutionized their operations with our automation solutions.
+              Join 10+ businesses that have revolutionized their operations with our AI automation solutions — n8n workflows, AI agents, chatbots, RAG and invoice OCR.
             </p>
 
             <ul className="mt-8 space-y-4">
@@ -95,10 +95,6 @@ export function ContactSection() {
               <div className="flex items-center gap-3 text-muted-foreground">
                 <Mail className="text-neon-blue" size={18} />
                 contactus@flologixautomations.com
-              </div>
-              <div className="flex items-center gap-3 text-muted-foreground">
-                <MapPin className="text-neon-blue" size={18} />
-                India &amp; Worldwide
               </div>
             </div>
           </div>
