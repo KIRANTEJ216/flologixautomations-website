@@ -1,40 +1,59 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { lazy, Suspense } from "react";
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
 import { ServicesSection } from "@/components/ServicesSection";
-import { AutomationToolsSection } from "@/components/AutomationToolsSection";
-import { ProcessSection } from "@/components/ProcessSection";
-import { WhyUsSection } from "@/components/WhyUsSection";
-import { CaseStudiesSection } from "@/components/CaseStudiesSection";
-import { TechnologiesSection } from "@/components/TechnologiesSection";
-import { ContactSection } from "@/components/ContactSection";
-import { Footer } from "@/components/Footer";
 
-const SITE_URL = "https://automate-flow-genie.lovable.app";
+// Defer below-the-fold sections to shrink initial JS and speed up first paint
+const AutomationToolsSection = lazy(() =>
+  import("@/components/AutomationToolsSection").then((m) => ({ default: m.AutomationToolsSection })),
+);
+const ProcessSection = lazy(() =>
+  import("@/components/ProcessSection").then((m) => ({ default: m.ProcessSection })),
+);
+const WhyUsSection = lazy(() =>
+  import("@/components/WhyUsSection").then((m) => ({ default: m.WhyUsSection })),
+);
+const CaseStudiesSection = lazy(() =>
+  import("@/components/CaseStudiesSection").then((m) => ({ default: m.CaseStudiesSection })),
+);
+const TechnologiesSection = lazy(() =>
+  import("@/components/TechnologiesSection").then((m) => ({ default: m.TechnologiesSection })),
+);
+const ContactSection = lazy(() =>
+  import("@/components/ContactSection").then((m) => ({ default: m.ContactSection })),
+);
+const Footer = lazy(() =>
+  import("@/components/Footer").then((m) => ({ default: m.Footer })),
+);
+
+const SITE_URL = "https://flologixautomations.lovable.app";
 const OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 
-const TITLE = "AI Automation Agency | n8n, AI Agents & Workflow Automation";
+const TITLE = "AI Automation Agency | n8n Workflows & AI Agents";
 const DESCRIPTION =
-  "Top AI automation agency building n8n workflows, AI agents, WhatsApp & Telegram bots, RAG systems, invoice OCR & business process automation. Cut costs 70%.";
+  "Top-rated AI automation agency. Custom n8n workflows, AI agents, WhatsApp & Telegram chatbots, RAG systems and invoice OCR. Cut costs up to 70%.";
 const KEYWORDS = [
   "AI automation agency",
-  "business process automation services",
-  "AI workflow automation services",
+  "hire AI automation agency",
+  "n8n consulting",
+  "n8n workflow automation",
   "n8n automation services",
-  "AI chatbot development services",
-  "automation consulting services",
-  "RPA services company",
-  "AI integration services",
-  "enterprise automation solutions",
-  "AI SaaS automation services",
-  "AI agents for business",
-  "automate invoice processing using AI OCR",
-  "AI automation for GST invoice processing India",
+  "AI workflow automation company",
+  "AI agent development",
+  "custom AI agents for business",
+  "AI chatbot agency",
   "WhatsApp automation",
   "Telegram bot development",
   "RAG systems",
+  "intelligent document processing",
+  "invoice automation with AI OCR",
+  "business process automation experts",
+  "workflow automation services",
+  "AI integration services",
+  "enterprise automation solutions",
+  "automation as a service",
   "best AI automation agency for small business",
-  "n8n automation services for startups",
   "custom AI automation solutions for enterprises",
 ].join(", ");
 
@@ -46,7 +65,6 @@ const organizationJsonLd = {
   logo: `${SITE_URL}/favicon.ico`,
   description: DESCRIPTION,
   email: "contactus@flologixautomations.com",
-  areaServed: ["IN", "Worldwide"],
   sameAs: [],
 };
 
@@ -58,7 +76,6 @@ const serviceJsonLd = {
   image: OG_IMAGE,
   priceRange: "$$",
   description: DESCRIPTION,
-  address: { "@type": "PostalAddress", addressCountry: "IN" },
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "4.9",
@@ -73,9 +90,21 @@ const serviceJsonLd = {
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "WhatsApp Automation" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Telegram Bot Development" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "RAG Systems & AI Knowledge Bases" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Invoice Automation with AI OCR & GST" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Invoice Automation with AI OCR" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Business Process Automation" } },
     ],
+  },
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "FlologixAutomations",
+  url: SITE_URL,
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${SITE_URL}/blog?q={search_term_string}`,
+    "query-input": "required name=search_term_string",
   },
 };
 
@@ -101,10 +130,10 @@ const faqJsonLd = {
     },
     {
       "@type": "Question",
-      name: "Can you automate GST invoice processing in India?",
+      name: "Can you automate invoice processing with AI OCR?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. We build AI OCR pipelines that extract line items, validate GSTIN, calculate tax and post invoices into your ERP or accounting software automatically.",
+        text: "Yes. We build AI OCR pipelines that extract line items, validate tax numbers, calculate totals and post invoices into your ERP or accounting software automatically.",
       },
     },
     {
@@ -135,19 +164,14 @@ export const Route = createFileRoute("/")({
       { name: "twitter:description", content: DESCRIPTION },
       { name: "twitter:image", content: OG_IMAGE },
     ],
+    links: [
+      { rel: "canonical", href: SITE_URL },
+    ],
     scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify(organizationJsonLd),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify(serviceJsonLd),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify(faqJsonLd),
-      },
+      { type: "application/ld+json", children: JSON.stringify(organizationJsonLd) },
+      { type: "application/ld+json", children: JSON.stringify(websiteJsonLd) },
+      { type: "application/ld+json", children: JSON.stringify(serviceJsonLd) },
+      { type: "application/ld+json", children: JSON.stringify(faqJsonLd) },
     ],
   }),
   component: Index,
@@ -159,13 +183,15 @@ function Index() {
       <Navbar />
       <HeroSection />
       <ServicesSection />
-      <AutomationToolsSection />
-      <ProcessSection />
-      <WhyUsSection />
-      <CaseStudiesSection />
-      <TechnologiesSection />
-      <ContactSection />
-      <Footer />
+      <Suspense fallback={null}>
+        <AutomationToolsSection />
+        <ProcessSection />
+        <WhyUsSection />
+        <CaseStudiesSection />
+        <TechnologiesSection />
+        <ContactSection />
+        <Footer />
+      </Suspense>
     </div>
   );
 }
