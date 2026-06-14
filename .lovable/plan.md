@@ -1,71 +1,55 @@
 
-# FlologixAutomations — Dark Futuristic AI Agency Website
+## 1. Remove "India" & "Worldwide" mentions
+- `ContactSection.tsx`: drop the "India & Worldwide" location row and replace "10+ businesses in India" with a neutral line ("10+ businesses worldwide" → just "10+ growing businesses").
+- `routes/index.tsx`: remove `areaServed: ["IN", "Worldwide"]` and `addressCountry: "IN"` from JSON-LD. Drop India-specific keywords ("AI automation for GST invoice processing India", "n8n automation services for startups" stays, India phrases out). Replace FAQ entry about GST India with a generic "invoice automation" entry.
+- Audit Footer / other components for stray India copy (will scan during build).
 
-## Design Theme
-- **Dark background** (#0a0a0f / deep navy-black) with glowing neon accent colors (electric blue #3B82F6, cyan #06B6D4, purple #8B5CF6)
-- Glowing card borders, subtle gradient mesh backgrounds, floating particle-like decorative elements
-- Smooth scroll navigation, fade-in animations on scroll using Intersection Observer
-- Modern sans-serif typography (Inter/system fonts)
+## 2. SEO upgrades (high-ranking keywords)
+- Tighten `<title>` to ≤60 chars with primary keyword first: "AI Automation Agency | n8n Workflows & AI Agents".
+- Expand keyword set with high-intent terms: "hire AI automation agency", "n8n consulting", "AI workflow automation company", "custom AI agents", "business process automation experts", "workflow automation services", "AI chatbot agency", "intelligent document processing", "AI integration company", "automation as a service".
+- Add per-section H2s using keyword variants (HeroSection subtitle, ServicesSection heading).
+- Add `<link rel="canonical">` per leaf route + `og:url`.
+- Add `sitemap.xml` and `robots.txt` (verify/replace existing) with the published domain.
+- Add BreadcrumbList + WebSite (SearchAction) JSON-LD on root.
+- Add `loading="lazy"` + `decoding="async"` to non-LCP images; mark hero image `fetchpriority="high"` and preload it via route `head().links`.
 
-## Single Scrolling Page Structure (index.tsx)
+## 3. Performance (instant load)
+- Preload the LCP hero asset; add `<link rel="preconnect">` for font hosts (or self-host via `@fontsource`).
+- Convert hero/background heavy images to `?format=webp` via vite-imagetools (or compress existing) — only if assets exist; otherwise skip.
+- Code-split below-the-fold sections (`CaseStudiesSection`, `TechnologiesSection`, `ContactSection`, `Footer`) with `React.lazy` + Suspense fallback to shrink initial JS.
+- Remove unused Radix UI components from the bundle by ensuring they aren't imported in the homepage path (audit).
+- Defer non-critical animations on first paint (respect `prefers-reduced-motion`).
+- Add `Cache-Control` headers via route handlers where applicable for static JSON-LD assets (limited on Workers — skip if not trivial).
 
-### 1. **Sticky Navigation Bar**
-- Logo "FlologixAutomations" with glow effect
-- Nav links: Services, Process, Why Us, Case Studies, Contact
-- "Get Free Consultation" CTA button with glow border
-- Mobile hamburger menu
+## 4. Contact form → new n8n webhook
+- Update secret `N8N_WEBHOOK_URL` to `https://kktej3d.n8n-wsk.com/webhook-test/flocontactus` (requires user approval via secrets tool).
+- `contact.functions.ts` already reads from `process.env.N8N_WEBHOOK_URL`, so no code change needed beyond the secret update.
 
-### 2. **Hero Section**
-- Large headline: "Transform Your Business with Intelligent AI Automations"
-- Subtitle about AI Automations, AI agents, WhatsApp Automation/Telegram bots
-- Two CTA buttons: "Get Free Consultation" + "View Our Work"
-- Animated stats bar: 40+ Workflows | 10+ Customers | 500+ Hours Saved
-- Decorative glowing gradient orbs in background
-- "Trusted by 10+ businesses around India" badge
+## 5. Theme redesign — reference: Appzia Flutter Admin Panel
+Appzia is a clean, modern light-mode admin UI: white/very-light-gray background, soft card surfaces, vibrant indigo/purple primary, sharp data viz accents (teal, amber, pink), rounded-2xl cards with subtle shadow, Inter/Poppins typography, generous whitespace, sidebar-style nav, pill buttons.
 
-### 3. **Services Section** (6 cards in grid)
-- **n8n Development** — workflow automation, API integrations
-- **AI Agent Development** — GPT-4, Claude-powered agents
-- **WhatsApp Automation** — Business API, chatbots, automated messaging
-- **Telegram Bot Development** — custom bots and automation
-- **RAG Systems** — intelligent document Q&A, knowledge bases
-- **Process Digitization** — manual-to-digital workflow conversion
-- Each card: icon, title, bullet points, glowing border on hover
+Proposed redesign:
+- Switch from current pure-black neon theme to **light admin-style theme**:
+  - `--background: oklch(0.99 0 0)` (near white)
+  - `--foreground: oklch(0.18 0.02 260)` (slate-900)
+  - `--primary: oklch(0.55 0.22 280)` (indigo-violet)
+  - Accent set: teal `oklch(0.72 0.13 190)`, amber `oklch(0.82 0.16 75)`, pink `oklch(0.7 0.2 0)`
+  - Card surfaces: white w/ `box-shadow: 0 4px 20px oklch(0 0 0 / 6%)`, `rounded-2xl`
+- Replace "neon glow" utility classes (`glow-blue`, `text-glow-blue`, `glass-card` dark) with soft-shadow admin equivalents — keeping class names so existing markup still works.
+- Typography: Inter (body) + Poppins (headings) via `<link>` in `__root.tsx`.
+- Navbar: lighter, with subtle border and pill CTA.
+- Hero: split layout with illustration placeholder on right, indigo gradient headline.
+- Buttons: pill-shaped, indigo primary, subtle hover lift.
 
-### 4. **Process Section** (4-step timeline)
-- Vertical/horizontal timeline with glowing step numbers (01-04)
-- Process Discovery → Build & Develop → Launch & Test → Optimize & Scale
-- Each step with icon and description
-- "Start Your Automation Journey" CTA
+> Note: this is a substantial visual overhaul. I'll keep all section structure/content intact — only colors, typography, spacing, shadows, and button shapes change.
 
-### 5. **Why Choose Us Section**
-- 4 feature cards: Guaranteed Results, Expert Team, Tech-Agnostic, End-to-End Support
-- Stats row: 98% Client Satisfaction | 4 Weeks Avg Implementation | 70% Cost Reduction
-- Glowing accent borders
+## Execution order
+1. Update `N8N_WEBHOOK_URL` secret (user approval).
+2. Strip India/Worldwide copy + JSON-LD.
+3. Refresh SEO metadata, keywords, sitemap/robots, JSON-LD.
+4. Theme overhaul in `src/styles.css` + tweak Navbar/Hero/Button accents.
+5. Performance: lazy-load below-fold sections, preload LCP, font `<link>` preconnect.
 
-### 6. **Case Studies Section**
-- 3 case study cards with dark glass-morphism style
-- Marketing Agency (5X capacity), Financial Services (2X capacity), B2B Services (95% on-time)
-- Each with metric highlights and "Get Similar Results" button
-- "View All Case Studies" link
-
-### 7. **Technologies Section**
-- Logo/icon grid of tools: Monday, ChatGPT, Claude, HubSpot, Airtable, Notion, Slack, Google, Zapier, Make, Salesforce, WhatsApp, Telegram, Python, JavaScript
-- Subtle floating animation on icons
-
-### 8. **Contact/CTA Section**
-- Split layout: left side with benefits list + email, right side with contact form
-- Form: Name, Email, Company, Message textarea
-- "Request Free Consultation" submit button with glow effect
-
-### 9. **Footer**
-- 3-column layout: About, Services links, Company links
-- Copyright, Privacy Policy, Terms of Service links
-
-## Technical Approach
-- All content in `src/routes/index.tsx` with component sections extracted to `src/components/`
-- Shared components: Navbar, Footer, Section wrappers
-- Custom CSS animations for glow effects and scroll-triggered fade-ins
-- Dark theme colors configured in `src/styles.css`
-- Fully responsive (mobile-first)
-- Smooth scroll behavior for nav links
+## Questions before I build
+- **Theme intensity**: Full light admin redesign (Appzia-style) or keep dark base but adopt Appzia's indigo accents + card style?
+- **Sections to keep visually identical**: any section you want untouched during the redesign?
