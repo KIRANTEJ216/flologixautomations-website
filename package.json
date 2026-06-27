@@ -51,6 +51,7 @@
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
+    "isomorphic-dompurify": "^3.18.0",
     "lucide-react": "^0.575.0",
     "marked": "^18.0.0",
     "nitro": "3.0.260603-beta",
