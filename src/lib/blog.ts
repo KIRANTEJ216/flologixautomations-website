@@ -45,7 +45,7 @@ const posts: Post[] = Object.entries(modules)
       date: meta.date || "",
       excerpt: meta.excerpt || "",
       author: meta.author || "FLOLOGIXAUTOMATIONS",
-      html: marked.parse(body, { async: false }) as string,
+      html: DOMPurify.sanitize(marked.parse(body, { async: false }) as string),
     };
   })
   .sort((a, b) => (a.date < b.date ? 1 : -1));
