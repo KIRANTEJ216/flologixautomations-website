@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, useRouter, useNavigate } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ThemeToggle";
+
 
 const sectionLinks = [
   { label: "Services", id: "services" },
@@ -64,6 +66,7 @@ export function Navbar() {
           <Link to="/blog" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
             Blog
           </Link>
+          <ThemeToggle />
           <button onClick={() => goToSection("contact")}>
             <Button className="glow-blue rounded-full bg-foreground px-6 text-background hover:bg-foreground/85">
               Get Free Consultation
@@ -72,13 +75,19 @@ export function Navbar() {
         </div>
 
         {/* Mobile toggle */}
-        <button
-          className="text-foreground md:hidden"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button
+            className="text-foreground"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+
+
+
       </div>
 
       {/* Mobile menu */}

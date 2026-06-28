@@ -30,32 +30,61 @@ const Footer = lazy(() =>
 const SITE_URL = "https://flologixautomations.lovable.app";
 const OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 
-const TITLE = "AI Automation Agency | n8n Workflows & AI Agents";
+const TITLE = "AI Automation Agency | n8n Workflows, AI Agents & RAG Systems";
 const DESCRIPTION =
-  "Top-rated AI automation agency. Custom n8n workflows, AI agents, WhatsApp & Telegram chatbots, RAG systems and invoice OCR. Cut costs up to 70%.";
+  "Hire a top AI automation agency. Custom n8n workflow automation, AI agents, WhatsApp & Telegram chatbots, RAG systems, invoice OCR and business process automation. Cut costs up to 70% and scale faster.";
 const KEYWORDS = [
   "AI automation agency",
   "hire AI automation agency",
+  "best AI automation agency",
+  "AI automation services",
   "n8n consulting",
+  "n8n consulting services",
   "n8n workflow automation",
-  "n8n automation services",
+  "n8n automation agency",
+  "n8n development services",
+  "n8n integration services",
+  "n8n experts for hire",
   "AI workflow automation company",
   "AI agent development",
   "custom AI agents for business",
+  "build AI agents",
+  "AI agent agency",
   "AI chatbot agency",
+  "AI chatbot development",
   "WhatsApp automation",
+  "WhatsApp business automation",
+  "WhatsApp chatbot development",
   "Telegram bot development",
+  "Telegram chatbot agency",
   "RAG systems",
+  "retrieval augmented generation services",
+  "RAG chatbot development",
+  "AI knowledge base",
   "intelligent document processing",
   "invoice automation with AI OCR",
+  "AI OCR invoice processing",
   "business process automation experts",
+  "BPA consulting",
   "workflow automation services",
   "AI integration services",
   "enterprise automation solutions",
   "automation as a service",
+  "AaaS",
+  "no-code automation agency",
+  "open source automation services",
+  "LLM integration services",
+  "OpenAI integration agency",
+  "Claude AI integration",
+  "Zapier alternative agency",
+  "Make.com automation services",
   "best AI automation agency for small business",
   "custom AI automation solutions for enterprises",
+  "AI automation consultant",
+  "automate repetitive tasks with AI",
+  "ai workflow automation for startups",
 ].join(", ");
+
 
 const organizationJsonLd = {
   "@context": "https://schema.org",

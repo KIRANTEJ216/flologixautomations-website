@@ -134,7 +134,38 @@
 .dark {
   --background: oklch(0.16 0.02 265);
   --foreground: oklch(0.98 0 0);
+  --card: oklch(0.21 0.025 265);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.21 0.025 265);
+  --popover-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.7 0.2 285);
+  --primary-foreground: oklch(0.15 0.02 265);
+  --secondary: oklch(0.24 0.03 265);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.24 0.03 265);
+  --muted-foreground: oklch(0.7 0.02 265);
+  --accent: oklch(0.28 0.06 285);
+  --accent-foreground: oklch(0.95 0.02 285);
+  --destructive: oklch(0.65 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.3 0.02 265);
+  --input: oklch(0.24 0.03 265);
+  --ring: oklch(0.7 0.2 285);
+  --sidebar: oklch(0.21 0.025 265);
+  --sidebar-foreground: oklch(0.98 0 0);
+  --sidebar-primary: oklch(0.7 0.2 285);
+  --sidebar-primary-foreground: oklch(0.15 0.02 265);
+  --sidebar-accent: oklch(0.24 0.03 265);
+  --sidebar-accent-foreground: oklch(0.98 0 0);
+  --sidebar-border: oklch(0.3 0.02 265);
+  --sidebar-ring: oklch(0.7 0.2 285);
+  --neon-blue: oklch(0.7 0.2 285);
+  --neon-cyan: oklch(0.78 0.14 190);
+  --neon-purple: oklch(0.72 0.22 320);
+  --glass: oklch(0.21 0.025 265 / 80%);
+  --glass-border: oklch(0.7 0.2 285 / 20%);
 }
+
 
 html {
   scroll-padding-top: 90px;
