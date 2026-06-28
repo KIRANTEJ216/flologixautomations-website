@@ -66,12 +66,26 @@ export function Navbar() {
           <Link to="/blog" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
             Blog
           </Link>
+          <ThemeToggle />
           <button onClick={() => goToSection("contact")}>
             <Button className="glow-blue rounded-full bg-foreground px-6 text-background hover:bg-foreground/85">
               Get Free Consultation
             </Button>
           </button>
         </div>
+
+        {/* Mobile toggle */}
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button
+            className="text-foreground"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+
 
         {/* Mobile toggle */}
         <button
