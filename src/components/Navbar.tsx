@@ -87,14 +87,7 @@ export function Navbar() {
         </div>
 
 
-        {/* Mobile toggle */}
-        <button
-          className="text-foreground md:hidden"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+
       </div>
 
       {/* Mobile menu */}
