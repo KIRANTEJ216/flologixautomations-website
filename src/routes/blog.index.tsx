@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { getAllPosts } from "@/lib/blog";
+import { fetchAllPosts } from "@/utils/blog.server";
+import type { PostMeta } from "@/utils/blog.server";
 
 export const Route = createFileRoute("/blog/")({
   head: () => ({
@@ -12,7 +13,10 @@ export const Route = createFileRoute("/blog/")({
       { property: "og:description", content: "Latest articles on AI, automation, and the tools that scale modern businesses." },
     ],
   }),
-  loader: () => ({ posts: getAllPosts() }),
+  loader: async () => {
+    const { posts } = await fetchAllPosts();
+    return { posts };
+  },
   component: BlogIndex,
 });
 
@@ -31,23 +35,36 @@ function BlogIndex() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2">
-          {posts.map((p: { slug: string; title: string; date: string; excerpt: string; author: string }) => (
-            <Link
-              key={p.slug}
-              to="/blog/$slug"
-              params={{ slug: p.slug }}
-              className="glass-card group rounded-2xl border border-border/50 p-6 transition-all duration-300 hover:border-foreground/40 hover:scale-[1.01]"
-            >
-              <p className="text-xs uppercase tracking-widest text-muted-foreground">
-                {p.date && new Date(p.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
-              </p>
-              <h2 className="mt-3 text-xl font-semibold group-hover:text-foreground">{p.title}</h2>
-              <p className="mt-3 text-sm text-muted-foreground">{p.excerpt}</p>
-              <span className="mt-4 inline-block text-sm font-medium text-foreground underline">Read article →</span>
-            </Link>
-          ))}
-        </div>
+        {posts.length === 0 ? (
+          <div className="mt-16 text-center text-muted-foreground">
+            <p>No articles yet. Check back soon!</p>
+          </div>
+        ) : (
+          <div className="mt-16 grid gap-6 md:grid-cols-2">
+            {posts.map((p: PostMeta) => (
+              <Link
+                key={p.slug}
+                to="/blog/$slug"
+                params={{ slug: p.slug }}
+                className="glass-card group rounded-2xl border border-border/50 p-6 transition-all duration-300 hover:border-foreground/40 hover:scale-[1.01]"
+              >
+                <div className="flex flex-wrap gap-2 mb-3">
+                  {p.categories?.map((cat: { name: string }) => (
+                    <span key={cat.name} className="text-xs px-2 py-0.5 rounded-full bg-neon-blue/10 text-neon-blue">
+                      {cat.name}
+                    </span>
+                  ))}
+                </div>
+                <p className="text-xs uppercase tracking-widest text-muted-foreground">
+                  {p.published_at && new Date(p.published_at).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+                </p>
+                <h2 className="mt-3 text-xl font-semibold group-hover:text-foreground">{p.title}</h2>
+                <p className="mt-3 text-sm text-muted-foreground">{p.excerpt}</p>
+                <span className="mt-4 inline-block text-sm font-medium text-foreground underline">Read article →</span>
+              </Link>
+            ))}
+          </div>
+        )}
       </main>
       <Footer />
     </div>

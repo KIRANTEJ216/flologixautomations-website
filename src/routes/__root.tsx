@@ -56,6 +56,9 @@ function RootShell({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script dangerouslySetInnerHTML={{
+          __html: `var process=process||{env:{},argv:[]};`
+        }} />
       </head>
       <body>
         {children}

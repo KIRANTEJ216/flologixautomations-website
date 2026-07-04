@@ -13,8 +13,17 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SolutionsIndexRouteImport } from './routes/solutions.index'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as LocationsIndexRouteImport } from './routes/locations.index'
+import { Route as IndustryIndexRouteImport } from './routes/industry.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as SolutionsSolutionRouteImport } from './routes/solutions.$solution'
+import { Route as ServicesServiceRouteImport } from './routes/services.$service'
+import { Route as LocationsCityRouteImport } from './routes/locations.$city'
+import { Route as IndustryIndustryRouteImport } from './routes/industry.$industry'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as ApiBlogWebhookRouteImport } from './routes/api.blog.webhook'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -36,14 +45,59 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SolutionsIndexRoute = SolutionsIndexRouteImport.update({
+  id: '/solutions/',
+  path: '/solutions/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/services/',
+  path: '/services/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LocationsIndexRoute = LocationsIndexRouteImport.update({
+  id: '/locations/',
+  path: '/locations/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndustryIndexRoute = IndustryIndexRouteImport.update({
+  id: '/industry/',
+  path: '/industry/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SolutionsSolutionRoute = SolutionsSolutionRouteImport.update({
+  id: '/solutions/$solution',
+  path: '/solutions/$solution',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesServiceRoute = ServicesServiceRouteImport.update({
+  id: '/services/$service',
+  path: '/services/$service',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LocationsCityRoute = LocationsCityRouteImport.update({
+  id: '/locations/$city',
+  path: '/locations/$city',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndustryIndustryRoute = IndustryIndustryRouteImport.update({
+  id: '/industry/$industry',
+  path: '/industry/$industry',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
   id: '/blog/$slug',
   path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiBlogWebhookRoute = ApiBlogWebhookRouteImport.update({
+  id: '/api/blog/webhook',
+  path: '/api/blog/webhook',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -53,7 +107,16 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/industry/$industry': typeof IndustryIndustryRoute
+  '/locations/$city': typeof LocationsCityRoute
+  '/services/$service': typeof ServicesServiceRoute
+  '/solutions/$solution': typeof SolutionsSolutionRoute
   '/blog/': typeof BlogIndexRoute
+  '/industry/': typeof IndustryIndexRoute
+  '/locations/': typeof LocationsIndexRoute
+  '/services/': typeof ServicesIndexRoute
+  '/solutions/': typeof SolutionsIndexRoute
+  '/api/blog/webhook': typeof ApiBlogWebhookRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -61,7 +124,16 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/industry/$industry': typeof IndustryIndustryRoute
+  '/locations/$city': typeof LocationsCityRoute
+  '/services/$service': typeof ServicesServiceRoute
+  '/solutions/$solution': typeof SolutionsSolutionRoute
   '/blog': typeof BlogIndexRoute
+  '/industry': typeof IndustryIndexRoute
+  '/locations': typeof LocationsIndexRoute
+  '/services': typeof ServicesIndexRoute
+  '/solutions': typeof SolutionsIndexRoute
+  '/api/blog/webhook': typeof ApiBlogWebhookRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -70,7 +142,16 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/industry/$industry': typeof IndustryIndustryRoute
+  '/locations/$city': typeof LocationsCityRoute
+  '/services/$service': typeof ServicesServiceRoute
+  '/solutions/$solution': typeof SolutionsSolutionRoute
   '/blog/': typeof BlogIndexRoute
+  '/industry/': typeof IndustryIndexRoute
+  '/locations/': typeof LocationsIndexRoute
+  '/services/': typeof ServicesIndexRoute
+  '/solutions/': typeof SolutionsIndexRoute
+  '/api/blog/webhook': typeof ApiBlogWebhookRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -80,9 +161,33 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/blog/$slug'
+    | '/industry/$industry'
+    | '/locations/$city'
+    | '/services/$service'
+    | '/solutions/$solution'
     | '/blog/'
+    | '/industry/'
+    | '/locations/'
+    | '/services/'
+    | '/solutions/'
+    | '/api/blog/webhook'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/privacy' | '/sitemap.xml' | '/terms' | '/blog/$slug' | '/blog'
+  to:
+    | '/'
+    | '/privacy'
+    | '/sitemap.xml'
+    | '/terms'
+    | '/blog/$slug'
+    | '/industry/$industry'
+    | '/locations/$city'
+    | '/services/$service'
+    | '/solutions/$solution'
+    | '/blog'
+    | '/industry'
+    | '/locations'
+    | '/services'
+    | '/solutions'
+    | '/api/blog/webhook'
   id:
     | '__root__'
     | '/'
@@ -90,7 +195,16 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/blog/$slug'
+    | '/industry/$industry'
+    | '/locations/$city'
+    | '/services/$service'
+    | '/solutions/$solution'
     | '/blog/'
+    | '/industry/'
+    | '/locations/'
+    | '/services/'
+    | '/solutions/'
+    | '/api/blog/webhook'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -99,7 +213,16 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   BlogSlugRoute: typeof BlogSlugRoute
+  IndustryIndustryRoute: typeof IndustryIndustryRoute
+  LocationsCityRoute: typeof LocationsCityRoute
+  ServicesServiceRoute: typeof ServicesServiceRoute
+  SolutionsSolutionRoute: typeof SolutionsSolutionRoute
   BlogIndexRoute: typeof BlogIndexRoute
+  IndustryIndexRoute: typeof IndustryIndexRoute
+  LocationsIndexRoute: typeof LocationsIndexRoute
+  ServicesIndexRoute: typeof ServicesIndexRoute
+  SolutionsIndexRoute: typeof SolutionsIndexRoute
+  ApiBlogWebhookRoute: typeof ApiBlogWebhookRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -132,6 +255,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/solutions/': {
+      id: '/solutions/'
+      path: '/solutions'
+      fullPath: '/solutions/'
+      preLoaderRoute: typeof SolutionsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/': {
+      id: '/services/'
+      path: '/services'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/locations/': {
+      id: '/locations/'
+      path: '/locations'
+      fullPath: '/locations/'
+      preLoaderRoute: typeof LocationsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/industry/': {
+      id: '/industry/'
+      path: '/industry'
+      fullPath: '/industry/'
+      preLoaderRoute: typeof IndustryIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/': {
       id: '/blog/'
       path: '/blog'
@@ -139,11 +290,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/solutions/$solution': {
+      id: '/solutions/$solution'
+      path: '/solutions/$solution'
+      fullPath: '/solutions/$solution'
+      preLoaderRoute: typeof SolutionsSolutionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/$service': {
+      id: '/services/$service'
+      path: '/services/$service'
+      fullPath: '/services/$service'
+      preLoaderRoute: typeof ServicesServiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/locations/$city': {
+      id: '/locations/$city'
+      path: '/locations/$city'
+      fullPath: '/locations/$city'
+      preLoaderRoute: typeof LocationsCityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/industry/$industry': {
+      id: '/industry/$industry'
+      path: '/industry/$industry'
+      fullPath: '/industry/$industry'
+      preLoaderRoute: typeof IndustryIndustryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/$slug': {
       id: '/blog/$slug'
       path: '/blog/$slug'
       fullPath: '/blog/$slug'
       preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/blog/webhook': {
+      id: '/api/blog/webhook'
+      path: '/api/blog/webhook'
+      fullPath: '/api/blog/webhook'
+      preLoaderRoute: typeof ApiBlogWebhookRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -155,8 +341,26 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   BlogSlugRoute: BlogSlugRoute,
+  IndustryIndustryRoute: IndustryIndustryRoute,
+  LocationsCityRoute: LocationsCityRoute,
+  ServicesServiceRoute: ServicesServiceRoute,
+  SolutionsSolutionRoute: SolutionsSolutionRoute,
   BlogIndexRoute: BlogIndexRoute,
+  IndustryIndexRoute: IndustryIndexRoute,
+  LocationsIndexRoute: LocationsIndexRoute,
+  ServicesIndexRoute: ServicesIndexRoute,
+  SolutionsIndexRoute: SolutionsIndexRoute,
+  ApiBlogWebhookRoute: ApiBlogWebhookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}
