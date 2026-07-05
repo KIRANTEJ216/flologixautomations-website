@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, CheckCircle, ArrowRight, Loader2 } from "lucide-react";
+import { Mail, CheckCircle, ArrowRight, Loader2, Phone } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { submitContactForm } from "@/utils/contact.functions";
 import { useServerFn } from "@tanstack/react-start";
@@ -42,6 +42,7 @@ export function ContactSection() {
         data: {
           name: formData.get("name") as string,
           email: formData.get("email") as string,
+          phone: formData.get("phone") as string,
           company: formData.get("company") as string,
           employees: formData.get("employees") as string,
           message: formData.get("message") as string,
@@ -96,6 +97,10 @@ export function ContactSection() {
                 <Mail className="text-neon-blue" size={18} />
                 contactus@flologixautomations.com
               </div>
+              <div className="flex items-center gap-3 text-muted-foreground">
+                <Phone className="text-neon-blue" size={18} />
+                +91 938 115 4482
+              </div>
             </div>
           </div>
 
@@ -119,6 +124,10 @@ export function ContactSection() {
                 <div>
                   <label className="mb-1.5 block text-sm font-medium">Email</label>
                   <Input name="email" type="email" placeholder="your@email.com" className="bg-input/50 border-border/50 focus-visible:ring-neon-blue" required />
+                </div>
+                <div>
+                  <label className="mb-1.5 block text-sm font-medium">Phone</label>
+                  <Input name="phone" type="tel" placeholder="+1 234 567 8900" className="bg-input/50 border-border/50 focus-visible:ring-neon-blue" />
                 </div>
                 <div>
                   <label className="mb-1.5 block text-sm font-medium">Company</label>

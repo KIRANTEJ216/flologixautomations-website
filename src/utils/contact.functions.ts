@@ -4,6 +4,7 @@ import { z } from "zod";
 const contactSchema = z.object({
   name: z.string().trim().min(1).max(100),
   email: z.string().trim().email().max(255),
+  phone: z.string().trim().min(7).max(20).optional().default(""),
   company: z.string().trim().max(200).optional().default(""),
   employees: z.string().trim().max(20),
   message: z.string().trim().min(1).max(2000),
@@ -26,6 +27,7 @@ export const submitContactForm = createServerFn({ method: "POST" })
         body: JSON.stringify({
           name: data.name,
           email: data.email,
+          phone: data.phone,
           company: data.company,
           employees: data.employees,
           message: data.message,
