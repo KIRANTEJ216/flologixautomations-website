@@ -6,7 +6,7 @@ export function useTypingAnimation(
   deletingSpeed = 60,
   pauseDuration = 2000
 ) {
-  const [displayText, setDisplayText] = useState(words[0] || "");
+  const [displayText, setDisplayText] = useState("");
   const [wordIndex, setWordIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [mounted, setMounted] = useState(false);

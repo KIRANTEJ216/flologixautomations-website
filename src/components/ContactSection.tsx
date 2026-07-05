@@ -70,7 +70,7 @@ export function ContactSection() {
           <p className="text-sm font-semibold uppercase tracking-widest text-neon-cyan">Get Started</p>
           <h2 className="mt-3 text-3xl font-bold sm:text-4xl md:text-5xl">
             Ready to{" "}
-            <span className="bg-gradient-to-r from-neon-blue to-neon-purple bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-neon-purple via-neon-blue to-neon-cyan bg-clip-text text-transparent">
               Transform Your Business?
             </span>
           </h2>
@@ -99,7 +99,7 @@ export function ContactSection() {
               </div>
               <div className="flex items-center gap-3 text-muted-foreground">
                 <Phone className="text-neon-blue" size={18} />
-                +91 938 115 4482
+                +91 99 858 606 59
               </div>
             </div>
           </div>

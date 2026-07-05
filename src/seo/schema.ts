@@ -47,7 +47,7 @@ export function localBusinessSchema(name: string, description: string, city: str
     address: { "@type": "PostalAddress", addressLocality: city, addressRegion: state, addressCountry: country },
     geo: { "@type": "GeoCoordinates", latitude: lat, longitude: lng },
     url: `${SITE_URL}/locations/${city.toLowerCase().replace(/\s+/g, "-")}`,
-    telephone: "+919381154482",
+    telephone: "+919985860659",
     areaServed: city,
   };
 }

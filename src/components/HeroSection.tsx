@@ -13,9 +13,13 @@ const stats = [
 
 const typingWords = [
   "Intelligent AI Automations",
-  "WhatsApp & Telegram Bots",
+  "n8n Workflow Automation",
+  "Custom AI Agent Development",
+  "WhatsApp Business Bots",
+  "Telegram Bot Solutions",
   "RAG-Powered Knowledge Bases",
-  "No-Code Workflow Magic",
+  "AI Invoice OCR Processing",
+  "End-to-End Process Automation",
 ];
 
 export function HeroSection() {
@@ -59,8 +63,8 @@ export function HeroSection() {
           }`}
         >
           Transform Your Business with{" "}
-          <span className="bg-gradient-to-r from-neon-blue via-neon-cyan to-neon-purple bg-clip-text text-transparent">
-            {typedText || typingWords[0]}
+          <span className="bg-gradient-to-r from-neon-purple via-neon-blue to-neon-cyan bg-clip-text text-transparent">
+            {typedText}
           </span>
           <span className="inline-block w-[3px] h-[0.8em] ml-1 align-middle bg-neon-cyan animate-blink" />
         </h1>
