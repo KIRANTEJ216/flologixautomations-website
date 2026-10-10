@@ -1,0 +1,97 @@
+{
+  "@context": "https://schema.org",
+  "@type": "OfferCatalog",
+  "name": "AI Automation Services",
+  "url": "https://www.flologixautomations.com/services",
+  "provider": {
+    "@type": "Organization",
+    "name": "Flologix Automations",
+    "url": "https://www.flologixautomations.com"
+  },
+  "itemListElement": [
+    {
+      "@type": "Offer",
+      "name": "n8n Automation",
+      "url": "https://www.flologixautomations.com/services/n8n-workflow-automation",
+      "description": "Expert n8n workflow automation services. Build custom multi-step workflows, API integrations, and business process automation. Cut costs up to 70%.",
+      "priceSpecification": null,
+      "itemOffered": {
+        "@type": "Service",
+        "name": "n8n Automation",
+        "description": "Expert n8n workflow automation services. Build custom multi-step workflows, API integrations, and business process automation. Cut costs up to 70%.",
+        "url": "https://www.flologixautomations.com/services/n8n-workflow-automation",
+        "serviceType": "n8n Automation"
+      }
+    },
+    {
+      "@type": "Offer",
+      "name": "AI Agents",
+      "url": "https://www.flologixautomations.com/services/ai-agent-development",
+      "description": "Agentic development and AI agent development using GPT-4, Claude and open-source LLMs. Build autonomous customer support agents, lead qualifiers and knowledge assistants.",
+      "priceSpecification": null,
+      "itemOffered": {
+        "@type": "Service",
+        "name": "AI Agents",
+        "description": "Agentic development and AI agent development using GPT-4, Claude and open-source LLMs. Build autonomous customer support agents, lead qualifiers and knowledge assistants.",
+        "url": "https://www.flologixautomations.com/services/ai-agent-development",
+        "serviceType": "AI Agents"
+      }
+    },
+    {
+      "@type": "Offer",
+      "name": "WhatsApp Bots",
+      "url": "https://www.flologixautomations.com/services/whatsapp-automation",
+      "description": "WhatsApp bot development using the WhatsApp Business API. Build AI chatbots, bulk messaging, order notifications and CRM integration for business automations.",
+      "priceSpecification": null,
+      "itemOffered": {
+        "@type": "Service",
+        "name": "WhatsApp Bots",
+        "description": "WhatsApp bot development using the WhatsApp Business API. Build AI chatbots, bulk messaging, order notifications and CRM integration for business automations.",
+        "url": "https://www.flologixautomations.com/services/whatsapp-automation",
+        "serviceType": "WhatsApp Bots"
+      }
+    },
+    {
+      "@type": "Offer",
+      "name": "Telegram Bots",
+      "url": "https://www.flologixautomations.com/services/telegram-bot-development",
+      "description": "Custom Telegram bot development for business automation. Command bots, inline queries, group management, payment integrations, and more.",
+      "priceSpecification": null,
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Telegram Bots",
+        "description": "Custom Telegram bot development for business automation. Command bots, inline queries, group management, payment integrations, and more.",
+        "url": "https://www.flologixautomations.com/services/telegram-bot-development",
+        "serviceType": "Telegram Bots"
+      }
+    },
+    {
+      "@type": "Offer",
+      "name": "RAG Systems",
+      "url": "https://www.flologixautomations.com/services/rag-systems",
+      "description": "Build Retrieval-Augmented Generation (RAG) systems for intelligent document Q&A. Custom AI knowledge bases that answer questions from your data.",
+      "priceSpecification": null,
+      "itemOffered": {
+        "@type": "Service",
+        "name": "RAG Systems",
+        "description": "Build Retrieval-Augmented Generation (RAG) systems for intelligent document Q&A. Custom AI knowledge bases that answer questions from your data.",
+        "url": "https://www.flologixautomations.com/services/rag-systems",
+        "serviceType": "RAG Systems"
+      }
+    },
+    {
+      "@type": "Offer",
+      "name": "Process Automation",
+      "url": "https://www.flologixautomations.com/services/business-process-automation",
+      "description": "End-to-end business process automation for enterprises and startups. Automate workflows, reduce costs 70%, and scale without hiring.",
+      "priceSpecification": null,
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Process Automation",
+        "description": "End-to-end business process automation for enterprises and startups. Automate workflows, reduce costs 70%, and scale without hiring.",
+        "url": "https://www.flologixautomations.com/services/business-process-automation",
+        "serviceType": "Process Automation"
+      }
+    }
+  ]
+}

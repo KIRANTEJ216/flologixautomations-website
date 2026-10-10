@@ -124,6 +124,15 @@ const KEYWORDS = [
   "ai customer support agent",
 ].join(", ");
 
+/**
+ * Central list of verified external profiles, used by every schema block below.
+ *
+ * Empty until real profiles exist. Kept as a named const so one edit here
+ * updates Organization, ProfessionalService and any future WebPage markup at
+ * once, rather than drifting between them.
+ */
+export const SAME_AS: string[] = [];
+
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -167,7 +176,21 @@ const organizationJsonLd = {
       availableLanguage: ["English"],
     },
   ],
-  sameAs: [],
+  // `sameAs` is how AI engines and search engines disambiguate an organisation
+  // against an entity they already know. It must point at profiles that REALLY
+  // exist and resolve — pointing at a non-existent LinkedIn page is worse than
+  // omitting it, because it asserts a link that cannot be verified.
+  //
+  // Currently empty because this company has no public profiles on LinkedIn,
+  // Wikipedia, Wikidata, Crunchbase or X. To fill it in, add the exact URLs of
+  // real, live profiles you control. Three or more is the working minimum;
+  // five is better. See docs/AI-SEO-REFERENCE.md.
+  //
+  // TODO(kiran): add real profile URLs once the company pages exist, e.g.
+  //   "https://www.linkedin.com/company/<slug>",
+  //   "https://x.com/<handle>",
+  //   "https://www.crunchbase.com/organization/<slug>"
+  sameAs: SAME_AS,
 };
 
 const serviceJsonLd = {

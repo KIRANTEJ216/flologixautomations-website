@@ -175,6 +175,70 @@ export function howToSchema(
   };
 }
 
+/**
+ * About page markup.
+ *
+ * Deliberately carries no `Person` entity: naming founders or team members as
+ * `Person` schema without real, attributable profiles would be the same class
+ * of problem as the removed AggregateRating — asserting facts about people that
+ * cannot be verified. Add `Person` entries here once there are real team
+ * members with real profiles to point `sameAs` at.
+ */
+export function aboutPageSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    url: `${SITE_URL}/about`,
+    name: "About Flologix Automations",
+    description:
+      "Flologix Automations is an AI automation agency building n8n workflows, AI agents, messaging bots and RAG systems for small and medium businesses.",
+    mainEntity: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      legalName: SITE_NAME,
+      alternateName: "FlologixAutomations",
+      url: SITE_URL,
+      logo: `${SITE_URL}/icon-512.png`,
+      foundingDate: "2023",
+      email: "contactus@flologixautomations.com",
+      telephone: "+919985860659",
+      description:
+        "AI automation agency for small and medium businesses. Builds n8n workflow automation, AI agents, WhatsApp and Telegram bots, RAG systems and invoice processing automation.",
+      knowsAbout: [
+        "AI automation",
+        "business process automation",
+        "n8n workflow automation",
+        "agentic development",
+        "AI agent development",
+        "AI chatbot development",
+        "WhatsApp bot development",
+        "Telegram bot development",
+        "RAG systems",
+        "retrieval augmented generation",
+        "document OCR automation",
+        "invoice processing automation",
+      ],
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          contactType: "sales",
+          email: "contactus@flologixautomations.com",
+          telephone: "+919985860659",
+          areaServed: "Worldwide",
+          availableLanguage: ["English"],
+        },
+      ],
+      areaServed: [
+        { "@type": "Country", name: "India" },
+        { "@type": "Country", name: "United States" },
+        { "@type": "Country", name: "United Kingdom" },
+        { "@type": "Country", name: "United Arab Emirates" },
+        { "@type": "Country", name: "Singapore" },
+      ],
+    },
+  };
+}
+
 export function speakableSchema(path: string) {
   return {
     "@context": "https://schema.org",

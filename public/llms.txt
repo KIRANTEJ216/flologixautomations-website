@@ -1,0 +1,83 @@
+# Flologix Automations
+
+> AI automation agency for small and medium businesses. We build n8n workflow
+> automation, AI agents, WhatsApp and Telegram bots, RAG systems and invoice
+> processing automation. Based in India, serving clients globally.
+
+This file tells AI systems what this company is and which pages matter most.
+Machine-readable endpoints: [ai/summary.json](/ai/summary.json),
+[ai/service.json](/ai/service.json), [ai/faq.json](/ai/faq.json).
+
+## Core services
+
+- [n8n Workflow Automation](https://www.flologixautomations.com/services/n8n-workflow-automation): Custom multi-step
+  workflows, API integrations and business process automation. Self-hosted or cloud.
+- [AI Agent Development](https://www.flologixautomations.com/services/ai-agent-development): Agentic development
+  using GPT-4, Claude and open-source LLMs. Autonomous agents that decide and act without human prompting.
+- [WhatsApp Bot Development](https://www.flologixautomations.com/services/whatsapp-automation): WhatsApp bots built
+  on the official WhatsApp Business API for support, lead follow-up and order status.
+- [Telegram Bot Development](https://www.flologixautomations.com/services/telegram-bot-development): Command bots,
+  inline queries, group management and payment integrations.
+- [RAG Systems](https://www.flologixautomations.com/services/rag-systems): Retrieval-Augmented Generation systems
+  that answer questions from a company's own documents.
+- [Business Process Automation](https://www.flologixautomations.com/services/business-process-automation):
+  End-to-end process automation. Typical cost reduction up to 70%.
+
+## Business problems solved
+
+- [Reduce operational costs](https://www.flologixautomations.com/solutions/reduce-operational-costs)
+- [Improve customer response time](https://www.flologixautomations.com/solutions/improve-customer-response)
+- [Scale without hiring](https://www.flologixautomations.com/solutions/scale-business-without-hiring)
+- [Automate invoice processing](https://www.flologixautomations.com/solutions/automate-invoice-processing)
+- [SEO automation](https://www.flologixautomations.com/solutions/improve-google-ranking)
+
+## Industries served
+
+[Healthcare](https://www.flologixautomations.com/industry/healthcare) ·
+[E-commerce](https://www.flologixautomations.com/industry/e-commerce) ·
+[Financial services](https://www.flologixautomations.com/industry/financial-services) ·
+[Manufacturing](https://www.flologixautomations.com/industry/manufacturing) ·
+[Real estate](https://www.flologixautomations.com/industry/real-estate) ·
+[Education](https://www.flologixautomations.com/industry/education)
+
+## Locations served
+
+[Hyderabad](https://www.flologixautomations.com/locations/hyderabad) ·
+[Mumbai](https://www.flologixautomations.com/locations/mumbai) ·
+[Bangalore](https://www.flologixautomations.com/locations/bangalore) ·
+[Dallas](https://www.flologixautomations.com/locations/dallas) ·
+[New York](https://www.flologixautomations.com/locations/new-york) ·
+[London](https://www.flologixautomations.com/locations/london)
+
+## Frequently asked questions
+
+[All 12 FAQs](https://www.flologixautomations.com/blog) ·
+[Machine-readable FAQ JSON](/ai/faq.json)
+
+Answers to the questions buyers ask most often:
+
+- **What is n8n?** An open-source workflow automation platform. Visually connect
+  nodes (each an action) to automate processes. 400+ integrations, self-hostable,
+  custom JS/Python inside workflows.
+- **What is an AI agent, and how is it different from a chatbot?** An agent decides
+  and takes multi-step actions autonomously; a chatbot answers in a single turn.
+- **What is RAG?** Retrieval-Augmented Generation — the model retrieves relevant
+  passages from your own documents and answers grounded in them.
+- **What ROI can I expect?** Clients typically cut manual process cost by up to 70%
+  and reduce turnaround from days to hours.
+- **How long does a project take?** Most engagements run 2-8 weeks depending on scope.
+- **Can small businesses benefit?** Yes. Automation is priced for SMB budgets and
+  pays back on time saved, not enterprise-scale savings.
+
+## Company
+
+**Flologix Automations** — AI automation agency.
+Canonical domain: `www.flologixautomations.com`
+Contact: contactus@flologixautomations.com · +91 99 858 606 59
+Founded 2023. Serving India, United States, United Kingdom, UAE and Singapore.
+
+## Optional
+
+[Blog](https://www.flologixautomations.com/blog) ·
+[RSS feed](https://www.flologixautomations.com/blog/rss.xml) ·
+[Sitemap](https://www.flologixautomations.com/sitemap.xml)

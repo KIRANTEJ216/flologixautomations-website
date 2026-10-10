@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Outlet, Link, createRootRoute, HeadContent, Scripts, useRouterState } from "@tanstack/react-router";
+import { SITE_URL } from "@/seo/metadata";
 
 import appCss from "../styles.css?url";
 
@@ -42,6 +43,27 @@ export const Route = createRootRoute({
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap",
+      },
+      // Declared sitewide, not just on /blog. Feed-discovery bots read
+      // <link rel="alternate"> in <head> to find content feeds; a feed that is
+      // only linked from one page is effectively undiscoverable.
+      {
+        rel: "alternate",
+        type: "application/rss+xml",
+        title: "Flologix Automations — AI & Automation Insights",
+        href: `${SITE_URL}/blog/rss.xml`,
+      },
+      {
+        rel: "alternate",
+        type: "application/json",
+        title: "AI summary",
+        href: `${SITE_URL}/ai/summary.json`,
+      },
+      {
+        rel: "alternate",
+        type: "text/plain",
+        title: "llms.txt",
+        href: `${SITE_URL}/llms.txt`,
       },
     ],
   }),

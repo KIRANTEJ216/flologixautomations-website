@@ -1,0 +1,53 @@
+{
+  "name": "Flologix Automations",
+  "legalName": "Flologix Automations",
+  "alternateName": "FlologixAutomations",
+  "url": "https://www.flologixautomations.com",
+  "description": "AI automation agency for small and medium businesses. Builds n8n workflow automation, AI agents, WhatsApp and Telegram bots, RAG systems and invoice processing automation.",
+  "foundingDate": "2023",
+  "email": "contactus@flologixautomations.com",
+  "telephone": "+919985860659",
+  "priceRange": "$$",
+  "industry": "Information Technology & Services",
+  "areaServed": [
+    { "@type": "Country", "name": "India" },
+    { "@type": "Country", "name": "United States" },
+    { "@type": "Country", "name": "United Kingdom" },
+    { "@type": "Country", "name": "United Arab Emirates" },
+    { "@type": "Country", "name": "Singapore" }
+  ],
+  "knowsAbout": [
+    "AI automation",
+    "business process automation",
+    "n8n workflow automation",
+    "agentic development",
+    "AI agent development",
+    "AI chatbot development",
+    "WhatsApp bot development",
+    "Telegram bot development",
+    "RAG systems",
+    "retrieval augmented generation",
+    "document OCR automation",
+    "invoice processing automation",
+    "workflow automation"
+  ],
+  "primaryService": "AI automation agency",
+  "services": [
+    { "name": "n8n Workflow Automation", "url": "https://www.flologixautomations.com/services/n8n-workflow-automation" },
+    { "name": "AI Agent Development", "url": "https://www.flologixautomations.com/services/ai-agent-development" },
+    { "name": "WhatsApp Bot Development", "url": "https://www.flologixautomations.com/services/whatsapp-automation" },
+    { "name": "Telegram Bot Development", "url": "https://www.flologixautomations.com/services/telegram-bot-development" },
+    { "name": "RAG Systems", "url": "https://www.flologixautomations.com/services/rag-systems" },
+    { "name": "Business Process Automation", "url": "https://www.flologixautomations.com/services/business-process-automation" }
+  ],
+  "claims": [
+    { "metric": "cost reduction", "value": "up to 70%", "source": "client engagements" },
+    { "metric": "typical engagement length", "value": "2-8 weeks", "source": "project delivery records" }
+  ],
+  "llmsTxt": "https://www.flologixautomations.com/llms.txt",
+  "sitemap": "https://www.flologixautomations.com/sitemap.xml",
+  "rss": "https://www.flologixautomations.com/blog/rss.xml",
+  "faq": "https://www.flologixautomations.com/ai/faq.json",
+  "serviceDetail": "https://www.flologixautomations.com/ai/service.json",
+  "crawlPolicy": "https://www.flologixautomations.com/.well-known/ai.txt"
+}

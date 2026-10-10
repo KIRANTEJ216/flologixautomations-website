@@ -19,8 +19,32 @@ const SITE_NAME = "Flologix Automations";
  */
 const TITLE_SUFFIX = " | Flologix";
 
-/** Public origin shared by server-rendered and client-rendered metadata. */
-const SITE_URL = "https://flologixautomations.lovable.app";
+/**
+ * Canonical origin for every absolute URL the site emits — canonicals, Open
+ * Graph tags, JSON-LD `@id`, sitemap `<loc>`, RSS.
+ *
+ * Single source of truth: routes import this rather than redeclaring it, which
+ * is what previously let one route keep a stale host while the rest were fixed.
+ *
+ * Defaults to the live host, which is the `www` subdomain: the apex
+ * `flologixautomations.com` 307-redirects here, so canonicals and sitemap
+ * `<loc>` entries must use www or every URL reads as a redirect to crawlers.
+ *
+ * REGRESSION GUARD: this value was reverted to the `lovable.app` preview domain
+ * by a later merge. That single line re-points every canonical, og:url,
+ * og:image, sitemap entry and JSON-LD `@id` at a third-party preview host —
+ * which is the exact failure this constant exists to prevent. Do not change it
+ * back. The Lovable project is unpublished and returns 404, so pointing at it
+ * would canonicalise the entire site to a dead host.
+ *
+ * Defaulting (rather than requiring the variable) matters because `__root.tsx`
+ * shims `process` on the client, leaving `process.env.SITE_URL` empty during
+ * client-side navigation — a required var would emit the wrong host there.
+ * Keep `public/robots.txt` in sync; that file is static and cannot read env.
+ */
+const DEFAULT_SITE_URL = "https://www.flologixautomations.com";
+
+const SITE_URL = (process.env.SITE_URL || DEFAULT_SITE_URL).replace(/\/+$/, "");
 
 export interface PageMeta {
   title: string;
