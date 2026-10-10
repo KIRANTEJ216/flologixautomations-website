@@ -1,0 +1,22 @@
+rules_version = '2';
+
+// Firestore is accessed ONLY server-side via the Firebase Admin SDK
+// (src/utils/firestore.server.ts), which bypasses these rules entirely by design.
+//
+// - Reads:  src/utils/blog.server.ts  (fetchAllPosts / fetchPost)
+// - Writes: src/routes/api.blog.webhook.ts, gated by the `x-api-key` header
+//           check against N8N_BLOG_API_KEY before any Firestore call.
+//
+// No client-side Firestore SDK is bundled, so every rule below denies access.
+// This is intentional: it means a leaked Supabase/Firebase anon key or API token
+// cannot read or write the blog corpus.
+//
+// If a future feature needs direct client reads (e.g. realtime comments), grant
+// the narrowest rule possible here rather than switching the whole corpus open.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

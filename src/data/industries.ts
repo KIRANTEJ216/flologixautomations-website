@@ -16,7 +16,7 @@ export const industries: Industry[] = [
   {
     slug: "healthcare",
     name: "Healthcare",
-    metaTitle: "AI Automation for Healthcare | Medical Workflow Automation",
+    metaTitle: "AI Automation for Healthcare | Medical Workflows",
     metaDesc: "Healthcare automation solutions for patient scheduling, medical records, billing, and compliance reporting. HIPAA-compliant AI agents.",
     h1: "AI Automation for Healthcare: Streamline Medical Operations",
     intro: "Healthcare providers spend 30% of their revenue on administrative tasks. From patient scheduling to insurance billing, medical records management to compliance reporting — these manual processes consume resources that could be spent on patient care. Our healthcare automation solutions handle administrative workflows so your medical staff can focus on what matters most.",
@@ -34,7 +34,7 @@ export const industries: Industry[] = [
   {
     slug: "e-commerce",
     name: "E-commerce",
-    metaTitle: "AI Automation for E-commerce | Online Store Automation",
+    metaTitle: "AI Automation for E-commerce | Store Automation",
     metaDesc: "E-commerce automation solutions for order processing, inventory management, customer support, and marketing. Scale your online store without hiring.",
     h1: "AI Automation for E-commerce: Scale Your Online Store",
     intro: "E-commerce businesses face intense competition and razor-thin margins. Every manual process — from order fulfillment to customer support — eats into profitability. Our e-commerce automation solutions handle the repetitive tasks so you can focus on growth, product, and customer experience.",
@@ -52,7 +52,7 @@ export const industries: Industry[] = [
   {
     slug: "financial-services",
     name: "Financial Services",
-    metaTitle: "AI Automation for Financial Services | Fintech Automation",
+    metaTitle: "AI Automation for Financial Services | Fintech",
     metaDesc: "Financial services automation for compliance reporting, invoice processing, reconciliation, and customer onboarding. Secure, auditable, AI-powered.",
     h1: "AI Automation for Financial Services: Transform Fintech Operations",
     intro: "Financial institutions operate under strict regulatory requirements while managing millions of transactions. The cost of manual processing, compliance errors, and delayed reporting is immense. Our financial services automation solutions help banks, fintechs, and accounting firms automate critical processes while maintaining full audit trails and regulatory compliance.",
@@ -70,7 +70,7 @@ export const industries: Industry[] = [
   {
     slug: "manufacturing",
     name: "Manufacturing",
-    metaTitle: "AI Automation for Manufacturing | Industry 4.0 Solutions",
+    metaTitle: "AI Automation for Manufacturing | Industry 4.0",
     metaDesc: "Manufacturing automation solutions for supply chain management, quality control, inventory tracking, and production reporting. Industry 4.0 ready.",
     h1: "AI Automation for Manufacturing: Industry 4.0 in Action",
     intro: "Manufacturers face pressure to reduce costs, improve quality, and accelerate delivery — all while managing complex supply chains and production lines. Our manufacturing automation solutions connect your ERP, MES, and supply chain systems into unified workflows that eliminate manual data entry, reduce production delays, and improve quality tracking.",
@@ -88,7 +88,7 @@ export const industries: Industry[] = [
   {
     slug: "real-estate",
     name: "Real Estate",
-    metaTitle: "AI Automation for Real Estate | Property Management Automation",
+    metaTitle: "AI Automation for Real Estate | Property Ops",
     metaDesc: "Real estate automation for lead management, property inquiries, document processing, and transaction management. Automate your property business.",
     h1: "AI Automation for Real Estate: Automate Property Operations",
     intro: "Real estate professionals juggle lead follow-ups, property inquiries, document management, and transaction coordination — often using a patchwork of tools and manual processes. Our real estate automation solutions help agents, brokers, and property managers automate repetitive tasks, respond to leads instantly, and close deals faster.",
@@ -106,7 +106,7 @@ export const industries: Industry[] = [
   {
     slug: "education",
     name: "Education",
-    metaTitle: "AI Automation for Education | EdTech Process Automation",
+    metaTitle: "AI Automation for Education | EdTech Workflows",
     metaDesc: "Education automation solutions for student enrollment, fee collection, communication, and reporting. Automate administrative tasks in educational institutions.",
     h1: "AI Automation for Education: Streamline Institution Management",
     intro: "Educational institutions — from schools to universities — are burdened by administrative tasks that divert resources from education. Admissions, fee collection, timetabling, parent communication, and compliance reporting consume hundreds of staff hours. Our education automation solutions digitize and automate these processes, letting educators focus on teaching.",

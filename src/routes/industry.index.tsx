@@ -6,7 +6,7 @@ import { buildMeta, metaToTags, canonicalLink } from "@/seo/metadata";
 
 export const Route = createFileRoute("/industry/")({
   head: () => {
-    const meta = buildMeta("/industry", "AI Automation by Industry | Industry-Specific Solutions", "Industry-specific AI automation solutions for healthcare, e-commerce, financial services, manufacturing, real estate, and education.");
+    const meta = buildMeta("/industry", "AI Automation by Industry | Industry Solutions", "Industry-specific AI automation solutions for healthcare, e-commerce, financial services, manufacturing, real estate, and education.");
     return {
       meta: metaToTags(meta),
       links: [canonicalLink(meta.canonical)],

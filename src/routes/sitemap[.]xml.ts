@@ -1,90 +1,112 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { createClient } from "@supabase/supabase-js";
 import type {} from "@tanstack/react-start";
 import { services } from "@/data/services";
 import { locations } from "@/data/locations";
 import { industries } from "@/data/industries";
 import { solutions } from "@/data/solutions";
+import { getPublishedPostSlugs } from "@/utils/blog.server";
+import { SITE_URL } from "@/seo/metadata";
 
-const BASE_URL = "https://flologixautomations.lovable.app";
+interface SitemapEntry {
+  path: string;
+  changefreq: "daily" | "weekly" | "monthly" | "yearly";
+  priority: string;
+  lastmod?: string;
+}
+
+/**
+ * `<lastmod>` for the static/PSEO routes. Evaluated once per request, so it
+ * advances whenever the site is (re)deployed — which is the honest signal for
+ * these pages: their content only changes when a build ships.
+ */
+const BUILD_DATE = new Date().toISOString();
+
+function xmlEscape(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
+
+function renderEntry(entry: SitemapEntry): string {
+  const parts = ["  <url>", `    <loc>${xmlEscape(`${SITE_URL}${entry.path}`)}</loc>`];
+  if (entry.lastmod) {
+    parts.push(`    <lastmod>${xmlEscape(entry.lastmod.slice(0, 10))}</lastmod>`);
+  }
+  parts.push(`    <changefreq>${entry.changefreq}</changefreq>`);
+  parts.push(`    <priority>${entry.priority}</priority>`);
+  parts.push("  </url>");
+  return parts.join("\n");
+}
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
-        let blogUrls: string[] = [];
-
+        // A sitemap that fails to build is worse than one missing blog posts:
+        // return the static entries regardless of whether Firestore is reachable.
+        let blogEntries: SitemapEntry[] = [];
         try {
-          const supabaseUrl = process.env.SUPABASE_URL;
-          const supabaseKey = process.env.SUPABASE_ANON_KEY;
-          if (supabaseUrl && supabaseKey) {
-            const supabase = createClient(supabaseUrl, supabaseKey);
-            const { data } = await supabase
-              .from("posts")
-              .select("slug")
-              .eq("published", true);
-            if (data) {
-              blogUrls = data.map((p) => p.slug);
-            }
-          }
-        } catch {
-          // Supabase not configured — skip blog posts
+          blogEntries = (await getPublishedPostSlugs()).map((post) => ({
+            path: `/blog/${post.slug}`,
+            changefreq: "monthly" as const,
+            priority: "0.7",
+            lastmod: post.updated_at || post.published_at || undefined,
+          }));
+        } catch (err) {
+          console.error("sitemap: failed to load blog slugs:", err);
         }
 
-        const staticEntries = [
-          { path: "/", changefreq: "weekly" as const, priority: "1.0" },
-          { path: "/blog", changefreq: "weekly" as const, priority: "0.9" },
-          { path: "/services", changefreq: "weekly" as const, priority: "0.9" },
-          { path: "/locations", changefreq: "weekly" as const, priority: "0.9" },
-          { path: "/industry", changefreq: "weekly" as const, priority: "0.9" },
-          { path: "/solutions", changefreq: "weekly" as const, priority: "0.9" },
-          { path: "/privacy", changefreq: "yearly" as const, priority: "0.3" },
-          { path: "/terms", changefreq: "yearly" as const, priority: "0.3" },
+        // Privacy/Terms are `noindex` — keep them out of the sitemap so we never
+        // invite crawlers to index pages we ask them to skip.
+        const staticEntries: SitemapEntry[] = [
+          { path: "/", changefreq: "weekly", priority: "1.0", lastmod: BUILD_DATE },
+          { path: "/services", changefreq: "weekly", priority: "0.9", lastmod: BUILD_DATE },
+          { path: "/solutions", changefreq: "weekly", priority: "0.9", lastmod: BUILD_DATE },
+          { path: "/industry", changefreq: "weekly", priority: "0.8", lastmod: BUILD_DATE },
+          { path: "/locations", changefreq: "weekly", priority: "0.8", lastmod: BUILD_DATE },
+          { path: "/blog", changefreq: "daily", priority: "0.9", lastmod: BUILD_DATE },
         ];
 
-        const serviceUrls = services.map((s) => ({
-          path: `/services/${s.slug}`,
-          changefreq: "monthly" as const,
-          priority: "0.8",
-        }));
+        const dynamicEntries: SitemapEntry[] = [
+          ...services.map((s) => ({
+            path: `/services/${s.slug}`,
+            changefreq: "monthly" as const,
+            priority: "0.9",
+            lastmod: BUILD_DATE,
+          })),
+          ...locations.map((l) => ({
+            path: `/locations/${l.slug}`,
+            changefreq: "monthly" as const,
+            priority: "0.8",
+            lastmod: BUILD_DATE,
+          })),
+          ...industries.map((i) => ({
+            path: `/industry/${i.slug}`,
+            changefreq: "monthly" as const,
+            priority: "0.8",
+            lastmod: BUILD_DATE,
+          })),
+          ...solutions.map((s) => ({
+            path: `/solutions/${s.slug}`,
+            changefreq: "monthly" as const,
+            priority: "0.8",
+            lastmod: BUILD_DATE,
+          })),
+        ];
 
-        const locationUrls = locations.map((l) => ({
-          path: `/locations/${l.slug}`,
-          changefreq: "monthly" as const,
-          priority: "0.8",
-        }));
-
-        const industryUrls = industries.map((i) => ({
-          path: `/industry/${i.slug}`,
-          changefreq: "monthly" as const,
-          priority: "0.7",
-        }));
-
-        const solutionUrls = solutions.map((s) => ({
-          path: `/solutions/${s.slug}`,
-          changefreq: "monthly" as const,
-          priority: "0.7",
-        }));
-
-        const allUrls = [...staticEntries, ...serviceUrls, ...locationUrls, ...industryUrls, ...solutionUrls];
-
-        const blogEntries = blogUrls.map(
-          (slug) =>
-            `  <url>\n    <loc>${BASE_URL}/blog/${slug}</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>`,
-        );
-
-        const urls = [
-          ...allUrls.map(
-            (e) =>
-              `  <url>\n    <loc>${BASE_URL}${e.path}</loc>\n    <changefreq>${e.changefreq}</changefreq>\n    <priority>${e.priority}</priority>\n  </url>`,
-          ),
-          ...blogEntries,
+        const xml = [
+          '<?xml version="1.0" encoding="UTF-8"?>',
+          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+          ...[...staticEntries, ...dynamicEntries, ...blogEntries].map(renderEntry),
+          "</urlset>",
         ].join("\n");
 
-        const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>`;
         return new Response(xml, {
           headers: {
-            "Content-Type": "application/xml",
+            "Content-Type": "application/xml; charset=utf-8",
             "Cache-Control": "public, max-age=3600",
           },
         });

@@ -22,6 +22,7 @@ import { Route as SolutionsSolutionRouteImport } from './routes/solutions.$solut
 import { Route as ServicesServiceRouteImport } from './routes/services.$service'
 import { Route as LocationsCityRouteImport } from './routes/locations.$city'
 import { Route as IndustryIndustryRouteImport } from './routes/industry.$industry'
+import { Route as BlogRssDotxmlRouteImport } from './routes/blog.rss[.]xml'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as ApiBlogWebhookRouteImport } from './routes/api.blog.webhook'
 
@@ -90,6 +91,11 @@ const IndustryIndustryRoute = IndustryIndustryRouteImport.update({
   path: '/industry/$industry',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogRssDotxmlRoute = BlogRssDotxmlRouteImport.update({
+  id: '/blog/rss.xml',
+  path: '/blog/rss.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
   id: '/blog/$slug',
   path: '/blog/$slug',
@@ -107,6 +113,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/blog/rss.xml': typeof BlogRssDotxmlRoute
   '/industry/$industry': typeof IndustryIndustryRoute
   '/locations/$city': typeof LocationsCityRoute
   '/services/$service': typeof ServicesServiceRoute
@@ -124,6 +131,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/blog/rss.xml': typeof BlogRssDotxmlRoute
   '/industry/$industry': typeof IndustryIndustryRoute
   '/locations/$city': typeof LocationsCityRoute
   '/services/$service': typeof ServicesServiceRoute
@@ -142,6 +150,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/blog/rss.xml': typeof BlogRssDotxmlRoute
   '/industry/$industry': typeof IndustryIndustryRoute
   '/locations/$city': typeof LocationsCityRoute
   '/services/$service': typeof ServicesServiceRoute
@@ -161,6 +170,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/blog/$slug'
+    | '/blog/rss.xml'
     | '/industry/$industry'
     | '/locations/$city'
     | '/services/$service'
@@ -178,6 +188,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/blog/$slug'
+    | '/blog/rss.xml'
     | '/industry/$industry'
     | '/locations/$city'
     | '/services/$service'
@@ -195,6 +206,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/blog/$slug'
+    | '/blog/rss.xml'
     | '/industry/$industry'
     | '/locations/$city'
     | '/services/$service'
@@ -213,6 +225,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   BlogSlugRoute: typeof BlogSlugRoute
+  BlogRssDotxmlRoute: typeof BlogRssDotxmlRoute
   IndustryIndustryRoute: typeof IndustryIndustryRoute
   LocationsCityRoute: typeof LocationsCityRoute
   ServicesServiceRoute: typeof ServicesServiceRoute
@@ -318,6 +331,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndustryIndustryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/rss.xml': {
+      id: '/blog/rss.xml'
+      path: '/blog/rss.xml'
+      fullPath: '/blog/rss.xml'
+      preLoaderRoute: typeof BlogRssDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/$slug': {
       id: '/blog/$slug'
       path: '/blog/$slug'
@@ -341,6 +361,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   BlogSlugRoute: BlogSlugRoute,
+  BlogRssDotxmlRoute: BlogRssDotxmlRoute,
   IndustryIndustryRoute: IndustryIndustryRoute,
   LocationsCityRoute: LocationsCityRoute,
   ServicesServiceRoute: ServicesServiceRoute,

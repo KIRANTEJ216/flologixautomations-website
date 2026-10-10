@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://flologixautomations.lovable.app/sitemap.xml
+# Keep in sync with SITE_URL (src/seo/metadata.ts). The apex domain redirects
+# to www, so the sitemap must list www URLs or crawlers see every entry redirect.
+Sitemap: https://www.flologixautomations.com/sitemap.xml

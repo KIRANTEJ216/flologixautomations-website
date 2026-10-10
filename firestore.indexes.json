@@ -1,0 +1,44 @@
+{
+  "indexes": [
+    {
+      "//": "Blog listing: fetchAllPosts() filters published==true, orders published_at desc.",
+      "collectionGroup": "posts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "published", "order": "ASCENDING" },
+        { "fieldPath": "published_at", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "//": "Related posts by shared category, newest first (Phase 3).",
+      "collectionGroup": "posts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "categories", "arrayConfig": "CONTAINS" },
+        { "fieldPath": "published_at", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "//": "Related posts by shared tag, newest first (Phase 3).",
+      "collectionGroup": "posts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "tags", "arrayConfig": "CONTAINS" },
+        { "fieldPath": "published_at", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "//": "Excluded from automatic indexing: content holds full markdown bodies and excerpt is not queried, so both would only bloat the index.",
+  "fieldOverrides": [
+    {
+      "collectionGroup": "posts",
+      "fieldPath": "content",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "posts",
+      "fieldPath": "excerpt",
+      "indexes": []
+    }
+  ]
+}

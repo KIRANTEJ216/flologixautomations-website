@@ -67,11 +67,12 @@ export function Navbar() {
             Blog
           </Link>
           <ThemeToggle />
-          <button onClick={() => goToSection("contact")}>
-            <Button className="glow-blue rounded-full bg-foreground px-6 text-background hover:bg-foreground/85">
-              Get Free Consultation
-            </Button>
-          </button>
+          <Button
+            className="glow-blue rounded-full bg-foreground px-6 text-background hover:bg-foreground/85"
+            onClick={() => goToSection("contact")}
+          >
+            Get Free Consultation
+          </Button>
         </div>
 
         {/* Mobile toggle */}
@@ -92,7 +93,7 @@ export function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="glass-card mt-2 flex flex-col gap-4 px-6 py-6 md:hidden">
+        <div className="mobile-nav glass-card mt-2 flex flex-col gap-4 px-6 py-6 md:hidden">
           {sectionLinks.map((l) => (
             <button
               key={l.id}
@@ -109,11 +110,12 @@ export function Navbar() {
           >
             Blog
           </Link>
-          <button onClick={() => goToSection("contact")}>
-            <Button className="w-full glow-blue rounded-full bg-foreground text-background">
-              Get Free Consultation
-            </Button>
-          </button>
+          <Button
+            className="w-full glow-blue rounded-full bg-foreground text-background"
+            onClick={() => goToSection("contact")}
+          >
+            Get Free Consultation
+          </Button>
         </div>
       )}
     </nav>

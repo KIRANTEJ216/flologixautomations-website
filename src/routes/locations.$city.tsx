@@ -14,7 +14,19 @@ export const Route = createFileRoute("/locations/$city")({
   },
   head: ({ loaderData }) => {
     const { location } = loaderData;
-    const meta = buildMeta(`/locations/${location.slug}`, location.metaTitle, location.metaDesc);
+    const meta = buildMeta(
+      `/locations/${location.slug}`,
+      location.metaTitle,
+      location.metaDesc,
+      [
+        "AI automation agency",
+        `AI automation in ${location.city}`,
+        "business automation",
+        "AI automation consultant",
+        "automation agency",
+        `${location.city} AI developers`,
+      ].join(", "),
+    );
     return {
       meta: metaToTags(meta),
       links: [canonicalLink(meta.canonical)],

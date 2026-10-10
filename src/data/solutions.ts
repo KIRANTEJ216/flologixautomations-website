@@ -16,7 +16,7 @@ export const solutions: Solution[] = [
   {
     slug: "reduce-operational-costs",
     title: "Reduce Operational Costs with AI Automation",
-    metaTitle: "Reduce Business Costs with AI Automation | 70% Cost Savings",
+    metaTitle: "Reduce Business Costs with AI Automation | 70% Savings",
     metaDesc: "Cut operational costs by 70% with AI automation. Automate manual processes, eliminate data entry errors, and reduce headcount without reducing output.",
     h1: "Reduce Operational Costs by 70% with AI Automation",
     intro: "Most businesses waste 20-30% of their revenue on manual, repetitive processes that could be automated. Data entry, invoice processing, report generation, customer follow-ups, and approval chains consume thousands of staff hours annually. We identify these hidden costs and eliminate them with custom n8n automation, AI agents, and process redesign.",
@@ -35,7 +35,7 @@ export const solutions: Solution[] = [
   {
     slug: "improve-customer-response",
     title: "Improve Customer Response Time with AI Agents",
-    metaTitle: "Improve Customer Response Time | AI Customer Support Agents",
+    metaTitle: "Improve Customer Response Time | AI Support Agents",
     metaDesc: "Respond to customer inquiries instantly with AI agents. 24/7 automated support handling 80% of inquiries within 30 seconds.",
     h1: "Improve Customer Response Time with AI-Powered Automation",
     intro: "Customers expect responses in minutes, not hours. Yet most businesses take 12-24 hours to respond to inquiries. AI agents can respond instantly to common questions, route complex issues to the right team, and maintain context across conversations — all while learning from each interaction to improve over time.",
@@ -54,7 +54,7 @@ export const solutions: Solution[] = [
   {
     slug: "scale-business-without-hiring",
     title: "Scale Your Business Without Hiring",
-    metaTitle: "Scale Business Without Hiring | Automation for Growth",
+    metaTitle: "Scale Without Hiring | Automation for Growth",
     metaDesc: "Scale your business 10x without adding headcount. AI automation and workflow tools that multiply your team's output.",
     h1: "Scale Your Business 10x Without Hiring",
     intro: "Hiring is expensive, slow, and risky. Yet most businesses respond to increased demand by hiring more people — creating a cost structure that's unsustainable in the long run. We help businesses decouple growth from headcount by automating the processes that would otherwise require new hires.",
@@ -73,7 +73,7 @@ export const solutions: Solution[] = [
   {
     slug: "automate-invoice-processing",
     title: "Automate Invoice Processing with AI OCR",
-    metaTitle: "AI Invoice Processing Automation | OCR for Accounts Payable",
+    metaTitle: "AI Invoice Processing Automation | Invoice OCR",
     metaDesc: "Automate invoice processing with AI OCR. Extract data from invoices, validate against POs, and post to ERP automatically. 99% accuracy.",
     h1: "Automate Invoice Processing with AI-Powered OCR",
     intro: "Manual invoice processing costs businesses $12-25 per invoice in labor. For a business processing 1,000 invoices/month, that's $12K-$25K monthly. AI-powered OCR automation reads invoices, extracts line items, validates against purchase orders, gets approval, and posts to your ERP — all without human touch.",
@@ -92,7 +92,7 @@ export const solutions: Solution[] = [
   {
     slug: "improve-google-ranking",
     title: "Improve Google Ranking with SEO Automation",
-    metaTitle: "SEO Automation Services | Improve Google Rankings",
+    metaTitle: "SEO Automation Services | Better Google Rankings",
     metaDesc: "Automate your SEO workflow with n8n. Content briefs, keyword tracking, rank monitoring, and technical SEO audits — all automated.",
     h1: "Improve Your Google Ranking with SEO Automation",
     intro: "SEO requires consistent effort across content creation, technical optimization, link building, and performance monitoring. Our SEO automation solutions help digital agencies and in-house teams automate repetitive SEO tasks — from generating content briefs to monitoring rankings and performing technical audits.",

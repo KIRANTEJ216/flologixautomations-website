@@ -38,8 +38,12 @@ export function CaseStudiesSection() {
   return (
     <section id="case-studies" className="relative py-24">
       <div ref={ref} className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className={`text-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-          <p className="text-sm font-semibold uppercase tracking-widest text-neon-cyan">Case Studies</p>
+        <div
+          className={`text-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+        >
+          <p className="text-sm font-semibold uppercase tracking-widest text-neon-cyan">
+            Case Studies
+          </p>
           <h2 className="mt-3 text-3xl font-bold sm:text-4xl md:text-5xl">
             Real Results for{" "}
             <span className="bg-gradient-to-r from-neon-blue to-neon-cyan bg-clip-text text-transparent">
@@ -72,7 +76,10 @@ export function CaseStudiesSection() {
                 ))}
               </div>
 
-              <a href="#contact" className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-neon-blue transition-colors hover:text-neon-cyan">
+              <a
+                href="#contact"
+                className="cta-touch mt-6 inline-flex items-center gap-1 text-sm font-medium text-neon-blue transition-colors hover:text-neon-cyan"
+              >
                 Get Similar Results <ArrowRight size={14} />
               </a>
             </div>

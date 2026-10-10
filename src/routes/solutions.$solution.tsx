@@ -12,7 +12,19 @@ export const Route = createFileRoute("/solutions/$solution")({
   },
   head: ({ loaderData }) => {
     const { solution } = loaderData;
-    const meta = buildMeta(`/solutions/${solution.slug}`, solution.metaTitle, solution.metaDesc);
+    const meta = buildMeta(
+      `/solutions/${solution.slug}`,
+      solution.metaTitle,
+      solution.metaDesc,
+      [
+        "AI automation agency",
+        solution.title,
+        "business automation",
+        "AI automation",
+        "workflow automation",
+        "automation consulting",
+      ].join(", "),
+    );
     return {
       meta: metaToTags(meta),
       links: [canonicalLink(meta.canonical)],

@@ -3,10 +3,30 @@ import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const steps = [
-  { num: "01", icon: Search, title: "Process Discovery", desc: "We analyze your workflows, identify bottlenecks, and document automation opportunities." },
-  { num: "02", icon: Code, title: "Build & Develop", desc: "Our experts build custom workflows and AI solutions tailored to your needs." },
-  { num: "03", icon: Rocket, title: "Launch & Test", desc: "Thorough testing in staging before going live. Comprehensive training for your team." },
-  { num: "04", icon: TrendingUp, title: "Optimize & Scale", desc: "Post-launch monitoring, feedback, and continuous optimization as you grow." },
+  {
+    num: "01",
+    icon: Search,
+    title: "Process Discovery",
+    desc: "We analyze your workflows, identify bottlenecks, and document automation opportunities.",
+  },
+  {
+    num: "02",
+    icon: Code,
+    title: "Build & Develop",
+    desc: "Our experts build custom workflows and AI solutions tailored to your needs.",
+  },
+  {
+    num: "03",
+    icon: Rocket,
+    title: "Launch & Test",
+    desc: "Thorough testing in staging before going live. Comprehensive training for your team.",
+  },
+  {
+    num: "04",
+    icon: TrendingUp,
+    title: "Optimize & Scale",
+    desc: "Post-launch monitoring, feedback, and continuous optimization as you grow.",
+  },
 ];
 
 export function ProcessSection() {
@@ -15,8 +35,12 @@ export function ProcessSection() {
   return (
     <section id="process" className="relative py-24">
       <div ref={ref} className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className={`text-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-          <p className="text-sm font-semibold uppercase tracking-widest text-neon-cyan">Our Process</p>
+        <div
+          className={`text-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+        >
+          <p className="text-sm font-semibold uppercase tracking-widest text-neon-cyan">
+            Our Process
+          </p>
           <h2 className="mt-3 text-3xl font-bold sm:text-4xl md:text-5xl">
             A Proven Approach to{" "}
             <span className="bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-transparent">
@@ -49,12 +73,19 @@ export function ProcessSection() {
           ))}
         </div>
 
-        <div className={`mt-12 text-center transition-all duration-700 delay-700 ${isVisible ? "opacity-100" : "opacity-0"}`}>
-          <a href="#contact">
-            <Button size="lg" className="glow-blue rounded-full bg-neon-blue px-8 text-primary-foreground hover:bg-neon-blue/80">
-              Start Your Automation Journey
-            </Button>
-          </a>
+        <div
+          className={`mt-12 text-center transition-all duration-700 delay-700 ${isVisible ? "opacity-100" : "opacity-0"}`}
+        >
+          {/* asChild renders the Button styles onto the anchor. Wrapping a
+              real <button> in an <a> is invalid HTML (nested interactive
+              content) and left the tap target undersized on mobile. */}
+          <Button
+            asChild
+            size="lg"
+            className="glow-blue rounded-full bg-neon-blue px-8 text-primary-foreground hover:bg-neon-blue/80"
+          >
+            <a href="#contact">Start Your Automation Journey</a>
+          </Button>
         </div>
       </div>
     </section>

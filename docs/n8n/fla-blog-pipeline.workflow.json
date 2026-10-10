@@ -1,0 +1,531 @@
+{
+  "name": "FLA Blog — AI Draft → SEO Review → Publish",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "a1000000-0000-4000-8000-000000000001",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -780,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Assemble the system + user prompts from the manual-trigger inputs.\n// Brand voice and the hard SEO rules live here so they are editable without\n// touching any node wiring.\n\nconst cfg = $input.first().json;\n\nconst topic = (cfg.topic || '').trim();\nif (!topic) {\n  throw new Error('`topic` is required. Run the workflow with a topic, e.g. \"n8n error handling patterns\".');\n}\n\nconst keyword = (cfg.focus_keyword || topic).trim();\nconst category = (cfg.category || 'Workflow Automation').trim();\nconst tags = Array.isArray(cfg.tags)\n  ? cfg.tags\n  : String(cfg.tags || '').split(',').map((t) => t.trim()).filter(Boolean);\nconst wordTarget = Number(cfg.word_target || 1200);\nconst attempt = Number(cfg.__attempt || 1);\nconst previousErrors = Array.isArray(cfg.__previous_errors) ? cfg.__previous_errors : [];\n\n// Services that exist on the site. Only these may be linked, so the model\n// cannot invent URLs that 404.\nconst INTERNAL_LINKS = [\n  '/services/n8n-workflow-automation',\n  '/services/ai-agent-development',\n  '/services/whatsapp-automation',\n  '/services/telegram-bot-development',\n  '/services/rag-systems',\n  '/services/business-process-automation',\n];\n\nconst system = [\n  'You are a senior technical writer for FLOLOGIXAUTOMATIONS, an AI automation agency.',\n  '',\n  'VOICE',\n  '- Plain, direct, practitioner-to-practitioner. No hype, no \"in today\\'s fast-paced world\".',\n  '- Concrete over abstract. Every claim gets a specific example, number, or code snippet.',\n  '- Write like someone who has actually built the thing and will admit what broke.',\n  '- British-ish neutral English. Use \"automate\", not \"leverage\" or \"unlock\".',\n  '',\n  'HARD REQUIREMENTS',\n  '- Start the body with a short paragraph. Do NOT include an H1 — the page renders the title itself.',\n  '- Use ## and ### headings only. Never # (that would create a duplicate H1).',\n  '- Include at least 2 ## sections and at least one ##, ### or numbered list.',\n  '- Include a markdown link using ONLY these internal paths when relevant:',\n  ...INTERNAL_LINKS.map((l) => '    ' + l),\n  '- Include 3-5 numbered or bulleted practical steps somewhere in the body.',\n  '- End the body with a short closing line inviting the reader to talk to the team.',\n  '',\n  'OUTPUT FORMAT',\n  '- Reply with a single JSON object and nothing else. No prose before or after.',\n  '- Keys: title, meta_title, excerpt, focus_keyword, content, categories, tags, faqs.',\n  '- `faqs` is an array of 3 objects with `q` and `a` keys.',\n  '- `categories` and `tags` are arrays of short strings.',\n].join('\\n');\n\nconst user = [\n  'Write an article with these parameters:',\n  '',\n  'Topic: ' + topic,\n  'Focus keyword (must appear in title and in the first 150 words): ' + keyword,\n  'Category: ' + category,\n  'Suggested tags: ' + (tags.length ? tags.join(', ') : '(none given)'),\n  'Target length: about ' + wordTarget + ' words',\n  '',\n  'Constraints:',\n  '- title: <= 60 characters, includes the focus keyword, reads well in a SERP.',\n  '- meta_title: <= 60 characters, may differ from title.',\n  '- excerpt: 140-160 characters, ends with a full stop.',\n  '- content: markdown body, ~' + wordTarget + ' words, no H1.',\n].join('\\n');\n\nconst retryBlock = previousErrors.length\n  ? [\n      '',\n      'IMPORTANT — your previous attempt was rejected by automated SEO checks:',\n      ...previousErrors.map((e) => '  - ' + e),\n      '',\n      'Fix every one of those problems in this attempt.',\n    ].join('\\n')\n  : '';\n\nreturn [{\n  json: {\n    topic,\n    focus_keyword: keyword,\n    category,\n    tags,\n    word_target: wordTarget,\n    __attempt: attempt,\n    __previous_errors: previousErrors,\n    messages: [\n      { role: 'system', content: system },\n      { role: 'user', content: user + retryBlock },\n    ],\n  },\n}];"
+      },
+      "id": "a1000000-0000-4000-8000-000000000002",
+      "name": "Build Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -560,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ model: $('Manual Trigger').first().json.model || 'gpt-4o', temperature: 0.7, response_format: { type: 'json_object' }, messages: $json.messages }) }}",
+        "options": {
+          "timeout": 180000,
+          "response": {
+            "response": {
+              "neverError": false
+            }
+          }
+        }
+      },
+      "id": "a1000000-0000-4000-8000-000000000003",
+      "name": "Draft with GPT",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -340,
+        300
+      ],
+      "notes": "Uses an HTTP Header Auth credential named `openaiApi` so the key is never stored in this file. Swap this node for the native OpenAI node if you prefer."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse the model's JSON reply and normalise it into the exact payload\n// shape that POST /api/blog/webhook expects.\n\nconst input = $input.first().json;\nconst cfg = input.__cfg || {};\n\nlet raw = '';\nif (Array.isArray(input.choices) && input.choices[0]?.message?.content) {\n  raw = input.choices[0].message.content;\n} else if (input.content) {\n  raw = input.content;\n} else if (typeof input.text === 'string') {\n  raw = input.text;\n}\n\nif (!raw) throw new Error('GPT response contained no content');\n\n// Models occasionally wrap JSON in ```json fences despite json_object mode.\nconst cleaned = raw.trim().replace(/^```(?:json)?\\s*/i, '').replace(/```$/, '').trim();\n\nlet parsed;\ntry {\n  parsed = JSON.parse(cleaned);\n} catch (err) {\n  throw new Error('GPT did not return valid JSON. Raw reply (first 400 chars): ' + raw.slice(0, 400));\n}\n\nfunction slugify(value) {\n  return String(value || '')\n    .toLowerCase()\n    .normalize('NFKD')\n    .replace(/[\\u0300-\\u036f]/g, '')\n    .replace(/['\"]/g, '')\n    .replace(/[^a-z0-9]+/g, '-')\n    .replace(/^-+|-+$/g, '')\n    .slice(0, 80)\n    .replace(/-+$/, '');\n}\n\nfunction asArray(value) {\n  if (Array.isArray(value)) return value.map((v) => String(v).trim()).filter(Boolean);\n  if (typeof value === 'string') return value.split(',').map((v) => v.trim()).filter(Boolean);\n  return [];\n}\n\nconst title = String(parsed.title || '').trim();\nconst content = String(parsed.content || '').trim();\nconst slug = slugify(parsed.slug || title);\n\n// FAQs are objects, so they must NOT go through asArray: String({q:..}) yields\n// \"[object Object]\" and every question is silently lost.\nfunction normalizeFaqs(value) {\n  if (!Array.isArray(value)) return [];\n  return value\n    .filter((f) => f && typeof f === 'object')\n    .map((f) => ({ q: String(f.q ?? f.question ?? '').trim(), a: String(f.a ?? f.answer ?? '').trim() }))\n    .filter((f) => f.q && f.a);\n}\n\nconst faqs = normalizeFaqs(parsed.faqs);\n\nconst payload = {\n  action: 'upsert',\n  slug: slug,\n  title: title,\n  meta_title: String(parsed.meta_title || title).trim(),\n  excerpt: String(parsed.excerpt || '').trim(),\n  content: content,\n  author: cfg.author || 'FLOLOGIXAUTOMATIONS',\n  // Never auto-publish. The review gate flips this to true.\n  published: false,\n  categories: asArray(parsed.categories).length ? asArray(parsed.categories) : [cfg.category].filter(Boolean),\n  tags: asArray(parsed.tags).length ? asArray(parsed.tags) : asArray(cfg.tags),\n  focus_keyword: String(parsed.focus_keyword || cfg.focus_keyword || '').trim(),\n  faqs: faqs,\n};\n\nreturn [{ json: { __cfg: cfg, __attempt: cfg.__attempt || 1, payload: payload } }];"
+      },
+      "id": "a1000000-0000-4000-8000-000000000004",
+      "name": "Parse Draft",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -120,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Hard SEO gate. Anything that fails here never reaches the review email.\n// Thresholds mirror src/routes/api.blog.webhook.ts and blog.$slug.tsx so the\n// site and the pipeline agree on what \"good\" means.\n\nconst input = $input.first().json;\nconst p = input.payload;\nconst cfg = input.__cfg || {};\n\nconst MIN_WORDS = Number(cfg.min_words || 800);\nconst errors = [];\nconst warnings = [];\n\nconst title = p.title || '';\nconst metaTitle = p.meta_title || title;\nconst excerpt = p.excerpt || '';\nconst content = p.content || '';\nconst keyword = (p.focus_keyword || '').toLowerCase();\n\n// --- title -------------------------------------------------------------\nif (title.length === 0) errors.push('title is empty');\nif (title.length > 60) errors.push('title is ' + title.length + ' chars, must be <= 60');\nif (keyword && !title.toLowerCase().includes(keyword)) {\n  errors.push('title does not contain the focus keyword \"' + keyword + '\"');\n}\nif (metaTitle.length > 60) errors.push('meta_title is ' + metaTitle.length + ' chars, must be <= 60');\n\n// --- slug --------------------------------------------------------------\nif (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(p.slug || '')) {\n  errors.push('slug \"' + p.slug + '\" is not lowercase-kebab-case; the webhook will reject it');\n}\nif ((p.slug || '').length > 80) errors.push('slug is longer than 80 chars');\n\n// --- excerpt / meta description ---------------------------------------\nif (excerpt.length < 120) errors.push('excerpt is ' + excerpt.length + ' chars, want 140-160');\nif (excerpt.length > 160) errors.push('excerpt is ' + excerpt.length + ' chars, must be <= 160');\n\n// --- body --------------------------------------------------------------\nconst words = content.split(/\\s+/).filter(Boolean).length;\nif (words < MIN_WORDS) errors.push('content is ' + words + ' words, want at least ' + MIN_WORDS);\n\n// A leading H1 would duplicate the <h1> the page already renders.\nif (/^#\\s+/m.test(content.trim().slice(0, 200))) {\n  errors.push('content contains an H1 (# heading); the page renders the title itself, so use ## and below');\n}\n\nconst h2Count = (content.match(/^##\\s+/gm) || []).length;\nif (h2Count < 2) errors.push('content has ' + h2Count + ' H2 sections, want at least 2');\n\nconst hasList = /^\\s*([-*+]\\s+|\\d+\\.\\s+)/m.test(content);\nif (!hasList) warnings.push('content has no bulleted or numbered list');\n\n// Focus keyword must appear early, not just somewhere.\nconst first150 = content.split(/\\s+/).slice(0, 150).join(' ').toLowerCase();\nif (keyword && !first150.includes(keyword)) {\n  errors.push('focus keyword \"' + keyword + '\" is missing from the first 150 words');\n}\n\nconst links = [...content.matchAll(/\\]\\((\\/[^)\\s]*)\\)/g)].map((m) => m[1]);\n// Exact-match allowlist. Prefix matching is deliberately NOT used: \"/blog\" as a\n// prefix would wrongly accept \"/blog/does-not-exist\", which 404s.\nconst allowed = [\n  '/services/n8n-workflow-automation', '/services/ai-agent-development',\n  '/services/whatsapp-automation', '/services/telegram-bot-development',\n  '/services/rag-systems', '/services/business-process-automation',\n  '/solutions/reduce-operational-costs', '/solutions/improve-customer-response',\n  '/solutions/scale-business-without-hiring', '/solutions/automate-invoice-processing',\n  '/solutions/improve-google-ranking',\n  '/services', '/solutions', '/locations', '/industry', '/blog', '/#contact',\n];\nconst badLinks = [...new Set(links)].filter((h) => {\n  if (h.startsWith('#') || h.startsWith('http')) return false;\n  return !allowed.includes(h);\n});\nif (badLinks.length) {\n  errors.push('content links to routes that do not exist: ' + badLinks.join(', '));\n}\nif (links.length === 0) warnings.push('content has no internal links');\n\n// --- structured extras -------------------------------------------------\nif (!Array.isArray(p.faqs) || p.faqs.length < 2) {\n  errors.push('needs at least 2 FAQs; they render visibly and as FAQPage JSON-LD');\n}\nif (!Array.isArray(p.categories) || p.categories.length === 0) errors.push('no categories');\nif (!Array.isArray(p.tags) || p.tags.length === 0) errors.push('no tags');\n\n// Reading time is computed server-side from word_count, so nothing to check here.\n\nif (errors.length) {\n  // Surface the failures to the gate AND to the retry prompt.\n  return [{ json: {\n    __cfg: Object.assign({}, cfg, {\n      __attempt: (input.__attempt || 1),\n      __previous_errors: errors,\n    }),\n    __attempt: input.__attempt || 1,\n    __errors: errors,\n    __warnings: warnings,\n    __words: words,\n    payload: p,\n    valid: false,\n  } }];\n}\n\nreturn [{ json: {\n  __cfg: cfg,\n  __attempt: input.__attempt || 1,\n  __errors: [],\n  __warnings: warnings,\n  __words: words,\n  payload: p,\n  valid: true,\n} }];"
+      },
+      "id": "a1000000-0000-4000-8000-000000000005",
+      "name": "SEO Validate",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        100,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "seo-valid",
+              "leftValue": "={{ $json.valid }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a1000000-0000-4000-8000-000000000006",
+      "name": "SEO Valid?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        320,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "attempts-left",
+              "leftValue": "={{ $json.__attempt }}",
+              "rightValue": 2,
+              "operator": {
+                "type": "number",
+                "operation": "lt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a1000000-0000-4000-8000-000000000007",
+      "name": "Retries Left?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        320,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Second attempt: carry the validation errors forward so the prompt\n// builder can tell the model exactly what to fix.\n\nconst input = $input.first().json;\nconst cfg = Object.assign({}, input.__cfg, { __attempt: (input.__attempt || 1) + 1 });\n\nreturn [{ json: {\n  topic: cfg.topic,\n  focus_keyword: cfg.focus_keyword,\n  category: cfg.category,\n  tags: cfg.tags,\n  word_target: cfg.word_target,\n  model: cfg.model,\n  author: cfg.author,\n  min_words: cfg.min_words,\n  __attempt: cfg.__attempt,\n  __previous_errors: input.__errors,\n} }];"
+      },
+      "id": "a1000000-0000-4000-8000-000000000008",
+      "name": "Prep Retry",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        540,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "errorMessage": "={{ 'SEO validation failed after 2 attempts. Errors: ' + JSON.stringify($json.__errors) }}"
+      },
+      "id": "a1000000-0000-4000-8000-000000000009",
+      "name": "Give Up",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        540,
+        720
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Flatten the validated draft into the review message.\n\nconst { payload: p, __words: words, __warnings: warnings } = $input.first().json;\nconst approved = 'https://YOUR-DOMAIN.example/blog/' + p.slug;\n\nconst lines = [\n  '*New blog draft ready for review*',\n  '',\n  '*Title:* ' + p.title,\n  '*Slug:* ' + p.slug,\n  '*Words:* ' + words,\n  '*Meta title* (' + p.meta_title.length + ' chars): ' + p.meta_title,\n  '*Excerpt* (' + p.excerpt.length + ' chars): ' + p.excerpt,\n  '*Categories:* ' + (p.categories || []).join(', '),\n  '*Tags:* ' + (p.tags || []).join(', '),\n  '*FAQs:* ' + (p.faqs || []).length,\n  '',\n  '*Draft preview*',\n  '```' + String(p.content).slice(0, 1200) + (String(p.content).length > 1200 ? '\\n… (truncated)' : '') + '```',\n];\n\nif (warnings && warnings.length) {\n  lines.push('', '*Warnings (non-blocking)*');\n  warnings.forEach((w) => lines.push('• ' + w));\n}\n\nlines.push(\n  '',\n  'Approve? Open this workflow\\'s Wait node and POST to its resume webhook with:',\n  '```json\\n{\"approve\": true}\\n```',\n  'or `{\"approve\": false, \"note\": \"tighten the intro\"}` to discard.',\n  '',\n  'After publishing this will be live at ' + approved,\n);\n\nreturn [{ json: { text: lines.join('\\n'), preview_url: approved, payload: p } }];"
+      },
+      "id": "a1000000-0000-4000-8000-00000000000a",
+      "name": "Build Review Message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        560,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://hooks.slack.com/services/REPLACE/ME/WITH/YOUR-INCOMING-WEBHOOK-URL",
+        "authentication": "none",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ text: $json.text }) }}",
+        "options": {}
+      },
+      "id": "a1000000-0000-4000-8000-00000000000b",
+      "name": "Send for Review",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        780,
+        300
+      ],
+      "notes": "Paste your Slack incoming webhook URL here. Swap for the Gmail/Telegram node if you review somewhere else."
+    },
+    {
+      "parameters": {
+        "resume": "webhook",
+        "options": {
+          "limitType": "afterTimeInterval",
+          "limitWaitTime": 14
+        }
+      },
+      "id": "a1000000-0000-4000-8000-00000000000c",
+      "name": "Wait for Approval",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1000,
+        300
+      ],
+      "webhookId": "fla-blog-approval",
+      "notes": "Activate the workflow to get the resume URL, then POST {\"approve\": true} to it. The 14-day limit stops approvals expiring forever."
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "approved",
+              "leftValue": "={{ $json.approve }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a1000000-0000-4000-8000-00000000000d",
+      "name": "Approved?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://YOUR-DOMAIN.example/api/blog/webhook",
+        "authentication": "none",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "x-api-key",
+              "value": "=YOUR_N8N_BLOG_API_KEY"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify(Object.assign({}, $('SEO Validate').first().json.payload, { published: true, published_at: new Date().toISOString() })) }}",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": false
+            }
+          }
+        }
+      },
+      "id": "a1000000-0000-4000-8000-00000000000e",
+      "name": "Publish",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1440,
+        220
+      ],
+      "notes": "published_at is only sent on first publish; the webhook merges, so re-publishing a correction keeps the original date."
+    },
+    {
+      "parameters": {
+        "url": "=https://www.google.com/ping?sitemap={{ encodeURIComponent('https://YOUR-DOMAIN.example/sitemap.xml') }}",
+        "authentication": "none",
+        "options": {
+          "redirect": {
+            "redirect": {
+              "followRedirects": false
+            }
+          }
+        }
+      },
+      "id": "a1000000-0000-4000-8000-00000000000f",
+      "name": "Ping Search Engines",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1660,
+        220
+      ],
+      "notes": "Best-effort crawl hint. Does not replace Search Console submission."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Discarded by the reviewer — leave an audit trail rather than silently dropping.\n\nconst reason = $input.first().json.note || 'no reason given';\n\nreturn [{ json: {\n  discarded: true,\n  reason: reason,\n  slug: $('SEO Validate').first().json.payload.slug,\n  title: $('SEO Validate').first().json.payload.title,\n} }];"
+      },
+      "id": "a1000000-0000-4000-8000-000000000010",
+      "name": "Discarded",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1440,
+        420
+      ]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Build Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Prompt": {
+      "main": [
+        [
+          {
+            "node": "Draft with GPT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Draft with GPT": {
+      "main": [
+        [
+          {
+            "node": "Parse Draft",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Draft": {
+      "main": [
+        [
+          {
+            "node": "SEO Validate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SEO Validate": {
+      "main": [
+        [
+          {
+            "node": "SEO Valid?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SEO Valid?": {
+      "main": [
+        [
+          {
+            "node": "Build Review Message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Retries Left?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Retries Left?": {
+      "main": [
+        [
+          {
+            "node": "Prep Retry",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Give Up",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prep Retry": {
+      "main": [
+        [
+          {
+            "node": "Build Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Review Message": {
+      "main": [
+        [
+          {
+            "node": "Send for Review",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send for Review": {
+      "main": [
+        [
+          {
+            "node": "Wait for Approval",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait for Approval": {
+      "main": [
+        [
+          {
+            "node": "Approved?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Approved?": {
+      "main": [
+        [
+          {
+            "node": "Publish",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Discarded",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Publish": {
+      "main": [
+        [
+          {
+            "node": "Ping Search Engines",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "meta": {
+    "instanceId": "fla-blog-pipeline"
+  },
+  "pinData": {},
+  "tags": [
+    {
+      "name": "blog"
+    },
+    {
+      "name": "seo"
+    },
+    {
+      "name": "flologixautomations"
+    }
+  ]
+}

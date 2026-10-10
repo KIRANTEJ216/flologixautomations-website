@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { SITE_URL } from "@/seo/metadata";
 import { lazy, Suspense } from "react";
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
@@ -6,7 +7,9 @@ import { ServicesSection } from "@/components/ServicesSection";
 
 // Defer below-the-fold sections to shrink initial JS and speed up first paint
 const AutomationToolsSection = lazy(() =>
-  import("@/components/AutomationToolsSection").then((m) => ({ default: m.AutomationToolsSection })),
+  import("@/components/AutomationToolsSection").then((m) => ({
+    default: m.AutomationToolsSection,
+  })),
 );
 const ProcessSection = lazy(() =>
   import("@/components/ProcessSection").then((m) => ({ default: m.ProcessSection })),
@@ -23,16 +26,16 @@ const TechnologiesSection = lazy(() =>
 const ContactSection = lazy(() =>
   import("@/components/ContactSection").then((m) => ({ default: m.ContactSection })),
 );
-const Footer = lazy(() =>
-  import("@/components/Footer").then((m) => ({ default: m.Footer })),
-);
+const Footer = lazy(() => import("@/components/Footer").then((m) => ({ default: m.Footer })));
 
-const SITE_URL = "https://flologixautomations.lovable.app";
 const OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 const TITLE = "AI Automation Agency | n8n Workflows, AI Agents & RAG Systems";
+
+// Must stay <=155 chars: Google truncates the SERP snippet past ~155 and
+// cuts the trailing CTA, which is the highest-value part of the description.
 const DESCRIPTION =
-  "Hire a top AI automation agency. Custom n8n workflow automation, AI agents, WhatsApp & Telegram chatbots, RAG systems, invoice OCR and business process automation. Cut costs up to 70% and scale faster.";
+  "AI automation agency for SMBs. Custom n8n workflows, AI agents, WhatsApp & Telegram bots, RAG and invoice OCR automation. Cut costs up to 70%.";
 const KEYWORDS = [
   "AI automation agency",
   "hire AI automation agency",
@@ -83,44 +86,138 @@ const KEYWORDS = [
   "AI automation consultant",
   "automate repetitive tasks with AI",
   "ai workflow automation for startups",
+  // Primary target terms
+  "agentic development",
+  "agentic development company",
+  "agentic ai development",
+  "agentic ai agency",
+  "whatsapp bot",
+  "whatsapp bot development",
+  "whatsapp bot for business",
+  "business automation",
+  "business automation company",
+  "business process automation agency",
+  "ai automation",
+  "automation agency",
+  "ai agents",
+  "chatbot",
+  "chatbot development",
+  "chatbot company",
+  "chatbot agency",
+  // Buying-intent long tail
+  "hire n8n developers",
+  "n8n developer for hire",
+  "hire AI agent developers",
+  "whatsapp api integration",
+  "whatsapp business api solution",
+  "telegram bot developer",
+  "rag development company",
+  "hire rag developers",
+  "ocr automation services",
+  "invoice processing automation",
+  "document processing automation",
+  "workflow automation consultant",
+  "automation consulting firm",
+  "ai consulting for smb",
+  "scaling with automation",
+  "automate customer support",
+  "ai customer support agent",
 ].join(", ");
-
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "FlologixAutomations",
+  name: "Flologix Automations",
+  legalName: "Flologix Automations",
   url: SITE_URL,
-  logo: `${SITE_URL}/favicon.ico`,
+  logo: `${SITE_URL}/icon-512.png`,
+  image: OG_IMAGE,
   description: DESCRIPTION,
   email: "contactus@flologixautomations.com",
+  telephone: "+919985860659",
+  foundingDate: "2023",
+  areaServed: [
+    { "@type": "Country", name: "India" },
+    { "@type": "Country", name: "United States" },
+    { "@type": "Country", name: "United Kingdom" },
+    { "@type": "Country", name: "United Arab Emirates" },
+    { "@type": "Country", name: "Singapore" },
+  ],
+  knowsAbout: [
+    "AI automation",
+    "business process automation",
+    "n8n workflow automation",
+    "agentic development",
+    "AI agent development",
+    "AI chatbot development",
+    "WhatsApp bot development",
+    "Telegram bot development",
+    "RAG systems",
+    "retrieval augmented generation",
+    "document OCR automation",
+    "invoice processing automation",
+  ],
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      email: "contactus@flologixautomations.com",
+      telephone: "+919985860659",
+      areaServed: "Worldwide",
+      availableLanguage: ["English"],
+    },
+  ],
   sameAs: [],
 };
 
 const serviceJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  name: "FlologixAutomations — AI Automation Agency",
+  name: "Flologix Automations — AI Automation Agency",
   url: SITE_URL,
   image: OG_IMAGE,
+  logo: `${SITE_URL}/icon-512.png`,
   priceRange: "$$",
   description: DESCRIPTION,
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.9",
-    reviewCount: "27",
-  },
+  telephone: "+919985860659",
+  email: "contactus@flologixautomations.com",
+  // NOTE: intentionally no `aggregateRating` here. The previous markup claimed
+  // ratingValue 4.9 / reviewCount 27 with no visible, verifiable reviews on the
+  // page. Google requires rating markup to reflect genuine user-visible reviews;
+  // inventing it is a structured-data policy violation that can earn a manual
+  // action against the whole domain. Re-add `aggregateRating` only once real,
+  // on-page, attributable reviews exist (and render them as stars too).
+  serviceType: "AI automation agency",
+  areaServed: [
+    { "@type": "Country", name: "India" },
+    { "@type": "Country", name: "United States" },
+    { "@type": "Country", name: "United Kingdom" },
+    { "@type": "Country", name: "United Arab Emirates" },
+    { "@type": "Country", name: "Singapore" },
+  ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "AI Automation Services",
     itemListElement: [
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "n8n Workflow Automation Services" } },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "n8n Workflow Automation Services" },
+      },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI Agent Development" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "WhatsApp Automation" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Telegram Bot Development" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "RAG Systems & AI Knowledge Bases" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Invoice Automation with AI OCR" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Business Process Automation" } },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "RAG Systems & AI Knowledge Bases" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Invoice Automation with AI OCR" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Business Process Automation" },
+      },
     ],
   },
 };
@@ -128,8 +225,11 @@ const serviceJsonLd = {
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "FlologixAutomations",
+  name: "Flologix Automations",
+  alternateName: "FlologixAutomations",
   url: SITE_URL,
+  inLanguage: "en",
+  publisher: { "@type": "Organization", name: "Flologix Automations", url: SITE_URL },
   potentialAction: {
     "@type": "SearchAction",
     target: `${SITE_URL}/blog?q={search_term_string}`,
@@ -193,9 +293,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:description", content: DESCRIPTION },
       { name: "twitter:image", content: OG_IMAGE },
     ],
-    links: [
-      { rel: "canonical", href: SITE_URL },
-    ],
+    links: [{ rel: "canonical", href: SITE_URL }],
     scripts: [
       { type: "application/ld+json", children: JSON.stringify(organizationJsonLd) },
       { type: "application/ld+json", children: JSON.stringify(websiteJsonLd) },

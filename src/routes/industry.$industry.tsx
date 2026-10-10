@@ -13,7 +13,19 @@ export const Route = createFileRoute("/industry/$industry")({
   },
   head: ({ loaderData }) => {
     const { industry } = loaderData;
-    const meta = buildMeta(`/industry/${industry.slug}`, industry.metaTitle, industry.metaDesc);
+    const meta = buildMeta(
+      `/industry/${industry.slug}`,
+      industry.metaTitle,
+      industry.metaDesc,
+      [
+        "AI automation agency",
+        `${industry.name} automation`,
+        "business process automation",
+        "AI automation",
+        "workflow automation",
+        "automation consulting",
+      ].join(", "),
+    );
     return {
       meta: metaToTags(meta),
       links: [canonicalLink(meta.canonical)],

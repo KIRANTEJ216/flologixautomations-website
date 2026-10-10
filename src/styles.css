@@ -250,3 +250,163 @@ section[id] {
     transition-duration: 0.001ms !important;
   }
 }
+
+/*
+ * Touch targets on small screens.
+ *
+ * shadcn's defaults are h-9 (36px) for inputs and buttons and h-10 (40px) for
+ * the `lg` size — all below the 44px minimum in Apple's HIG and Material's
+ * guidance, which makes primary CTAs and every contact-form field awkward to
+ * hit on a phone. Raising them here fixes all call sites at once instead of
+ * editing every component, and only below `md` so desktop density is unchanged.
+ *
+ * Links inside prose are deliberately excluded: stretching an inline `a` to
+ * 44px would break line wrapping and baseline alignment.
+ */
+@media (max-width: 767px) {
+  input:not([type="checkbox"]):not([type="radio"]),
+  select,
+  textarea,
+  button:not([class*="p-0"]),
+  a[role="button"],
+  [role="tab"] {
+    min-height: 44px;
+  }
+
+  /*
+   * The mobile nav menu renders plain text anchors (e.g. "Blog") that carry no
+   * role and no button sizing utilities, so neither selector above matches.
+   * Scoping to .mobile-nav keeps every list item tappable without inflating
+   * inline prose links elsewhere on the page.
+   */
+  .mobile-nav a[href] {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  /*
+   * shadcn's <Button asChild> renders an <a> carrying the button size classes,
+   * so the `button` selector above never matches it. The h-* utilities are a
+   * reliable signal for "this anchor is styled as a button" — plain text links
+   * don't carry them.
+   */
+  a.h-9,
+  a.h-10,
+  a.h-11 {
+    min-height: 44px;
+  }
+
+  /* Icon-only controls are square, so they need the width bump too. */
+  button[aria-label] {
+    min-width: 44px;
+  }
+
+  /* Checkboxes and radios keep their intrinsic size but get a bigger hit area. */
+  input[type="checkbox"],
+  input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    min-height: 20px;
+  }
+
+  /*
+   * Scroll-reveal animations shift elements horizontally (translate-x-8 /
+   * -translate-x-8) until they enter the viewport. On a 375px screen that 32px
+   * shift pushes the contact form and section copy past the right edge, adding
+   * ~130px of horizontal scroll to the whole page.
+   *
+   * Zeroing only --tw-translate-x keeps the opacity fade and any vertical
+   * translate intact, so the reveal still reads as an animation.
+   */
+  [class*="translate-x-"],
+  [class*="-translate-x-"] {
+    --tw-translate-x: 0px !important;
+  }
+
+  /*
+   * Footer link lists: the text is only ~19px tall, so each row is a fiddly
+   * target. Vertical padding grows the hit area to 44px without changing the
+   * type size or the visual rhythm of the column. `space-y-2` is reduced
+   * accordingly so the gap between rows stays the same.
+   */
+  footer ul li a {
+    display: inline-block;
+    padding-block: 12px;
+    margin-block: -12px;
+  }
+
+  /* The brand mark is the primary tap target in the header. */
+  footer a[href="/"] {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* Bottom bar (copyright / legal links) sits outside the <ul> lists, three
+     levels down: footer > div > div > div > a. */
+  footer > div > div > div a,
+  footer a[href="/terms"] {
+    display: inline-block;
+    padding-block: 12px;
+    margin-block: -12px;
+  }
+
+  /* Header brand link: centre it so the taller box still looks aligned.
+     Navbar renders a <nav>, not a <header>, hence both selectors. */
+  header a[href="/"],
+  nav a[href="/"] {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  /*
+   * "Explore more" link lists (SEOPageTemplate and the blog post footer) are
+   * plain <li><a> rows ~19px tall. Same treatment as the footer lists: pad the
+   * hit area to 44px and pull the layout back with negative margin so the
+   * visual gap between rows is unchanged.
+   *
+   * Scoped to the known containers — a blanket `main li a` rule would also
+   * stretch links inside body copy, which must keep hugging the text.
+   */
+  #related ul li a,
+  nav[aria-label="Explore more"] ul li a {
+    display: inline-block;
+    padding-block: 12px;
+    margin-block: -12px;
+  }
+
+  /* Breadcrumbs are navigation, not prose, so they get the same hit area.
+     Both templates pad differently (mb-6 vs mb-8), and they are the only
+     flex-wrap navs on the site. */
+  nav[class*="flex-wrap"] > a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  /*
+   * Standalone CTAs that are anchors rather than <button> (the shadcn Button
+   * sizes above already cover real buttons). `cta-touch` is an explicit opt-in
+   * so text links inside prose keep hugging the text.
+   */
+  .cta-touch {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  /*
+   * Long email addresses and "back to" links sit inside prose. They still need
+   * a real hit area, so pad them and pull the line box back with a negative
+   * margin — the text stays exactly where it was, but the tappable region grows
+   * to 44px.
+   */
+  a[href^="mailto:"],
+  main a.inline-block[href="/"] {
+    display: inline-block;
+    padding-block: 13px;
+    margin-block: -13px;
+  }
+}
