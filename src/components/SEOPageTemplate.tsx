@@ -74,7 +74,7 @@ export default function SEOPageTemplate(props: SEOPageTemplateProps) {
         {props.lead && (
           <div className="mt-6 max-w-3xl">
             <p className="text-lg leading-relaxed text-muted-foreground">{props.lead}</p>
-            <Button asChild size="lg" className="mt-6 h-auto whitespace-normal text-center">
+            <Button asChild size="lg" className="mt-6 min-h-10 h-auto py-3 whitespace-normal text-center">
               <Link to="/" hash="contact">Get Free Consultation</Link>
             </Button>
           </div>
@@ -129,7 +129,7 @@ export default function SEOPageTemplate(props: SEOPageTemplateProps) {
             Get a free consultation. We'll analyze your processes and show you exactly how much you can save with automation.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button asChild size="lg" className="h-auto whitespace-normal text-center">
+            <Button asChild size="lg" className="min-h-10 h-auto py-3 whitespace-normal text-center">
               <Link to="/" hash="contact">{props.ctaText || "Get Free Consultation"}</Link>
             </Button>
             <Link
