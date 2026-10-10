@@ -19,25 +19,8 @@ const SITE_NAME = "Flologix Automations";
  */
 const TITLE_SUFFIX = " | Flologix";
 
-/**
- * Canonical origin for every absolute URL the site emits — canonicals, Open
- * Graph tags, JSON-LD `@id`, sitemap `<loc>`, RSS.
- *
- * Single source of truth: routes import this rather than redeclaring it, which
- * is what previously let one route keep a stale host while the rest were fixed.
- *
- * Defaults to the live host, which is the `www` subdomain: the apex
- * `flologixautomations.com` 307-redirects here, so canonicals and sitemap
- * `<loc>` entries must use www or every URL reads as a redirect to crawlers.
- *
- * Defaulting (rather than requiring the variable) matters because `__root.tsx`
- * shims `process` on the client, leaving `process.env.SITE_URL` empty during
- * client-side navigation — a required var would emit the wrong host there.
- * Keep `public/robots.txt` in sync; that file is static and cannot read env.
- */
-const DEFAULT_SITE_URL = "https://www.flologixautomations.com";
-
-const SITE_URL = (process.env.SITE_URL || DEFAULT_SITE_URL).replace(/\/+$/, "");
+/** Public origin shared by server-rendered and client-rendered metadata. */
+const SITE_URL = "https://flologixautomations.lovable.app";
 
 export interface PageMeta {
   title: string;
@@ -45,7 +28,7 @@ export interface PageMeta {
   canonical: string;
   ogTitle: string;
   ogDescription: string;
-  ogImage: string;
+  ogImage?: string;
   ogType: string;
   twitterCard: "summary_large_image";
   keywords?: string;
@@ -64,7 +47,6 @@ export function buildMeta(
     canonical: fullUrl,
     ogTitle: title,
     ogDescription: desc.slice(0, 160),
-    ogImage: `${SITE_URL}/og-image.jpg`,
     ogType: "website",
     twitterCard: "summary_large_image",
     keywords: extraKeywords,

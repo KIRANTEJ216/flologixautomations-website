@@ -11,7 +11,8 @@ export const Route = createFileRoute("/services/$service")({
     return { service };
   },
   head: ({ loaderData }) => {
-    const { service } = loaderData;
+    const service = loaderData?.service;
+    if (!service) return { meta: [{ title: "Service unavailable | Flologix" }, { name: "robots", content: "noindex" }] };
     const meta = buildMeta(
       `/services/${service.slug}`,
       service.metaTitle,
@@ -56,23 +57,25 @@ function ServicePage() {
           { name: service.title, url: `/services/${service.slug}` },
         ]),
         serviceSchema(service.title, service.metaDesc, `/services/${service.slug}`),
-        faqSchema(service.faqs),
+        ...(!service.dedicatedLanding ? [faqSchema(service.faqs)] : []),
         howToSchema(`How We Build ${service.shortTitle}`, service.intro, service.steps),
       ]}
       sections={[
-        { id: "intro", title: "Overview", content: [service.intro], type: "paragraph" },
+        ...(!service.dedicatedLanding ? [{ id: "intro", title: "Overview", content: [service.intro], type: "paragraph" as const }] : []),
         { id: "benefits", title: "Key Benefits", content: service.benefits.map((b) => `${b.title}: ${b.desc}`), type: "list" },
         { id: "problems", title: "Common Problems We Solve", content: service.problems, type: "list" },
-        { id: "solutions", title: "Our Solutions", content: service.solutions, type: "list" },
+        { id: "solutions", title: `Use Cases for ${service.shortTitle}`, content: service.solutions, type: "list" },
         { id: "process", title: "Our Process", content: service.steps.map((s) => `${s.title}: ${s.desc}`), type: "steps" },
       ]}
       faqs={service.faqs}
-      stats={[
+      stats={service.dedicatedLanding ? undefined : [
         { label: "Starting Price", value: service.price },
         { label: "Timeline", value: service.timeline },
         { label: "Satisfaction", value: "98%" },
         { label: "Cost Reduction", value: "Up to 70%" },
       ]}
+      lead={service.dedicatedLanding ? service.intro : undefined}
+      ctaText={`Discuss ${service.shortTitle}`}
       imageAlt={service.imageAlt}
       serviceSlug={service.slug}
     />

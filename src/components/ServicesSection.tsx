@@ -1,3 +1,6 @@
+import { Link } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
+import { services as servicePages } from "@/data/services";
 import { Workflow, Bot, MessageCircle, Send, BookOpen, Cog } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
@@ -70,6 +73,14 @@ export function ServicesSection() {
             From workflow automation to AI agents, WhatsApp bots to RAG systems — we provide end-to-end automation services.
           </p>
         </div>
+
+        <nav aria-label="Dedicated automation services" className="mt-8 flex flex-wrap justify-center gap-3">
+          {servicePages.filter((service) => service.dedicatedLanding).map((service) => (
+            <Button key={service.slug} asChild variant="outline" className="h-auto whitespace-normal text-center">
+              <Link to="/services/$service" params={{ service: service.slug }}>{service.shortTitle}</Link>
+            </Button>
+          ))}
+        </nav>
 
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s, i) => {

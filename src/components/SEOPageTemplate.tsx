@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -13,6 +14,7 @@ interface PageSection {
 
 interface SEOPageTemplateProps {
   h1: string;
+  lead?: string;
   metaTitle: string;
   metaDesc: string;
   sections: PageSection[];
@@ -69,6 +71,15 @@ export default function SEOPageTemplate(props: SEOPageTemplateProps) {
         {/* H1 */}
         <h1 className="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">{props.h1}</h1>
 
+        {props.lead && (
+          <div className="mt-6 max-w-3xl">
+            <p className="text-lg leading-relaxed text-muted-foreground">{props.lead}</p>
+            <Button asChild size="lg" className="mt-6 h-auto whitespace-normal text-center">
+              <Link to="/" hash="contact">Get Free Consultation</Link>
+            </Button>
+          </div>
+        )}
+
         {/* Sections */}
         <div className="mt-12 space-y-16">
           {props.sections.map((section) => (
@@ -118,12 +129,9 @@ export default function SEOPageTemplate(props: SEOPageTemplateProps) {
             Get a free consultation. We'll analyze your processes and show you exactly how much you can save with automation.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href={props.ctaHref || "/#contact"}
-              className="inline-flex items-center justify-center rounded-full bg-neon-blue px-8 py-3 text-base font-medium text-primary-foreground hover:bg-neon-blue/80 transition-colors"
-            >
-              {props.ctaText || "Get Free Consultation"}
-            </a>
+            <Button asChild size="lg" className="h-auto whitespace-normal text-center">
+              <Link to="/" hash="contact">{props.ctaText || "Get Free Consultation"}</Link>
+            </Button>
             <Link
               to="/blog"
               className="inline-flex items-center justify-center rounded-full border border-neon-blue/30 px-8 py-3 text-base font-medium hover:bg-neon-blue/10 transition-colors"

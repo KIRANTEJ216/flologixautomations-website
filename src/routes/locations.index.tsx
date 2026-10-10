@@ -28,7 +28,8 @@ function LocationsIndex() {
           {locations.map((loc) => (
             <Link
               key={loc.slug}
-              to={`/locations/${loc.slug}`}
+              to="/locations/$city"
+              params={{ city: loc.slug }}
               className="glass-card group rounded-2xl border border-border/50 p-6 hover:border-neon-blue/30 transition-all"
             >
               <h2 className="text-xl font-semibold group-hover:text-neon-blue transition-colors">{loc.city}, {loc.state}</h2>

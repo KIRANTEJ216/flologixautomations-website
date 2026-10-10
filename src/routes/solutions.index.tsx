@@ -28,7 +28,8 @@ function SolutionsIndex() {
           {solutions.map((solution) => (
             <Link
               key={solution.slug}
-              to={`/solutions/${solution.slug}`}
+              to="/solutions/$solution"
+              params={{ solution: solution.slug }}
               className="glass-card group rounded-2xl border border-border/50 p-6 hover:border-neon-blue/30 transition-all"
             >
               <h2 className="text-xl font-semibold group-hover:text-neon-blue transition-colors">{solution.title}</h2>

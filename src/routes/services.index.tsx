@@ -6,7 +6,7 @@ import { buildMeta, metaToTags, canonicalLink } from "@/seo/metadata";
 
 export const Route = createFileRoute("/services/")({
   head: () => {
-    const meta = buildMeta("/services", "AI Automation Services", "Explore our AI automation services including n8n workflows, AI agents, WhatsApp bots, Telegram bots, RAG systems, and business process automation.");
+    const meta = buildMeta("/services", "AI Automation Services", "Explore our AI automation services including n8n development, AI agents, CRM integrations, WhatsApp automation, Telegram bots and RAG systems.");
     return {
       meta: metaToTags(meta),
       links: [canonicalLink(meta.canonical)],
@@ -28,13 +28,14 @@ function ServicesIndex() {
           {services.map((service) => (
             <Link
               key={service.slug}
-              to={`/services/${service.slug}`}
+              to="/services/$service"
+              params={{ service: service.slug }}
               className="glass-card group rounded-2xl border border-border/50 p-6 hover:border-neon-blue/30 transition-all"
             >
               <h2 className="text-xl font-semibold group-hover:text-neon-blue transition-colors">{service.title}</h2>
               <p className="mt-3 text-sm text-muted-foreground">{service.metaDesc.slice(0, 120)}...</p>
               <div className="mt-4 flex items-center gap-2 text-sm text-neon-blue">
-                <span>Starting at {service.price}</span>
+                <span>{service.dedicatedLanding ? "Explore service" : `Starting at ${service.price}`}</span>
                 <span>→</span>
               </div>
             </Link>

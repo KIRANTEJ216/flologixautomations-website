@@ -13,7 +13,8 @@ export const Route = createFileRoute("/locations/$city")({
     return { location };
   },
   head: ({ loaderData }) => {
-    const { location } = loaderData;
+    const location = loaderData?.location;
+    if (!location) return { meta: [{ title: "Page unavailable | Flologix" }, { name: "robots", content: "noindex" }] };
     const meta = buildMeta(
       `/locations/${location.slug}`,
       location.metaTitle,
