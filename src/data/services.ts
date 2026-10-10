@@ -1,4 +1,5 @@
 export interface Service {
+  dedicatedLanding?: boolean;
   slug: string;
   title: string;
   shortTitle: string;
@@ -18,188 +19,349 @@ export interface Service {
 
 export const services: Service[] = [
   {
-    slug: "n8n-workflow-automation",
-    title: "n8n Workflow Automation Services",
-    shortTitle: "n8n Automation",
-    metaTitle: "n8n Workflow Automation Agency | Custom n8n Builds",
-    metaDesc: "Expert n8n workflow automation services. Build custom multi-step workflows, API integrations, and business process automation. Cut costs up to 70%.",
-    h1: "n8n Workflow Automation Services for Modern Businesses",
-    intro: "n8n is the leading open-source workflow automation platform. Our certified n8n developers design, build, and maintain complex multi-step automations that connect your entire tech stack — from CRMs and ERPs to marketing tools and custom APIs. Unlike Zapier or Make, n8n gives you full data ownership, unlimited workflows, and the flexibility of custom code nodes.",
-    benefits: [
-      { title: "Full Data Ownership", desc: "Self-host n8n on your infrastructure. No third-party data leakage, no vendor lock-in, full GDPR compliance." },
-      { title: "Unlimited Workflows", desc: "No per-workflow pricing. Build as many automations as you need without worrying about tier upgrades." },
-      { title: "400+ Integrations", desc: "Pre-built nodes for Slack, Gmail, Salesforce, HubSpot, PostgreSQL, MongoDB, Stripe, and hundreds more." },
-      { title: "Custom Code Support", desc: "Drop into JavaScript/Python code nodes when pre-built integrations aren't enough. Extend n8n with custom npm packages." },
-      { title: "Error Handling & Retries", desc: "Built-in error workflows, retry logic, and notification chains ensure your automations never silently fail." },
-      { title: "Enterprise Security", desc: "SSO, LDAP, environment variables, credential encryption, and audit logging for enterprise deployments." },
+    "slug": "n8n-workflow-automation",
+    "title": "n8n Development & Workflow Automation",
+    "shortTitle": "n8n Development",
+    "metaTitle": "n8n Development & Workflow Automation",
+    "metaDesc": "Custom n8n development for API integrations, webhook workflows and business process automation. Connect your apps with Flologix. Book a free consultation.",
+    "h1": "n8n Development Services",
+    "intro": "Connect disconnected business tools with custom n8n workflows built around your actual processes. FLOLOGIXAUTOMATIONS designs API integrations, webhook automations and multi-step workflows that move data between your CRM, spreadsheets, inbox and operational systems. Whether you are starting with one repetitive task or extending an existing n8n setup, we define the inputs, rules and exceptions before building.",
+    "benefits": [
+      {
+        "title": "Workflows built around your process",
+        "desc": "Combine triggers, conditions and data transformations rather than forcing your team into a generic template."
+      },
+      {
+        "title": "API and webhook integrations",
+        "desc": "Connect supported applications and custom endpoints with explicit field mapping and credential handling."
+      },
+      {
+        "title": "Recoverable failures",
+        "desc": "Plan retries, duplicate prevention and exception notifications so your team can investigate failed runs."
+      }
     ],
-    problems: [
-      "Repetitive manual data entry across multiple systems costing hours daily",
-      "Fragmented tech stack with no integration between tools",
-      "Expensive Zapier/Make subscription with workflow limits",
-      "Data privacy concerns with cloud-only automation platforms",
-      "Complex approval chains that require manual handoffs",
+    "problems": [
+      "Website leads are copied into a CRM and spreadsheet by hand.",
+      "Separate systems require repeated exports and imports.",
+      "Existing workflows break when an API response or data format changes."
     ],
-    solutions: [
-      "Custom n8n workflows that connect every tool in your stack into unified automations",
-      "Self-hosted n8n deployment with full data control and unlimited workflows",
-      "Automated approval chains with Slack/Email notifications and conditional routing",
-      "Real-time data sync between CRM, accounting, marketing, and support tools",
-      "Scheduled batch processing for reports, data enrichment, and cleanup tasks",
+    "solutions": [
+      "Lead capture: receive a form webhook, validate required fields, create a CRM record and notify the owner.",
+      "Invoice routing: collect invoice details, send exceptions for review and pass approved records to your accounting process.",
+      "Reporting: gather scheduled data from connected tools and deliver a consolidated report."
     ],
-    steps: [
-      { title: "Process Audit", desc: "We map your current workflows, identify bottlenecks, and document automation opportunities with ROI estimates." },
-      { title: "Architecture Design", desc: "Our team designs the n8n workflow architecture, data models, and error handling strategy." },
-      { title: "Build & Test", desc: "We build your workflows in a staging environment with comprehensive testing and edge-case handling." },
-      { title: "Deploy & Monitor", desc: "Production deployment with monitoring, alerting, and a 14-day hyper-care period." },
+    "steps": [
+      {
+        "title": "Map the workflow",
+        "desc": "Agree on the trigger, source applications, destination fields and business rules."
+      },
+      {
+        "title": "Build the integration",
+        "desc": "Configure n8n nodes, API calls, transformations and credentials for the agreed scope."
+      },
+      {
+        "title": "Test exceptions",
+        "desc": "Check missing fields, duplicate events, access failures and recovery behaviour."
+      },
+      {
+        "title": "Handover",
+        "desc": "Document the workflow and agree on monitoring, ownership and future changes."
+      }
     ],
-    faqs: [
-      { q: "What is n8n and how is it different from Zapier?", a: "n8n is an open-source workflow automation platform. Unlike Zapier, n8n can be self-hosted on your infrastructure, has no per-workflow pricing, supports custom JavaScript/Python code, and gives you full control over your data." },
-      { q: "Can n8n handle complex enterprise workflows?", a: "Yes. n8n supports conditional logic, loops, error handling, sub-workflows, webhook listeners, and custom code — capable of handling the most complex enterprise automation scenarios." },
-      { q: "How long does it take to build an n8n workflow?", a: "Simple integrations take 1-3 days. Complex multi-step enterprise workflows take 1-3 weeks depending on integrations and edge cases." },
-      { q: "Do you provide n8n hosting or do I self-host?", a: "We recommend self-hosting for data control. We can set up and manage your n8n instance on AWS, GCP, DigitalOcean, or your on-premise servers." },
+    "faqs": [
+      {
+        "q": "Can you improve an existing n8n workflow?",
+        "a": "Yes. We can review its triggers, node configuration, mappings and error paths before recommending changes."
+      },
+      {
+        "q": "Can n8n connect to an app without a dedicated node?",
+        "a": "An integration may be possible through its API or webhooks. We first check authentication, endpoint access and provider limits."
+      },
+      {
+        "q": "What do you need to scope n8n development?",
+        "a": "Share the task, the applications involved, sample field names and the intended result. Do not send passwords or API secrets through the consultation form."
+      }
     ],
-    imageAlt: "n8n workflow automation dashboard showing multi-step workflow connections",
-    price: "$2,500 - $15,000 per workflow",
-    timeline: "1-3 weeks per workflow",
+    "imageAlt": "",
+    "price": "Scoped after consultation",
+    "timeline": "Based on project scope",
+    "dedicatedLanding": true
   },
   {
-    slug: "ai-agent-development",
-    title: "AI Agent Development Services",
-    shortTitle: "AI Agents",
-    metaTitle: "Agentic Development Company | Custom AI Agents",
-    metaDesc: "Agentic development and AI agent development using GPT-4, Claude and open-source LLMs. Build autonomous customer support agents, lead qualifiers and knowledge assistants.",
-    h1: "Agentic Development & Custom AI Agent Development for Business",
-    intro: "Agentic development is how we build AI agents — autonomous software systems that perceive their environment, make decisions and take actions toward specific goals, without waiting for a human to prompt each step. Our agentic development team builds agents powered by GPT-4, Claude, Gemini and open-source LLMs that integrate with your existing tools, learn from your data, and execute complex multi-step business tasks. Whether you need agentic AI workflows, customer support agents, lead qualifiers or knowledge assistants, we ship agentic systems that work inside your AI automation stack.",
-    benefits: [
-      { title: "24/7 Autonomous Operation", desc: "AI agents work around the clock handling customer inquiries, data processing, and routine decisions without breaks." },
-      { title: "Multi-LLM Architecture", desc: "We use the best model for each task — GPT-4 for reasoning, Claude for analysis, open-source models for cost-sensitive operations." },
-      { title: "Tool Integration", desc: "Agents can access your CRM, databases, APIs, and web browsers to gather information and execute actions." },
-      { title: "Continuous Learning", desc: "Feedback loops and conversation logging allow agents to improve over time based on real interactions." },
-      { title: "Human Handoff", desc: "Seamless escalation to human team members when the agent reaches confidence thresholds or complex scenarios." },
-      { title: "Cost Optimization", desc: "Intelligent model routing ensures simple queries use cheaper models, reserving expensive LLMs for complex tasks." },
+    "slug": "ai-agent-development",
+    "title": "Custom AI Agent Development",
+    "shortTitle": "AI Agents",
+    "metaTitle": "AI Agent Development for Business",
+    "metaDesc": "AI agent development for customer support, lead qualification and internal knowledge. Connect business tools with review controls. Discuss your use case.",
+    "h1": "AI Agent Development for Business",
+    "intro": "Build AI agents for specific business tasks, not open-ended autonomy. FLOLOGIXAUTOMATIONS combines language models, approved knowledge sources and tool integrations to help teams answer questions, qualify enquiries and prepare actions. Each agent has a defined scope, clear escalation rules and checks before sensitive changes are made.",
+    "benefits": [
+      {
+        "title": "Grounded business answers",
+        "desc": "Connect approved documents or structured records so responses can use relevant business context."
+      },
+      {
+        "title": "Controlled tool access",
+        "desc": "Limit which systems an agent can read or update and require human approval for higher-impact actions."
+      },
+      {
+        "title": "Human escalation",
+        "desc": "Route uncertain answers, exceptions and out-of-scope requests to the right person."
+      }
     ],
-    problems: [
-      "Customer support team overwhelmed by repetitive inquiries",
-      "Lead qualification consuming sales team's valuable time",
-      "Inconsistent responses across support channels",
-      "Slow response times damaging customer satisfaction",
-      "Knowledge buried in documents, not accessible to teams",
+    "problems": [
+      "Support staff repeatedly search for the same product or policy information.",
+      "Sales teams manually review and classify incoming enquiries.",
+      "An experimental chatbot lacks clear access controls or escalation rules."
     ],
-    solutions: [
-      "AI customer support agents that handle 80% of inquiries instantly with accurate responses",
-      "Lead qualification agents that score, prioritize, and route leads to sales",
-      "Internal knowledge assistants that answer employee questions from company documents",
-      "Multi-channel AI agents for website, WhatsApp, Telegram, and email",
-      "AI-powered document processing for invoices, contracts, and reports",
+    "solutions": [
+      "Customer support assistant: retrieve relevant help content, draft a response and escalate unresolved issues.",
+      "Lead qualification agent: collect agreed details, summarise the enquiry and prepare a CRM handoff.",
+      "Internal knowledge assistant: search approved documents and surface source references where available."
     ],
-    steps: [
-      { title: "Discovery & Scope", desc: "We identify the highest-impact use cases for AI agents in your business and define success metrics." },
-      { title: "Architecture Design", desc: "Design the agent's reasoning framework, tool access, memory system, and human handoff protocols." },
-      { title: "Development & Training", desc: "Build the agent with custom prompts, knowledge base integration, and multi-turn conversation handling." },
-      { title: "Testing & Deployment", desc: "Rigorous testing with real scenarios, A/B comparison with human performance, then production deployment." },
+    "steps": [
+      {
+        "title": "Define the task",
+        "desc": "Specify the audience, acceptable actions, knowledge sources and success criteria."
+      },
+      {
+        "title": "Design the boundaries",
+        "desc": "Set tool permissions, retrieval rules, approval points and fallback responses."
+      },
+      {
+        "title": "Evaluate real scenarios",
+        "desc": "Test representative questions, unsupported requests and misleading inputs."
+      },
+      {
+        "title": "Launch with review",
+        "desc": "Introduce the agent with feedback collection and an agreed review process."
+      }
     ],
-    faqs: [
-      { q: "What's the difference between a chatbot and an AI agent?", a: "Chatbots follow scripted rules. AI agents use LLMs to understand context, reason about problems, access tools, and execute multi-step actions autonomously." },
-      { q: "Which LLM models do you use?", a: "We're model-agnostic. We use GPT-4, GPT-4o, Claude 3.5, Gemini, and open-source models like Llama and Mistral — choosing the best for each use case." },
-      { q: "Can AI agents integrate with our existing tools?", a: "Yes. Agents can connect to Salesforce, HubSpot, Zendesk, Slack, databases, and any REST API." },
-      { q: "How do you ensure AI agents give accurate responses?", a: "We use RAG (Retrieval-Augmented Generation), prompt engineering, guardrails, confidence thresholds, and continuous monitoring to ensure accuracy." },
+    "faqs": [
+      {
+        "q": "How is an AI agent different from a chatbot?",
+        "a": "A chatbot mainly responds in a conversation. An AI agent may also retrieve information or call permitted tools to complete a defined task."
+      },
+      {
+        "q": "Can an AI agent use our CRM?",
+        "a": "Yes, where the CRM provides appropriate integration access. Read and write permissions should be limited to the agreed task."
+      },
+      {
+        "q": "Can AI agents guarantee correct answers?",
+        "a": "No. Model responses can be incorrect. Grounding, evaluations and human review reduce risk but do not eliminate it."
+      }
     ],
-    imageAlt: "AI agent interface showing autonomous conversation with tool integration",
-    price: "$5,000 - $25,000 per agent",
-    timeline: "3-8 weeks per agent",
+    "imageAlt": "",
+    "price": "Scoped after consultation",
+    "timeline": "Based on project scope",
+    "dedicatedLanding": true
   },
   {
-    slug: "whatsapp-automation",
-    title: "WhatsApp Business Automation",
-    shortTitle: "WhatsApp Bots",
-    metaTitle: "WhatsApp Bot Development | Business API Agency",
-    metaDesc: "WhatsApp bot development using the WhatsApp Business API. Build AI chatbots, bulk messaging, order notifications and CRM integration for business automations.",
-    h1: "WhatsApp Bot Development & Automation Services for Business",
-    intro: "WhatsApp is the world's most popular messaging platform with 2+ billion users. We build WhatsApp bot development solutions on the official WhatsApp Business API so businesses can automate customer engagement, send notifications, process orders and qualify leads inside the app their customers already use daily. Our WhatsApp bots handle customer support, lead follow-up, order status and payment reminders automatically — one of the fastest-ROI AI automations you can deploy. Pair it with an AI agent for complex queries and you have a complete WhatsApp automation engine running 24/7.",
-    benefits: [
-      { title: "98% Open Rate", desc: "WhatsApp messages have 98% open rates within 3 minutes — far exceeding email and SMS marketing." },
-      { title: "Official API Compliance", desc: "We use the official WhatsApp Business API. No bans, no rate limits, full compliance with Meta's policies." },
-      { title: "Multi-Agent Support", desc: "Route conversations to the right team members with seamless handoff from chatbot to human agent." },
-      { title: "Rich Media Messages", desc: "Send images, videos, PDFs, location pins, and interactive buttons within WhatsApp conversations." },
-      { title: "CRM Integration", desc: "Sync WhatsApp conversations with your CRM — log messages, update contacts, and trigger automations." },
-      { title: "Template Messages", desc: "Pre-approved message templates for order confirmations, shipping updates, appointment reminders, and more." },
+    "slug": "whatsapp-automation",
+    "title": "WhatsApp Business Automation",
+    "shortTitle": "WhatsApp Automations",
+    "metaTitle": "WhatsApp Automation & Business API Integration",
+    "metaDesc": "WhatsApp Business automation for enquiries, reminders and CRM handoffs. Custom chatbot flows using the official API. Book a free consultation.",
+    "h1": "WhatsApp Business Automation Services",
+    "intro": "Turn WhatsApp enquiries into structured business workflows. FLOLOGIXAUTOMATIONS builds WhatsApp Business API integrations for customer questions, lead capture, reminders and operational updates. Conversations can feed your CRM and route to a person when a customer needs more than an automated response. Messaging design follows applicable consent, template and provider requirements.",
+    "benefits": [
+      {
+        "title": "Structured enquiry capture",
+        "desc": "Collect the details your team needs and route qualified enquiries to the correct owner."
+      },
+      {
+        "title": "Connected conversation records",
+        "desc": "Pass agreed contact and conversation fields to your CRM instead of relying on manual notes."
+      },
+      {
+        "title": "Support handoff",
+        "desc": "Provide an escalation path for exceptions, sensitive questions and requests for a human."
+      }
     ],
-    problems: [
-      "Customers expect responses on WhatsApp but you're managing it manually",
-      "Missed leads because WhatsApp messages aren't routed to the right team",
-      "No way to send bulk notifications without getting banned",
-      "Unable to track WhatsApp conversations in your CRM",
-      "Manual order confirmations and shipping updates consuming staff time",
+    "problems": [
+      "Customer enquiries remain in individual inboxes without a clear owner.",
+      "Appointment reminders and order updates are sent manually.",
+      "Sales staff re-enter WhatsApp enquiry details in the CRM."
     ],
-    solutions: [
-      "AI-powered WhatsApp chatbot that handles customer inquiries 24/7",
-      "Smart routing system that directs messages to the right department or agent",
-      "WhatsApp Business API integration with your CRM for full conversation history",
-      "Automated order confirmations, shipping updates, and appointment reminders",
-      "Broadcast messaging for promotions, updates, and re-engagement campaigns",
+    "solutions": [
+      "Enquiry bot: ask qualification questions, record answers and alert the sales team.",
+      "Appointment workflow: send eligible reminders and route rescheduling requests to your booking process.",
+      "Order notifications: trigger approved status updates from your commerce or operational system."
     ],
-    steps: [
-      { title: "API Setup", desc: "We handle WhatsApp Business API registration, number verification, and template approval with Meta." },
-      { title: "Chatbot Development", desc: "Build conversational flows, FAQ responses, and lead qualification logic for your WhatsApp bot." },
-      { title: "CRM Integration", desc: "Connect WhatsApp with your CRM for automatic contact creation, conversation logging, and lead updates." },
-      { title: "Launch & Optimize", desc: "Deploy, monitor conversations, analyze performance, and optimize flows based on real interactions." },
+    "steps": [
+      {
+        "title": "Check account readiness",
+        "desc": "Review your WhatsApp Business setup, integration provider and required access."
+      },
+      {
+        "title": "Design the conversation",
+        "desc": "Define customer entry points, consent handling, templates and human handoff."
+      },
+      {
+        "title": "Connect business systems",
+        "desc": "Map CRM, booking or order fields and test inbound and outbound events."
+      },
+      {
+        "title": "Validate before launch",
+        "desc": "Test conversation paths and provider requirements before enabling the agreed workflows."
+      }
     ],
-    faqs: [
-      { q: "Do I need a new phone number for WhatsApp Business API?", desc: "You can use your existing number or get a new one. The number must be verified by Meta and cannot be registered with the regular WhatsApp app." },
-      { q: "Can I send promotional messages on WhatsApp?", desc: "Yes, but promotional messages require pre-approved templates and must comply with Meta's messaging policies." },
-      { q: "How long does WhatsApp Business API approval take?", desc: "Business verification takes 1-5 business days. Template approvals take 24-48 hours." },
-      { q: "Which CRM platforms do you integrate with?", desc: "We integrate with Salesforce, HubSpot, Zoho, Pipedrive, Freshsales, and custom APIs." },
+    "faqs": [
+      {
+        "q": "Do you use the official WhatsApp Business API?",
+        "a": "Our WhatsApp automation work uses the official business API or an appropriate provider integration, subject to account eligibility."
+      },
+      {
+        "q": "Can WhatsApp automate promotional messages?",
+        "a": "Eligible messaging requires appropriate consent and must follow current Meta policies, template rules and applicable law."
+      },
+      {
+        "q": "Are WhatsApp messaging fees included?",
+        "a": "Platform and provider fees depend on your account and usage. We clarify these separately when scoping the work."
+      }
     ],
-    imageAlt: "WhatsApp Business chat interface showing automated customer conversation",
-    price: "$3,000 - $12,000 per setup",
-    timeline: "2-4 weeks",
+    "imageAlt": "",
+    "price": "Scoped after consultation",
+    "timeline": "Based on project scope",
+    "dedicatedLanding": true
   },
   {
-    slug: "telegram-bot-development",
-    title: "Telegram Bot Development Services",
-    shortTitle: "Telegram Bots",
-    metaTitle: "Telegram Bot Development Company | Custom Bots",
-    metaDesc: "Custom Telegram bot development for business automation. Command bots, inline queries, group management, payment integrations, and more.",
-    h1: "Custom Telegram Bot Development for Business",
-    intro: "Telegram offers the most flexible bot API of any messaging platform. We build custom Telegram bots that handle customer support, process orders, manage communities, automate notifications, and integrate with your business systems. Telegram bots can do everything from taking payments to moderating groups of 100,000+ members.",
-    benefits: [
-      { title: "100% Free API", desc: "Telegram's bot API is completely free with no per-message costs, no subscription tiers, and no usage limits." },
-      { title: "Rich Bot Capabilities", desc: "Custom keyboards, inline queries, web apps, payments, file sharing, voice messages, and location sharing." },
-      { title: "Group Management", desc: "Auto-moderation, welcome messages, spam filters, polls, and member analytics for Telegram groups." },
-      { title: "Payment Integration", desc: "Telegram's built-in payment system supports Stripe, Razorpay, and 20+ other payment providers." },
-      { title: "Web App Support", desc: "Build full web applications that open inside Telegram for seamless user experiences without leaving the app." },
-      { title: "High Scalability", desc: "Telegram bots handle millions of users. Our architecture ensures your bot performs at any scale." },
+    "slug": "telegram-bot-development",
+    "title": "Telegram Bot Development",
+    "shortTitle": "Telegram Bots",
+    "metaTitle": "Telegram Bot Development & Integrations",
+    "metaDesc": "Custom Telegram bot development for commands, notifications, community workflows and CRM integrations. Plan your business bot with Flologix.",
+    "h1": "Telegram Bot Development Services",
+    "intro": "Give your customers or team a clear way to interact with business processes inside Telegram. FLOLOGIXAUTOMATIONS develops Telegram bots with commands, interactive buttons and webhook integrations for enquiries, notifications and community workflows. The bot is designed around who can use each command, which information it can access and how exceptions reach your team.",
+    "benefits": [
+      {
+        "title": "Task-focused commands",
+        "desc": "Create predictable command and button flows for common requests rather than long manual exchanges."
+      },
+      {
+        "title": "Business event notifications",
+        "desc": "Deliver relevant alerts from connected systems to authorised users or groups."
+      },
+      {
+        "title": "Permission-aware workflows",
+        "desc": "Restrict administrative actions and review what information is shared in group conversations."
+      }
     ],
-    problems: [
-      "Managing large Telegram groups manually is time-consuming and error-prone",
-      "No automated system for customer inquiries on Telegram",
-      "Manual order processing through Telegram messages",
-      "Unable to automate notifications and updates to Telegram users",
-      "Community management requires constant human moderation",
+    "problems": [
+      "Team alerts are posted manually and missed across separate tools.",
+      "Repeated community questions take time away from moderators.",
+      "Telegram requests do not reach the system where work is tracked."
     ],
-    solutions: [
-      "Custom Telegram bot with AI-powered customer support and FAQ responses",
-      "Automated group moderation with custom rules, spam detection, and member analytics",
-      "Telegram bot integrated with your e-commerce platform for order processing",
-      "Notification bot for real-time alerts, updates, and broadcasts",
-      "Community management bot with welcome flows, polls, and engagement tracking",
+    "solutions": [
+      "Team notification bot: receive operational events and send actionable updates to an authorised chat.",
+      "Enquiry bot: capture a request and create a CRM record or support ticket.",
+      "Community assistant: provide approved answers and flag moderation events for human review."
     ],
-    steps: [
-      { title: "Bot Design", desc: "We design the bot architecture, conversation flows, and integration points with your systems." },
-      { title: "Development", desc: "Build the bot with custom commands, inline queries, keyboards, and integration logic." },
-      { title: "Integration Testing", desc: "Test the bot with real user scenarios, edge cases, and performance benchmarks." },
-      { title: "Deployment", desc: "Deploy the bot on high-availability infrastructure with monitoring and analytics." },
+    "steps": [
+      {
+        "title": "Define users and commands",
+        "desc": "Identify the audience, permitted actions and notification destinations."
+      },
+      {
+        "title": "Build bot interactions",
+        "desc": "Implement commands, buttons, input validation and webhook event handling."
+      },
+      {
+        "title": "Test permissions and limits",
+        "desc": "Check chat access, duplicate updates, provider limits and error responses."
+      },
+      {
+        "title": "Document operations",
+        "desc": "Hand over command details, configuration guidance and a maintenance plan."
+      }
     ],
-    faqs: [
-      { q: "How is Telegram bot development different from WhatsApp?", desc: "Telegram has a more flexible API with bot-initiated messages, inline queries, custom keyboards, and no template approval process." },
-      { q: "Can a Telegram bot process payments?", desc: "Yes. Telegram supports payments through its native payment API with 20+ payment providers including Stripe." },
-      { q: "Do I need coding skills to manage the bot?", desc: "No. We build admin panels that let your team manage responses, view analytics, and update content without code." },
-      { q: "How many users can a Telegram bot handle?", desc: "Telegram bots have no hard user limit. Our infrastructure supports millions of concurrent users." },
+    "faqs": [
+      {
+        "q": "Can a Telegram bot connect to our CRM?",
+        "a": "Yes, when the CRM offers suitable integration access. We map bot input to the required records and fields."
+      },
+      {
+        "q": "Can bots message anyone on Telegram?",
+        "a": "No. Bots need an allowed interaction or chat relationship and remain subject to Telegram permissions and platform limits."
+      },
+      {
+        "q": "Can a bot manage a Telegram group?",
+        "a": "A bot can perform permitted moderation actions when it has the required group rights. We define the actions and human review path before implementation."
+      }
     ],
-    imageAlt: "Telegram bot interface showing custom keyboard and automated responses",
-    price: "$2,000 - $10,000 per bot",
-    timeline: "2-4 weeks",
+    "imageAlt": "",
+    "price": "Scoped after consultation",
+    "timeline": "Based on project scope",
+    "dedicatedLanding": true
+  },
+  {
+    "slug": "crm-integrations",
+    "title": "CRM Integration & Automation Services",
+    "shortTitle": "CRM Integrations",
+    "metaTitle": "CRM Integration & Sales Workflow Automation",
+    "metaDesc": "CRM integration services for lead capture, contact sync and sales handoffs. Connect forms, messaging and business tools. Book a free consultation.",
+    "h1": "CRM Integration Services",
+    "intro": "Keep customer information moving between the tools your team already uses. FLOLOGIXAUTOMATIONS builds CRM integrations that connect website forms, messaging channels and operational applications to your sales process. We focus on field mapping, record ownership and duplicate handling so an integration does more than copy data: it supports the next step your team needs to take.",
+    "benefits": [
+      {
+        "title": "Consistent lead capture",
+        "desc": "Map incoming enquiries to the required contact, company and deal fields."
+      },
+      {
+        "title": "Clear record ownership",
+        "desc": "Agree which system owns each field and what happens when records conflict."
+      },
+      {
+        "title": "Connected sales handoffs",
+        "desc": "Trigger tasks and notifications when a lead reaches an agreed stage."
+      }
+    ],
+    "problems": [
+      "Leads from forms and messaging channels are entered into the CRM manually.",
+      "Contact records are duplicated or contain conflicting information.",
+      "Sales and operations use separate systems without a reliable handoff."
+    ],
+    "solutions": [
+      "Form-to-CRM workflow: validate an enquiry, check for a matching contact and assign a follow-up task.",
+      "Contact synchronisation: exchange agreed fields between supported systems with explicit conflict rules.",
+      "Sales-to-operations handoff: pass approved deal details to onboarding, invoicing or project tools."
+    ],
+    "steps": [
+      {
+        "title": "Review the CRM setup",
+        "desc": "Check available API access, custom fields, permissions and existing workflows."
+      },
+      {
+        "title": "Map records and ownership",
+        "desc": "Define matching rules, required fields, direction of sync and conflict handling."
+      },
+      {
+        "title": "Build and test",
+        "desc": "Validate representative records, duplicates, failed requests and retries."
+      },
+      {
+        "title": "Roll out carefully",
+        "desc": "Agree the initial rollout, monitoring responsibilities and documentation."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Which CRM platforms can you integrate?",
+        "a": "We assess platforms such as HubSpot, Salesforce, Zoho and Pipedrive, along with custom systems. Feasibility depends on the available API, account permissions and subscription features."
+      },
+      {
+        "q": "Can you build a two-way CRM integration?",
+        "a": "Yes, where both systems support it. Two-way sync needs explicit ownership and conflict rules to avoid update loops."
+      },
+      {
+        "q": "Will an integration remove existing duplicates?",
+        "a": "Not automatically. Existing record cleanup is a separate scope; we can assess it alongside duplicate prevention for new events."
+      }
+    ],
+    "imageAlt": "",
+    "price": "Scoped after consultation",
+    "timeline": "Based on project scope",
+    "dedicatedLanding": true
   },
   {
     slug: "rag-systems",
@@ -238,10 +400,10 @@ export const services: Service[] = [
       { title: "Deployment & Monitoring", desc: "Deploy with usage analytics, feedback collection, and continuous improvement cycles." },
     ],
     faqs: [
-      { q: "What's the difference between RAG and fine-tuning?", desc: "RAG retrieves relevant documents at query time and feeds them to the LLM. Fine-tuning trains the model on your data. RAG is cheaper, faster to update, and more transparent." },
-      { q: "Which vector database do you use?", desc: "We use Pinecone, Weaviate, Qdrant, or pgvector depending on your scale, budget, and hosting preferences." },
-      { q: "Can RAG handle images and scanned PDFs?", desc: "Yes. We use OCR for scanned documents, and multimodal models can process images, diagrams, and charts." },
-      { q: "How accurate are RAG answers?", desc: "With proper chunking, embedding, and re-ranking, RAG systems achieve 90-95% answer accuracy on well-defined domains." },
+      { q: "What's the difference between RAG and fine-tuning?", a: "RAG retrieves relevant documents at query time and feeds them to the LLM. Fine-tuning trains the model on your data. RAG is cheaper, faster to update, and more transparent." },
+      { q: "Which vector database do you use?", a: "We use Pinecone, Weaviate, Qdrant, or pgvector depending on your scale, budget, and hosting preferences." },
+      { q: "Can RAG handle images and scanned PDFs?", a: "Yes. We use OCR for scanned documents, and multimodal models can process images, diagrams, and charts." },
+      { q: "How accurate are RAG answers?", a: "With proper chunking, embedding, and re-ranking, RAG systems achieve 90-95% answer accuracy on well-defined domains." },
     ],
     imageAlt: "RAG system architecture showing document ingestion and AI query flow",
     price: "$8,000 - $30,000 per system",
@@ -284,10 +446,10 @@ export const services: Service[] = [
       { title: "Go-Live & Optimization", desc: "Deploy to production, train your team, and continuously optimize based on performance data." },
     ],
     faqs: [
-      { q: "What processes can be automated?", desc: "Almost any repetitive, rule-based process can be automated — data entry, approvals, notifications, report generation, invoice processing, customer onboarding, and more." },
-      { q: "How long does a typical automation project take?", desc: "Simple automations take 1-2 weeks. Complex enterprise-wide processes take 4-8 weeks depending on system integrations." },
-      { q: "Do you integrate with legacy systems?", desc: "Yes. We connect to legacy systems via APIs, database connectors, file imports, or custom middleware when APIs aren't available." },
-      { q: "What's your approach to change management?", desc: "We involve stakeholders from day one, provide comprehensive training, and run parallel operations during cutover to ensure zero disruption." },
+      { q: "What processes can be automated?", a: "Almost any repetitive, rule-based process can be automated — data entry, approvals, notifications, report generation, invoice processing, customer onboarding, and more." },
+      { q: "How long does a typical automation project take?", a: "Simple automations take 1-2 weeks. Complex enterprise-wide processes take 4-8 weeks depending on system integrations." },
+      { q: "Do you integrate with legacy systems?", a: "Yes. We connect to legacy systems via APIs, database connectors, file imports, or custom middleware when APIs aren't available." },
+      { q: "What's your approach to change management?", a: "We involve stakeholders from day one, provide comprehensive training, and run parallel operations during cutover to ensure zero disruption." },
     ],
     imageAlt: "Business process automation workflow showing connected systems and data flow",
     price: "$3,000 - $20,000 per process",
