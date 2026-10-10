@@ -1,4 +1,5 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { Outlet, Link, createRootRoute, HeadContent, Scripts, useRouterState } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
 
@@ -73,5 +74,21 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 
 function RootComponent() {
+  const location = useRouterState({ select: (state) => state.location });
+  useEffect(() => {
+    if (!location.hash) return;
+    const scrollToTarget = () => {
+      const target = document.getElementById(location.hash);
+      if (!target) return false;
+      target.scrollIntoView({ block: "start", behavior: "instant" });
+      return true;
+    };
+    const frame = requestAnimationFrame(() => { scrollToTarget(); });
+    const observer = new MutationObserver(() => {
+      if (scrollToTarget()) observer.disconnect();
+    });
+    if (!scrollToTarget()) observer.observe(document.body, { childList: true, subtree: true });
+    return () => { cancelAnimationFrame(frame); observer.disconnect(); };
+  }, [location.pathname, location.hash]);
   return <Outlet />;
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
 const ShaderBackground = () => {
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // Vertex shader source code
   const vsSource = `
@@ -108,8 +108,9 @@ const ShaderBackground = () => {
   `;
 
   // Helper function to compile shader
-  const loadShader = (gl, type, source) => {
+  const loadShader = (gl: WebGLRenderingContext, type: number, source: string) => {
     const shader = gl.createShader(type);
+    if (!shader) return null;
     gl.shaderSource(shader, source);
     gl.compileShader(shader);
 
@@ -123,11 +124,12 @@ const ShaderBackground = () => {
   };
 
   // Initialize shader program
-  const initShaderProgram = (gl, vsSource, fsSource) => {
+  const initShaderProgram = (gl: WebGLRenderingContext, vsSource: string, fsSource: string) => {
     const vertexShader = loadShader(gl, gl.VERTEX_SHADER, vsSource);
     const fragmentShader = loadShader(gl, gl.FRAGMENT_SHADER, fsSource);
 
     const shaderProgram = gl.createProgram();
+    if (!shaderProgram || !vertexShader || !fragmentShader) return null;
     gl.attachShader(shaderProgram, vertexShader);
     gl.attachShader(shaderProgram, fragmentShader);
     gl.linkProgram(shaderProgram);
@@ -151,6 +153,7 @@ const ShaderBackground = () => {
     }
 
     const shaderProgram = initShaderProgram(gl, vsSource, fsSource);
+    if (!shaderProgram) return;
     const positionBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
     const positions = [

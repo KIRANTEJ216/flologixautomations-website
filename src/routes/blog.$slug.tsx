@@ -72,7 +72,7 @@ export const Route = createFileRoute("/blog/$slug")({
       <div className="max-w-md text-center">
         <h1 className="text-2xl font-bold">Something went wrong</h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          {import.meta.env.DEV && error.message ? error.message : "An unexpected error occurred."}
+          {import.meta.env.DEV && error instanceof Error && error.message ? error.message : "An unexpected error occurred."}
         </p>
         <Link to="/blog" className="mt-6 inline-block text-foreground underline">
           ← Back to blog

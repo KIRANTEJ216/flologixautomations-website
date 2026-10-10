@@ -6,6 +6,8 @@ import { Footer } from "@/components/Footer";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { title: "Privacy Policy — Flologix Automations" },
       {
         name: "description",

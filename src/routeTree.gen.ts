@@ -9,31 +9,26 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TermsRouteImport } from './routes/terms'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as SolutionsIndexRouteImport } from './routes/solutions.index'
-import { Route as ServicesIndexRouteImport } from './routes/services.index'
-import { Route as LocationsIndexRouteImport } from './routes/locations.index'
-import { Route as IndustryIndexRouteImport } from './routes/industry.index'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
-import { Route as SolutionsSolutionRouteImport } from './routes/solutions.$solution'
-import { Route as ServicesServiceRouteImport } from './routes/services.$service'
-import { Route as LocationsCityRouteImport } from './routes/locations.$city'
-import { Route as IndustryIndustryRouteImport } from './routes/industry.$industry'
-import { Route as BlogRssDotxmlRouteImport } from './routes/blog.rss[.]xml'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as BlogRssDotxmlRouteImport } from './routes/blog.rss[.]xml'
+import { Route as IndustryIndexRouteImport } from './routes/industry.index'
+import { Route as IndustryIndustryRouteImport } from './routes/industry.$industry'
+import { Route as LocationsIndexRouteImport } from './routes/locations.index'
+import { Route as LocationsCityRouteImport } from './routes/locations.$city'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as ServicesServiceRouteImport } from './routes/services.$service'
+import { Route as SolutionsIndexRouteImport } from './routes/solutions.index'
+import { Route as SolutionsSolutionRouteImport } from './routes/solutions.$solution'
 import { Route as ApiBlogWebhookRouteImport } from './routes/api.blog.webhook'
 
-const TermsRoute = TermsRouteImport.update({
-  id: '/terms',
-  path: '/terms',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -41,29 +36,14 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SolutionsIndexRoute = SolutionsIndexRouteImport.update({
-  id: '/solutions/',
-  path: '/solutions/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ServicesIndexRoute = ServicesIndexRouteImport.update({
-  id: '/services/',
-  path: '/services/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LocationsIndexRoute = LocationsIndexRouteImport.update({
-  id: '/locations/',
-  path: '/locations/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IndustryIndexRoute = IndustryIndexRouteImport.update({
-  id: '/industry/',
-  path: '/industry/',
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -71,24 +51,9 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
   path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SolutionsSolutionRoute = SolutionsSolutionRouteImport.update({
-  id: '/solutions/$solution',
-  path: '/solutions/$solution',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ServicesServiceRoute = ServicesServiceRouteImport.update({
-  id: '/services/$service',
-  path: '/services/$service',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LocationsCityRoute = LocationsCityRouteImport.update({
-  id: '/locations/$city',
-  path: '/locations/$city',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IndustryIndustryRoute = IndustryIndustryRouteImport.update({
-  id: '/industry/$industry',
-  path: '/industry/$industry',
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogRssDotxmlRoute = BlogRssDotxmlRouteImport.update({
@@ -96,9 +61,44 @@ const BlogRssDotxmlRoute = BlogRssDotxmlRouteImport.update({
   path: '/blog/rss.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogSlugRoute = BlogSlugRouteImport.update({
-  id: '/blog/$slug',
-  path: '/blog/$slug',
+const IndustryIndexRoute = IndustryIndexRouteImport.update({
+  id: '/industry/',
+  path: '/industry/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndustryIndustryRoute = IndustryIndustryRouteImport.update({
+  id: '/industry/$industry',
+  path: '/industry/$industry',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LocationsIndexRoute = LocationsIndexRouteImport.update({
+  id: '/locations/',
+  path: '/locations/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LocationsCityRoute = LocationsCityRouteImport.update({
+  id: '/locations/$city',
+  path: '/locations/$city',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/services/',
+  path: '/services/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesServiceRoute = ServicesServiceRouteImport.update({
+  id: '/services/$service',
+  path: '/services/$service',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SolutionsIndexRoute = SolutionsIndexRouteImport.update({
+  id: '/solutions/',
+  path: '/solutions/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SolutionsSolutionRoute = SolutionsSolutionRouteImport.update({
+  id: '/solutions/$solution',
+  path: '/solutions/$solution',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiBlogWebhookRoute = ApiBlogWebhookRouteImport.update({
@@ -240,18 +240,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/terms': {
-      id: '/terms'
-      path: '/terms'
-      fullPath: '/terms'
-      preLoaderRoute: typeof TermsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -261,39 +254,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/solutions/': {
-      id: '/solutions/'
-      path: '/solutions'
-      fullPath: '/solutions/'
-      preLoaderRoute: typeof SolutionsIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services/': {
-      id: '/services/'
-      path: '/services'
-      fullPath: '/services/'
-      preLoaderRoute: typeof ServicesIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/locations/': {
-      id: '/locations/'
-      path: '/locations'
-      fullPath: '/locations/'
-      preLoaderRoute: typeof LocationsIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/industry/': {
-      id: '/industry/'
-      path: '/industry'
-      fullPath: '/industry/'
-      preLoaderRoute: typeof IndustryIndexRouteImport
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -303,32 +275,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/solutions/$solution': {
-      id: '/solutions/$solution'
-      path: '/solutions/$solution'
-      fullPath: '/solutions/$solution'
-      preLoaderRoute: typeof SolutionsSolutionRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services/$service': {
-      id: '/services/$service'
-      path: '/services/$service'
-      fullPath: '/services/$service'
-      preLoaderRoute: typeof ServicesServiceRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/locations/$city': {
-      id: '/locations/$city'
-      path: '/locations/$city'
-      fullPath: '/locations/$city'
-      preLoaderRoute: typeof LocationsCityRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/industry/$industry': {
-      id: '/industry/$industry'
-      path: '/industry/$industry'
-      fullPath: '/industry/$industry'
-      preLoaderRoute: typeof IndustryIndustryRouteImport
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/rss.xml': {
@@ -338,11 +289,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogRssDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog/$slug': {
-      id: '/blog/$slug'
-      path: '/blog/$slug'
-      fullPath: '/blog/$slug'
-      preLoaderRoute: typeof BlogSlugRouteImport
+    '/industry/': {
+      id: '/industry/'
+      path: '/industry'
+      fullPath: '/industry/'
+      preLoaderRoute: typeof IndustryIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/industry/$industry': {
+      id: '/industry/$industry'
+      path: '/industry/$industry'
+      fullPath: '/industry/$industry'
+      preLoaderRoute: typeof IndustryIndustryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/locations/': {
+      id: '/locations/'
+      path: '/locations'
+      fullPath: '/locations/'
+      preLoaderRoute: typeof LocationsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/locations/$city': {
+      id: '/locations/$city'
+      path: '/locations/$city'
+      fullPath: '/locations/$city'
+      preLoaderRoute: typeof LocationsCityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/': {
+      id: '/services/'
+      path: '/services'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/$service': {
+      id: '/services/$service'
+      path: '/services/$service'
+      fullPath: '/services/$service'
+      preLoaderRoute: typeof ServicesServiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/solutions/': {
+      id: '/solutions/'
+      path: '/solutions'
+      fullPath: '/solutions/'
+      preLoaderRoute: typeof SolutionsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/solutions/$solution': {
+      id: '/solutions/$solution'
+      path: '/solutions/$solution'
+      fullPath: '/solutions/$solution'
+      preLoaderRoute: typeof SolutionsSolutionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/blog/webhook': {

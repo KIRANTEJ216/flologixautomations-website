@@ -12,7 +12,8 @@ export const Route = createFileRoute("/industry/$industry")({
     return { industry };
   },
   head: ({ loaderData }) => {
-    const { industry } = loaderData;
+    const industry = loaderData?.industry;
+    if (!industry) return { meta: [{ title: "Page unavailable | Flologix" }, { name: "robots", content: "noindex" }] };
     const meta = buildMeta(
       `/industry/${industry.slug}`,
       industry.metaTitle,

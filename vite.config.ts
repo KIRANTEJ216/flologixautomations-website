@@ -1,7 +1,6 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-export default defineConfig({
-  nitro: {
+const nitro = {
     // Hard-pin the deploy target. Without this, nitro defaults to
     // cloudflare-module, which is wrong for this project's Vercel hosting.
     preset: "vercel",
@@ -26,5 +25,6 @@ export default defineConfig({
         },
       },
     },
-  },
-});
+};
+
+export default defineConfig({ nitro });

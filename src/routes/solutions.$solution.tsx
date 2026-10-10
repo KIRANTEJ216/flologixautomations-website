@@ -11,7 +11,8 @@ export const Route = createFileRoute("/solutions/$solution")({
     return { solution };
   },
   head: ({ loaderData }) => {
-    const { solution } = loaderData;
+    const solution = loaderData?.solution;
+    if (!solution) return { meta: [{ title: "Page unavailable | Flologix" }, { name: "robots", content: "noindex" }] };
     const meta = buildMeta(
       `/solutions/${solution.slug}`,
       solution.metaTitle,
