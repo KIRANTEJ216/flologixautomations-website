@@ -32,9 +32,9 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
-      { name: "author", content: "FlologixAutomations" },
+      { name: "author", content: "Flologix Automations" },
       { name: "theme-color", content: "#6d4cff" },
-      { property: "og:site_name", content: "FlologixAutomations" },
+      { property: "og:site_name", content: "Flologix Automations" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
